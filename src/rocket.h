@@ -1,5 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef ROCKET_H
+#define ROCKET_H
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
