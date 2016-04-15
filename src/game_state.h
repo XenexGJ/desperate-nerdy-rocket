@@ -7,6 +7,8 @@
 #define STATE_MENU 0
 #define STATE_PLAYING 1
 
+
+
 #define DIRECTION_NONE 0
 #define DIRECTION_LEFT 1
 #define DIRECTION_RIGHT 2
@@ -29,11 +31,17 @@ public:
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
+	
 	sf::Vector2f getPlayerLocation();
-	void addScrew(sf::Vector2f location);
+	sf:Vector getPlayerRotation();
+	//void addScrew(sf::Vector2f location);
+	void GameState::addCoins(){}
 	std::vector<sf::Vector2f> getScrewLocations();
-	int getVisibleScrewsCount();
+	//int getVisibleScrewsCount();
 	int getCollectedScrewsCount();
+	int getCollectedDodgeCoins();
+
+
 private:
 	int m_game_state;
 	int m_size_x;

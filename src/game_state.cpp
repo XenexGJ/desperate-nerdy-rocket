@@ -28,6 +28,8 @@ void GameState::startPlaying()
 
 	// Reset all values
 	m_screws_collected = 0;
+	m_dodgecoins_collected = 0;
+
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2));
 	m_screw_locations.clear();
@@ -139,21 +141,34 @@ sf::Vector2f GameState::getPlayerLocation()
 	return m_player_location;
 }
 
+sf::Vector2f GameState::getPlayerRotation()
+{
+	return m_player_rotation;
+}
 void GameState::addScrew(sf::Vector2f location)
 {
 	m_screw_locations.push_back(location);
 }
 
+void GameState::addCoins(){}
+
+
 std::vector<sf::Vector2f> GameState::getScrewLocations()
 {
 	return m_screw_locations;
 }
-
+/*
 int GameState::getVisibleScrewsCount()
 {
 	return m_screw_locations.size();
 }
+*/
 
+
+int GameState::getCollectedDodgeCoins()
+{
+	return m_dodgecoins_collected;
+}
 int GameState::getCollectedScrewsCount()
 {
 	return m_screws_collected;

@@ -12,7 +12,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     }
     m_texture_background.setRepeated(true);
 
-    if (!m_texture_player.loadFromFile("assets/robot.png"))
+    if (!m_texture_player.loadFromFile("assets/rocket.png"))
 	{
     	m_wnd->close();
     }
@@ -61,27 +61,34 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_screws);
 	}
 
+
 	if(m_gst->getGameState() == STATE_MENU)
 	{
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setString("Larry Screweater");
+		text_title.setString("ENIS ENIS ENIS ENIS");
 		text_title.setCharacterSize(80);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		m_wnd->draw(text_title);
 
 		sf::Text text_help;
 		text_help.setFont(m_normal_font);
-		text_help.setString("Larry the robot likes to eat screws. Help him by controlling his movements with the arrow keys.\nBe careful! You will lose the game when too many screws are visible. Start with the <SPACE> key.");
+		text_help.setString("RocketRacoon wants to meet his daddy.\n Help him! start with the <SPACE> key.");
 		text_help.setCharacterSize(20);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
 	}
+	else if (m_gst->getGameState() == STATE_SHOP)
+	{
+		
+	}
 	else
 	{
 		std::stringstream str;
-		str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
+		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
+
+		str << mgst->
 
 		// Game texts
 		sf::Text text_screws;
