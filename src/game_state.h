@@ -3,9 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "upgrade.h"
 
 #define STATE_MENU 0
 #define STATE_PLAYING 1
+#define STATE_SHOP 2
 
 
 
@@ -31,11 +33,11 @@ public:
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
+	float getPlayerRotation();
 	
 	sf::Vector2f getPlayerLocation();
-	sf:Vector getPlayerRotation();
 	//void addScrew(sf::Vector2f location);
-	void GameState::addCoins(){}
+	void addCoins();
 	std::vector<sf::Vector2f> getScrewLocations();
 	//int getVisibleScrewsCount();
 	int getCollectedScrewsCount();
@@ -47,12 +49,13 @@ private:
 	int m_size_x;
 	int m_size_y;
 	int m_player_direction;
+	float m_player_rotation;
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_screw_locations;
 	float m_new_screw_threshold;
 	int m_screws_collected;
 
-	int m_dodgecoins;
+	int m_dodgecoins_collected;
 	float m_velocity;
 	
 

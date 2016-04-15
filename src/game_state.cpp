@@ -45,11 +45,11 @@ void GameState::updateGameState()
 	}
 
 	// Return to menu state when losing the game
-	if(getVisibleScrewsCount() >= 10)
+	/*if(getVisibleScrewsCount() >= 10)
 	{
 		m_game_state = STATE_MENU;
 		return;
-	}
+	}*/
 
 	// Update the player location
 	sf::Vector2f delta;
@@ -141,14 +141,14 @@ sf::Vector2f GameState::getPlayerLocation()
 	return m_player_location;
 }
 
-sf::Vector2f GameState::getPlayerRotation()
+float GameState::getPlayerRotation()
 {
 	return m_player_rotation;
 }
-void GameState::addScrew(sf::Vector2f location)
+/*void GameState::addScrew(sf::Vector2f location)
 {
 	m_screw_locations.push_back(location);
-}
+}*/
 
 void GameState::addCoins(){}
 
