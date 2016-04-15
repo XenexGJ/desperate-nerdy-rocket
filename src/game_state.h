@@ -24,6 +24,7 @@
 
 #define SCREW_SPAWN_THRESHOLD 30
 
+
 class GameState
 {
 public:
@@ -42,6 +43,7 @@ public:
 	//int getVisibleScrewsCount();
 	int getCollectedScrewsCount();
 	int getCollectedDodgeCoins();
+	std::vector<Upgrade> *getUpgradeList();
 
 
 private:
@@ -58,7 +60,7 @@ private:
 	int m_dodgecoins_collected;
 	float m_velocity;
 	
-
+	std::vector<Upgrade> upgradeList;    // declares a vector of Upgrades
 };
 
 #endif

@@ -173,3 +173,7 @@ int GameState::getCollectedScrewsCount()
 {
 	return m_screws_collected;
 }
+std::vector<Upgrade> *GameState::getUpgradeList()
+{	
+	return &upgradeList;
+}

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "game_state.h"
+#include <vector>
 
 class Rocket : public sf::Drawable
 {
@@ -18,6 +19,14 @@ private:
 	sf::Vector2f position;
 	sf::Texture texture;
 	GameState *m_gst;
+	std::vector<Upgrade> myUpgradeList;
+
+	//Upgrades
+	Upgrade* rocketbody;
+    Upgrade* rocketgoggles;
+    Upgrade* rocketwings;
+    Upgrade* rocketbooster;
+    Upgrade* rockettail;
 
 };
 
