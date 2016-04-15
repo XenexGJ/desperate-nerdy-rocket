@@ -43,6 +43,11 @@ private:
 	std::vector<sf::Vector2f> m_screw_locations;
 	float m_new_screw_threshold;
 	int m_screws_collected;
+
+	int m_dodgecoins;
+	float m_velocity;
+	
+
 };
 
 #endif

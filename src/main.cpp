@@ -12,7 +12,7 @@ int main()
     int size_y = 800;
 
     // Create the main window
-    sf::RenderWindow app(sf::VideoMode(size_x, size_y), "SFML Game");
+    sf::RenderWindow app(sf::VideoMode(size_x, size_y), "Desperate nerdy Rocket - The Game");
 
     // Update rate
     sf::Time updateRate = sf::seconds(1.0f / 60.0f);
