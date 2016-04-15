@@ -92,6 +92,9 @@ void Renderer::drawGame()
 		m_wnd->draw(text_screws);
 	}
 	
+	
+	
+	
 	m_wnd->display();
 
 }
