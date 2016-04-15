@@ -44,11 +44,15 @@ void Renderer::drawGame()
 	sprite_background.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
 	m_wnd->draw(sprite_background);
 
-    sf::Sprite sprite_player;
+/*    sf::Sprite sprite_player;
 	sprite_player.setTexture(m_texture_player);
 	sprite_player.setPosition(m_gst->getPlayerLocation());
-	m_wnd->draw(sprite_player);
+	m_wnd->draw(sprite_player); */
 
+	Rocket r(m_gst);
+	m_wnd->draw(r);	
+	
+	
     sf::Sprite sprite_screws;
 	sprite_screws.setTexture(m_texture_screws);
 

@@ -1,17 +1,22 @@
 #include "rocket.h"
 
-Rocket::Rocket()
+Rocket::Rocket(GameState *state)
 {
-
+	if (!texture.loadFromFile("assets/rocket_basic.png"))
+	{
+    	//TODO
+    }
+    m_gst = state;
 }
 
 void Rocket::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
-/*sf::Vertex line[2];
-line[0]=sf::Vertex(Point1,Colour);
-line[1]=sf::Vertex(Point2,Colour);
-target.draw(line,2,sf::Lines,states);*/
-std::cout << "blub \n";
+
+	
+	sf::Sprite sprite_rocket;
+	sprite_rocket.setTexture(texture);
+	sprite_rocket.setPosition(m_gst->getPlayerLocation());
+	target.draw(sprite_rocket,states);
 }
  
 
