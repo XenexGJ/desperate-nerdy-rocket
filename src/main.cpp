@@ -3,6 +3,7 @@
 #include "event_handler.h"
 #include "game_state.h"
 #include "renderer.h"
+#include "sound_handler.h"
 
 int main()
 {
@@ -31,6 +32,12 @@ int main()
 
     // Renderer
     Renderer renderer(&app,&gameState);
+    
+    //Sound Handler
+	SoundHandler* soundHandler = SoundHandler::getSoundHandler();
+	
+	//Start sound
+    soundHandler->playBg();
 
 	// Start the game loop
     while (app.isOpen())
@@ -47,6 +54,9 @@ int main()
 
         renderer.drawGame();
     }
+
+	 //beende SoundHandler
+	SoundHandler::del();
 
     return EXIT_SUCCESS;
 }
