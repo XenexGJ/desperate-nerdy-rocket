@@ -313,7 +313,8 @@ std::vector<Upgrade*> *GameState::getUpgradeList()
 void GameState::loadUpgrades()
 {
 	//teure/bessere Upgrades oben
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,"assets/waffen.png"));
+	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,"assets/kawaii_2.png"));
 	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,"assets/kawaii.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
