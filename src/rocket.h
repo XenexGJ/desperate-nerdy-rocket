@@ -13,11 +13,14 @@ public:
 	Rocket(std::vector<Upgrade*> upgradeList);
 	void setLocation(sf::Vector2f loc);
 	
+	float boost;
+	float aerodynamic;
+	int coolness;
+
 	//berechnet den boost aus den upgrades
-	float getBoost();
-	float getAerodynamic();
-	int getCoolness();
-	float movementSpeed;
+	void updateBoost();
+	void updateAerodynamic();
+	void updateCoolness();
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;

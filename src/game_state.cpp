@@ -34,7 +34,7 @@ void GameState::startPlaying()
 	m_dodgecoins_collected = 0;
 
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(600, 710)); // Start zentriert auf Bodenhöhe
+	setPlayerLocation(sf::Vector2f(600, 10)); // Start zentriert auf Bodenhöhe
 	//m_screw_locations.clear();
 	
 	loadUpgrades();
@@ -42,6 +42,7 @@ void GameState::startPlaying()
 	
 	// ADD COIN SPAWN
 }
+
 
 void GameState::startShop()
 {
@@ -157,6 +158,18 @@ void GameState::buyUpgrade(sf::Vector2i location)
 			upgradeList.at(11)->price = 0;
 		}
 	}
+	
+	//STARTBUTTON 
+	if (location.x >= 1000 && location.x <= 1130 && location.y >= 700 && location.y <= 747)
+	{
+		m_game_state = STATE_PLAYING;
+	}
+	//MenueBUTTON 
+	if (location.x >= 100 && location.x <= 230 && location.y >= 700 && location.y <= 747)
+	{
+		m_game_state = STATE_MENU;
+	}
+
 }
 
 void GameState::updateGameState()

@@ -130,6 +130,20 @@ void Renderer::drawGame()
 		sprite_fappsy.scale(sf::Vector2f(5, 5)); // factor relative to the current scale
 		m_wnd->draw(sprite_fappsy);
 		
+		//Start Button
+		sf::Sprite sprite_start;
+		sprite_start.setTexture(m_texture_upgrade_bought); // START TEXTUR ERSTELLEN
+		sprite_start.setPosition(1000,700);
+		m_wnd->draw(sprite_start);
+		
+		//Menue Button
+		sf::Sprite sprite_menue;
+		sprite_menue.setTexture(m_texture_upgrade_bought); // MENUButton TEXTUR ERSTELLEN
+		sprite_menue.setPosition(100,700);
+		m_wnd->draw(sprite_menue);
+
+
+
 		std::vector<Upgrade*> *upgrades = m_gst->getUpgradeList();
 		//Upgrade 1
 		sf::Sprite sprite_slot1;
