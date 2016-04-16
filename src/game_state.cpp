@@ -171,6 +171,9 @@ void GameState::buyUpgrade(sf::Vector2i location)
 	{
 		m_game_state = STATE_MENU;
 	}
+	
+	//Stats Updaten
+	rocket.updateStats();
 
 }
 
@@ -281,6 +284,13 @@ int GameState::getCollectedDodgecoinCount()
 {
 	return m_dodgecoins_collected;
 }
+float GameState::getVelocity()
+{
+	return m_velocity;
+}
+
+
+
 std::vector<Upgrade*> *GameState::getUpgradeList()
 {	
 	return &upgradeList;

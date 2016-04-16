@@ -92,14 +92,14 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setString("ENIS ENIS ENIS ENIS");
+		text_title.setString("FAP FAP FAP FAP FAP");
 		text_title.setCharacterSize(80);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		m_wnd->draw(text_title);
 
 		sf::Text text_help;
 		text_help.setFont(m_normal_font);
-		text_help.setString("RocketRacoon wants to meet his daddy.\n Help him! start with the <SPACE> key.");
+		text_help.setString("Rocky the Rocket wants to meet his daddy.\n But he is high up in space. :-( Help him get there! \n Start with the <SPACE> key.");
 		text_help.setCharacterSize(20);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
@@ -446,14 +446,15 @@ void Renderer::drawGame()
 	{
 		std::stringstream str;
 		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
+		str << "Height: " << m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() ;		
 
 		// Game texts
-		sf::Text text_screws;
-		text_screws.setFont(m_bold_font);
-		text_screws.setString(str.str());
-		text_screws.setCharacterSize(30);
-		text_screws.setPosition(sf::Vector2f(30,30));
-		m_wnd->draw(text_screws);
+		sf::Text text_height;
+		text_height.setFont(m_bold_font);
+		text_height.setString(str.str());
+		text_height.setCharacterSize(30);
+		text_height.setPosition(sf::Vector2f(30,30));
+		m_wnd->draw(text_height);
 		
 		m_wnd->draw(m_gst->rocket);	
 	}
