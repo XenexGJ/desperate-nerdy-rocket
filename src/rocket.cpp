@@ -38,6 +38,7 @@ void Rocket::draw(sf::RenderTarget& target,sf::RenderStates states)const
 	target.draw(sprite_rocket,states);
 	if(rocketbooster != NULL)
 	{
+		rocketbooster->setPosition(position);
 		target.draw(*rocketbooster,states);
 	}
 }

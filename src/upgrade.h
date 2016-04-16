@@ -26,9 +26,7 @@ private:
 	//if prize == 0 -> bought
 	
 	std::string assetPath;
-	//gibt an wo die Upgrades gezeichnet werden
-	sf::Vector2f positionOffsets;
-
+	sf::Texture texture;
 };
 
 #endif
