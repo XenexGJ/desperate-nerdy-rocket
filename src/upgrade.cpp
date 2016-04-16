@@ -1,8 +1,10 @@
 #include "upgrade.h"
 
-Upgrade::Upgrade()
+Upgrade::Upgrade(int prize,int type,std::string assetPath)
 {
-	
+	this->prize = prize;
+	this->type = type;
+	this->assetPath = assetPath;
    
 }
 
@@ -18,7 +20,7 @@ void Upgrade::setPosition(sf::Vector2f pos)
 {
 	position = pos;
 }
- 
+
 
 /*void move()
 {

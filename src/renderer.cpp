@@ -6,13 +6,13 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	m_gst = state;
 
 	// Load all the textures
-	if (!m_texture_background.loadFromFile("assets/redplanet2.jpg"))
+	if (!m_texture_background.loadFromFile("assets/bg1.jpg"))
 	{
     	m_wnd->close();
     }
     m_texture_background.setRepeated(true);
 
-    if (!m_texture_player.loadFromFile("assets/rocket.png"))
+    if (!m_texture_player.loadFromFile("assets/rocket_basic.png"))
 	{
     	m_wnd->close();
     }
@@ -92,6 +92,10 @@ void Renderer::drawGame()
 		std::stringstream str;
 		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
 
+<<<<<<< HEAD
+=======
+		
+>>>>>>> e492700b034233b5a2c36bae73b7204fba3e1f20
 
 		// Game texts
 		sf::Text text_screws;

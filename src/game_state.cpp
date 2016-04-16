@@ -51,6 +51,13 @@ void GameState::updateGameState()
 	}
 	else if(m_game_state == STATE_PLAYING)
 	{
+
+	// Return to menu state when losing the game
+	/*if(getVisibleScrewsCount() >= 10)
+	{
+		m_game_state = STATE_MENU;
+		return;
+	}*/
 	// Update the player location
 	sf::Vector2f delta;
 
@@ -158,6 +165,7 @@ sf::Vector2f GameState::getPlayerLocation()
 	return m_player_location;
 }
 
+
 /*
 sf::Vector2f GameState::getPlayerRotation()
 {
@@ -166,6 +174,14 @@ sf::Vector2f GameState::getPlayerRotation()
 
 /* DUNNo DONT CARE
 void GameState::addScrew(sf::Vector2f location)
+{
+	m_screw_locations.push_back(location);
+}*//*
+float GameState::getPlayerRotation()
+{
+	return m_player_rotation;
+}*/
+/*void GameState::addScrew(sf::Vector2f location)
 {
 	m_screw_locations.push_back(location);
 }*/
@@ -186,4 +202,8 @@ int GameState::getVisibleScrewsCount()
 int GameState::getCollectedScrewsCount()
 {
 	return m_screws_collected;
+}
+std::vector<Upgrade> *GameState::getUpgradeList()
+{	
+	return &upgradeList;
 }
