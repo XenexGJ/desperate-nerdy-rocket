@@ -59,7 +59,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
-	if (!m_texture_start.loadFromFile("assets/start.png"))
+	if (!m_texture_takeoff.loadFromFile("assets/takeoff.png"))
 	{
 		m_wnd->close();
 	}
@@ -71,6 +71,23 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
+	
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	if (!m_texture_play.loadFromFile("assets/play.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_help.loadFromFile("assets/help.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_quit.loadFromFile("assets/quit.png"))
+	{
+		m_wnd->close();
+	}
+
+	
+	
 
 
     // Load all the fonts
@@ -156,22 +173,22 @@ void Renderer::drawGame()
 		m_wnd->draw(text_help);
 		
 		//Start Button
-		sf::Sprite sprite_start;
-		sprite_start.setTexture(m_texture_start); 
-		sprite_start.setPosition(1000,700);
-		m_wnd->draw(sprite_start);
+		sf::Sprite sprite_play;
+		sprite_play.setTexture(m_texture_play); 
+		sprite_play.setPosition(100,200);
+		m_wnd->draw(sprite_play);
 		
 		//Hilfe Button
-		sf::Sprite sprite_start;
-		sprite_start.setTexture(m_texture_start); 
-		sprite_start.setPosition(1000,700);
-		m_wnd->draw(sprite_start);
+		sf::Sprite sprite_help;
+		sprite_help.setTexture(m_texture_help); 
+		sprite_help.setPosition(100,400);
+		m_wnd->draw(sprite_help);
 		
 		//Beenden Button
-		sf::Sprite sprite_start;
-		sprite_start.setTexture(m_texture_start); 
-		sprite_start.setPosition(1000,700);
-		m_wnd->draw(sprite_start);
+		sf::Sprite sprite_quit;
+		sprite_quit.setTexture(m_texture_quit); 
+		sprite_quit.setPosition(100,600);
+		m_wnd->draw(sprite_quit);
 		
 	}
 	if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
@@ -217,10 +234,10 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_fappsy);
 		
 		//Start Button
-		sf::Sprite sprite_start;
-		sprite_start.setTexture(m_texture_start); 
-		sprite_start.setPosition(1000,700);
-		m_wnd->draw(sprite_start);
+		sf::Sprite sprite_takeoff;
+		sprite_takeoff.setTexture(m_texture_takeoff); 
+		sprite_takeoff.setPosition(1000,700);
+		m_wnd->draw(sprite_takeoff);
 		
 		//Menue Button
 		sf::Sprite sprite_menue;

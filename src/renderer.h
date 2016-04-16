@@ -20,25 +20,38 @@ public:
 private:
 	sf::RenderWindow *m_wnd;
 	GameState *m_gst;
+	
+	//Main Menue
+	sf::Texture m_texture_play;
+	sf::Texture m_texture_help;
+	sf::Texture m_texture_quit;
+	
+	
+	//Main Game
 	sf::Texture m_texture_background;
 	sf::Texture m_texture_background2;
 	sf::Texture m_texture_player;
 	sf::Texture m_texture_dodgecoin;
+	sf::Texture m_texture_startBg;
+	//Shop
 	sf::Texture m_texture_shopbackground;
-	sf::Texture m_texture_minibackground;
 	sf::Texture m_texture_graffitti;
 	sf::Texture m_texture_slot1;
 	sf::Texture m_texture_upgrade_bought;
 	sf::Texture m_texture_fappsy;
+	sf::Texture m_texture_takeoff;
+	sf::Texture m_texture_menu;
+	
+	//Nils game
+	sf::Texture m_texture_minibackground;
 	sf::Texture m_texture_mower;
 	sf::Texture m_texture_jung_und_geld;
-	sf::Texture m_texture_start;
-	sf::Texture m_texture_menu;
-	sf::Texture m_texture_startBg;
+	//Credits
+	
+	//Fonts
 	sf::Font m_normal_font;
 	sf::Font m_bold_font;
 	sf::Font m_funk;
-	//Rocket rocket;
 	
 	std::vector<Upgrade*> upgrades;
 };
