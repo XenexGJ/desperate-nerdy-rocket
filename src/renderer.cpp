@@ -6,7 +6,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	m_gst = state;
 
 	// Load all the textures
-	if (!m_texture_background.loadFromFile("assets/bg1.jpg"))
+	if (!m_texture_background.loadFromFile("assets/sternenhimmel.png"))
 	{
     	m_wnd->close();
     }
@@ -68,7 +68,10 @@ void Renderer::drawGame()
 
     sf::Sprite sprite_background;
 	sprite_background.setTexture(m_texture_background);
-	sprite_background.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
+	sf::Vector2f textureSize(80,80);
+	float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
+	sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+	sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
 	m_wnd->draw(sprite_background);
 
 /*    sf::Sprite sprite_player;
@@ -115,8 +118,8 @@ void Renderer::drawGame()
 	
 		sf::View shop_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(shop_view);
-		//TODO
-		m_wnd->clear();
+		
+		//m_wnd->clear();
 
 		sf::Sprite sprite_shopbackground;
 		sprite_shopbackground.setTexture(m_texture_shopbackground);
