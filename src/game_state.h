@@ -23,10 +23,10 @@
 
 #define ROBOT_WIDTH 80
 #define ROBOT_HEIGHT 80
-#define SCREW_WIDTH 96
-#define SCREW_HEIGHT 56
+#define COIN_WIDTH 96
+#define COIN_HEIGHT 56
 
-#define SCREW_SPAWN_THRESHOLD 30
+#define COIN_SPAWN_THRESHOLD 30
 
 class GameState
 {
@@ -42,8 +42,8 @@ public:
 	void setGameState(int state);
 	
 	sf::Vector2f getPlayerLocation();
-	std::vector<sf::Vector2f> getScrewLocations();
-	int getCollectedScrewsCount();
+	std::vector<sf::Vector2f> getDodgecoinLocations();
+	int getCollectedDodgecoinCount();
 	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
 	
