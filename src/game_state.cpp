@@ -238,7 +238,7 @@ void GameState::updateGameState()
 			{
 				// Remove screw
 				m_dodgecoin_locations.erase(s_it);
-				m_dodgecoin_collected++;
+				m_dodgecoins_collected++;
 			}
 			else
 			{
@@ -279,7 +279,7 @@ std::vector<sf::Vector2f> GameState::getDodgecoinLocations()
 //Ändern auf Coins
 int GameState::getCollectedDodgecoinCount()
 {
-	return m_dodgecoin_collected;
+	return m_dodgecoins_collected;
 }
 std::vector<Upgrade*> *GameState::getUpgradeList()
 {	

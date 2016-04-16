@@ -22,7 +22,7 @@ private:
 	GameState *m_gst;
 	sf::Texture m_texture_background;
 	sf::Texture m_texture_player;
-	sf::Texture m_texture_screws;
+	sf::Texture m_texture_dodgecoin;
 	sf::Texture m_texture_shopbackground;
 	sf::Texture m_texture_slot1;
 	sf::Texture m_texture_upgrade_bought;

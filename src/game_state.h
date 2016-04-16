@@ -53,9 +53,9 @@ private:
 	int m_size_y;
 	int m_player_direction;
 	sf::Vector2f m_player_location;
-	std::vector<sf::Vector2f> m_screw_locations;
+	std::vector<sf::Vector2f> m_dodgecoin_locations;
 	float m_new_screw_threshold;
-	int m_screws_collected;
+	//int m_screws_collected;
 	int m_dodgecoins_collected;
 	float m_velocity;
 	std::vector<Upgrade*> upgradeList;
