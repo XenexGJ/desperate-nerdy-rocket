@@ -46,9 +46,9 @@ public:
 
 	std::vector<sf::Vector2f> getDodgecoinLocations();
 	int getCollectedDodgecoinCount();
-	void addDodgecoin(sf::Vector2f location);
+	void addDodgecoin();
 	
-		std::vector<Upgrade*> *getUpgradeList();
+	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
 	
 private:
