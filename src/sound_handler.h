@@ -6,6 +6,8 @@
 #include <string>
 #include <list>
 
+#define SOUND_INTRO 0
+
 
 class SoundHandler
 {
@@ -45,6 +47,7 @@ private:
 	//object for playing background music
 	sf::Sound bgMusic;
 	
+	
 	//object for playing sounds
 	sf::Sound sound;
 	
@@ -56,6 +59,7 @@ private:
 	
 	//Buffers
 	sf::SoundBuffer bgMusicBuff;
+	sf::SoundBuffer introSound;
 	
 	
 	

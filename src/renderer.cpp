@@ -71,8 +71,6 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
-	
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if (!m_texture_play.loadFromFile("assets/play.png"))
 	{
 		m_wnd->close();
@@ -160,15 +158,17 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
+		text_title.setColor(sf::Color::Black);
 		text_title.setString("The desperate Rocket Rocky's Path To Infinity ");
-		text_title.setCharacterSize(80);
-		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
+		text_title.setCharacterSize(50);
+		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,50));
 		m_wnd->draw(text_title);
 
 		sf::Text text_help;
-		text_help.setFont(m_normal_font);
-		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in space. :-( Help him get there! \nStart with the <SPACE> key.");
-		text_help.setCharacterSize(20);
+		text_help.setFont(m_bold_font);
+		text_help.setColor(sf::Color::Black);
+		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there! \nStart with the <SPACE> key.");
+		text_help.setCharacterSize(30);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
 		
@@ -196,10 +196,12 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setString("Drücke <SPACE> zum starten ");
+		text_title.setString("PRESS <SPACE> TO LAUNCH");
 		text_title.setCharacterSize(80);
+		text_title.setColor(sf::Color::Red);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		m_wnd->draw(text_title);
+		m_wnd->draw(m_gst->rocket);	
 
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
@@ -246,8 +248,21 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_menue);
 
 
-
 		std::vector<Upgrade*> *upgrades = m_gst->getUpgradeList();
+		
+		//Upgrades
+		
+		/*sf::Sprite sprite_slot[12];  
+		for(int i = 0; i < 12; i++)
+		{
+			//sprite_slot();
+			if (upgrades->at(i)->price != 0)	// if nicht gekauft / Seite
+			{
+			//	sprite_slot[i].setTexture(m_texture_slot1);
+			}
+		}*/
+		
+		
 		//Upgrade 1
 		sf::Sprite sprite_slot1;
 		if (upgrades->at(0)->price != 0)	// if nicht gekauft / Seite

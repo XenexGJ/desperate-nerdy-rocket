@@ -29,19 +29,22 @@ int GameState::getGameState()
 
 void GameState::startPlaying()
 {
-	m_game_state = STATE_PLAYING;
+	//m_game_state = STATE_PLAYING;
 
 	// Reset all values
 	m_dodgecoins_collected = 0;
 	m_dodgecoin_locations.clear();
 
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(600, 10)); // Start zentriert auf Bodenhöhe
+	
 	
 	
 	loadUpgrades();
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
+	
+	setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
+	
 	m_velocity = rocket.boost;
 
 	// Initialize random seed
@@ -56,7 +59,7 @@ void GameState::startShop()
 	m_game_state = STATE_SHOP;
 }
 
-void GameState::buyUpgrade(sf::Vector2i location)
+void GameState::shopMouseHandling(sf::Vector2i location)
 {
 	//Upgrade 1
 	if (location.x >= 150 && location.x <= 280 && location.y >= 176 && location.y <= 223)
@@ -182,6 +185,24 @@ void GameState::buyUpgrade(sf::Vector2i location)
 
 }
 
+void GameState::menuMouseHandling(sf::Vector2i location)
+{
+	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256)
+	{	
+		m_game_state = STATE_SHOP;
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
+	{	
+		m_game_state = STATE_CONTROLS;
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 600 && location.y <= 656)
+	{	
+		//m_wnd->close();;
+		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
+	}
+
+}
+
 //start Minigame
 void GameState::startMini()
 {
@@ -207,7 +228,9 @@ void GameState::updateGameState()
 	// Do nothing if the game is not in playing state
 	if(m_game_state == STATE_MENU)
 	{
-		return;
+		SoundHandler* s = SoundHandler::getSoundHandler();
+		s->setBgVolume(0);
+		s->playSound(SOUND_INTRO);
 	}
 	else if (m_game_state == STATE_SHOP)
 	{
@@ -241,11 +264,16 @@ void GameState::updateGameState()
 		sf::Vector2f new_location(getPlayerLocation() + delta);
 
 		// Check if new position is inside the game area
-		if(new_location.x >= 0
-			&& new_location.x + ROBOT_WIDTH <= m_size_x)
+		if(new_location.x < 0)
 		{
-			setPlayerLocation(new_location); // Update location
+			new_location.x = 0;
 		}
+		else if(new_location.x + ROBOT_WIDTH >= m_size_x)
+		{
+			new_location.x = m_size_x - ROBOT_WIDTH;
+		}
+		setPlayerLocation(new_location); // Update location
+		
 		if(new_location.y < 0 && m_velocity < 0)
 		{
 			startShop();

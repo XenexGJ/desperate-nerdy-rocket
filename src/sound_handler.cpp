@@ -36,7 +36,10 @@ void SoundHandler::playSound(int soundNumber)
 	{
 		int pitch = 1;
 		switch(soundNumber) {
-			
+			case SOUND_INTRO:
+			sound.setBuffer(introSound);
+			sound.play();
+			break;
 		}
 
 		sound.setVolume(soundVolume);
@@ -78,6 +81,7 @@ void SoundHandler::setSoundVolume(float volume)
 void SoundHandler::loadBuffers()
 {
 	bgMusicBuff.loadFromFile("sfx/bg/sound2.ogg");
+	introSound.loadFromFile("sfx/rocky_sadder.ogg");
 }
 
 void SoundHandler::del()
