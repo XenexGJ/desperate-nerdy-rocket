@@ -19,7 +19,7 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
     
     for(std::vector<Upgrade*>::iterator it = upgradeList.begin(); it != upgradeList.end(); ++it) 
 	{
-		if((*it)->prize == 0)
+		if((*it)->price == 0)
 		{
 			switch ((*it)->type)
 			{

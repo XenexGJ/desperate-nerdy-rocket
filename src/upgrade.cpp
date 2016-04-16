@@ -1,8 +1,8 @@
 #include "upgrade.h"
 
-Upgrade::Upgrade(int prize,int type,std::string assetPath)
+Upgrade::Upgrade(int price,int type,std::string assetPath)
 {
-	this->prize = prize;
+	this->price = price;
 	this->type = type;
 	this->assetPath = assetPath;
    	if (!texture.loadFromFile(assetPath))
