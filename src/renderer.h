@@ -8,6 +8,8 @@
 #include <sstream>
 #include "game_state.h"
 #include "rocket.h"
+//für fmod
+#include <cmath>
 
 class Renderer
 {

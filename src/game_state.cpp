@@ -37,7 +37,6 @@ void GameState::startPlaying()
 	
 	loadUpgrades();
 	
-	std::cout<<"loaded upgrades\n";
 	rocket = Rocket(upgradeList);
 	
 	// ADD COIN SPAWN
@@ -242,34 +241,13 @@ void GameState::updateGameState()
 			s_it++;
 		}
 	}
-/* SCREW SPAWN
-	// Add a new screw when threshold value is reached
-	m_new_screw_threshold += static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	if(m_new_screw_threshold > SCREW_SPAWN_THRESHOLD)
-	{
-		m_new_screw_threshold = 0;
-
-		// New random position for screw inside the game area
-		float x = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(m_size_x-SCREW_WIDTH)));
-		float y = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(m_size_y-SCREW_HEIGHT)));
-		m_screw_locations.push_back(sf::Vector2f(x,y));
-	}
-*/
 
 
 	}
 	else // Do nothing if the game is not in playing state
 		return;
-
- 	
-// Return to menu state when losing the game
-	/*if(getVisibleScrewsCount() >= 10)
-	{
-		m_game_state = STATE_MENU;
-		return;
-	}*/
-
 }
+
 
 //UMBAUEN
 void GameState::setPlayerMovementDirection(int direction)
@@ -334,10 +312,13 @@ std::vector<Upgrade*> *GameState::getUpgradeList()
 }
 void GameState::loadUpgrades()
 {
-	upgradeList.push_back(new Upgrade(10,UPGRADE_BODY,"assets/rocket_basic.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
+	//teure/bessere Upgrades oben
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/kawaii_2.png"));
 	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,"assets/kawaii.png"));
-	upgradeList.push_back(new Upgrade(2,UPGRADE_BODY,"assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/rocket_basic.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
+	
+	
 	
 }
 void GameState::setGameState(int state)
