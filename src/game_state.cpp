@@ -56,7 +56,7 @@ void GameState::startShop()
 	m_game_state = STATE_SHOP;
 }
 
-void GameState::buyUpgrade(sf::Vector2i location)
+void GameState::shopMouseHandling(sf::Vector2i location)
 {
 	//Upgrade 1
 	if (location.x >= 150 && location.x <= 280 && location.y >= 176 && location.y <= 223)
@@ -180,6 +180,25 @@ void GameState::buyUpgrade(sf::Vector2i location)
 	//Stats Updaten
 	rocket.updateStats();
 
+}
+
+void GameState::menuMouseHandling(sf::Vector2i location)
+{
+	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256)
+	{	
+			m_game_state = STATE_SHOP;
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
+	{	
+			m_game_state = STATE_SHOP;
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 600 && location.y <= 656)
+	{	
+			m_game_state = STATE_SHOP;
+	}
+	
+	//100,200);
+	//138 x 56
 }
 
 //start Minigame

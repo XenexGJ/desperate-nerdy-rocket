@@ -51,22 +51,26 @@ void EventHandler::handleEvents()
 			m_gst->setGameState(STATE_SHOP);
         }
 
-//SUPER SPECIAL MINIGAME
+	//SUPER SPECIAL MINIGAME
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && m_gst->getGameState() == STATE_PLAYING)
         {
-        	//m_gst->startShop();
-		m_gst->setGameState(STATE_MINI);
-		std::cout << "event start mini" <<std::endl;
-		m_gst->startMini();
+				//m_gst->startShop();
+			m_gst->setGameState(STATE_MINI);
+			std::cout << "event start mini" <<std::endl;
+			m_gst->startMini();
         }
 
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_SHOP)
 	{
-		m_gst->buyUpgrade(sf::Mouse::getPosition(*m_wnd));
+		m_gst->shopMouseHandling(sf::Mouse::getPosition(*m_wnd));
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_MENU)
+	{
+		m_gst->menuMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
 
-        // Get robot direction
+	// Get robot direction
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_LEFT);
