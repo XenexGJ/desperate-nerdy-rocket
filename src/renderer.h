@@ -21,6 +21,7 @@ private:
 	sf::RenderWindow *m_wnd;
 	GameState *m_gst;
 	sf::Texture m_texture_background;
+	sf::Texture m_texture_background2;
 	sf::Texture m_texture_player;
 	sf::Texture m_texture_dodgecoin;
 	sf::Texture m_texture_shopbackground;
