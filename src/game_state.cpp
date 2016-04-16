@@ -114,9 +114,7 @@ void GameState::updateGameState()
 
 	// Check if new position is inside the game area
 	if(new_location.x >= 0
-		&& new_location.x + ROBOT_WIDTH <= m_size_x
-		&& new_location.y >= 0
-		&& new_location.y + ROBOT_HEIGHT <= m_size_y)
+		&& new_location.x + ROBOT_WIDTH <= m_size_x)
 	{
 		setPlayerLocation(new_location); // Update location
 	}
@@ -238,6 +236,9 @@ void GameState::loadUpgrades()
 {
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
+	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,"assets/kawaii.png"));
+	upgradeList.push_back(new Upgrade(2,UPGRADE_BODY,"assets/kawaii_2.png"));
+	
 }
 void GameState::setGameState(int state)
 {
