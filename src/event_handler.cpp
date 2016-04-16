@@ -56,7 +56,7 @@ void EventHandler::handleEvents()
         {
         	//m_gst->startShop();
 		m_gst->setGameState(STATE_MINI);
-		std::cout << "event start mini" <<std::endl;
+		//std::cout << "event start mini" <<std::endl;
 		m_gst->startMini();
         }
 
@@ -70,22 +70,22 @@ void EventHandler::handleEvents()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_LEFT);
-        	std::cout << "left" <<std::endl;
+        	//std::cout << "left" <<std::endl;
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_RIGHT);
-        	std::cout << "right" <<std::endl;
+        	//std::cout << "right" <<std::endl;
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_UP);
-        	std::cout << "up" <<std::endl;
+        	//std::cout << "up" <<std::endl;
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_DOWN);
-        	std::cout << "down" <<std::endl;
+        	//std::cout << "down" <<std::endl;
         }
         else
         {

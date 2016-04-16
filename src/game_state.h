@@ -52,6 +52,8 @@ public:
 	std::vector<sf::Vector2f> getDodgecoinLocations();
 	int getCollectedDodgecoinCount();
 	void addDodgecoin();
+	int getTotalDodgecoins();
+	void setTotalDodgecoins(int totalCount);
 	
 	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
@@ -60,6 +62,7 @@ private:
 	int m_game_state;
 	int m_size_x;
 	int m_size_y;
+	unsigned int total_dodgecoins = 0;
 	int m_player_direction;
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_dodgecoin_locations;
@@ -70,6 +73,7 @@ private:
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
 	float gravity;
+	
 };
 
 #endif
