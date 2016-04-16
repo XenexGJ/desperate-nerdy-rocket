@@ -9,7 +9,7 @@
 #define STATE_MENU 0
 #define STATE_PLAYING 1
 #define STATE_SHOP 2
-#define STATE_Mini 3
+#define STATE_MINI 3
 
 #define STATE_REFRESH 4
 #define STATE_PAUSE 5
@@ -44,6 +44,8 @@ public:
 	sf::Vector2f getPlayerLocation();
 	std::vector<sf::Vector2f> getScrewLocations();
 	int getCollectedScrewsCount();
+	float getVelocity();
+
 	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
 	
