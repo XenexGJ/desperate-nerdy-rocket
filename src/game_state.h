@@ -6,6 +6,7 @@
 #include "upgrade.h"
 #include "rocket.h"
 #include "nils.h"
+#include "sound_handler.h"
 
 #define STATE_MENU 0
 #define STATE_PLAYING 1

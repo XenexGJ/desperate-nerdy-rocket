@@ -222,7 +222,9 @@ void GameState::updateGameState()
 	// Do nothing if the game is not in playing state
 	if(m_game_state == STATE_MENU)
 	{
-		return;
+		SoundHandler* s = SoundHandler::getSoundHandler();
+		s->setBgVolume(0);
+		s->playSound(SOUND_INTRO);
 	}
 	else if (m_game_state == STATE_SHOP)
 	{
