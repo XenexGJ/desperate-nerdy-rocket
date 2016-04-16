@@ -63,6 +63,9 @@ void Renderer::drawGame()
 {
 	m_wnd->clear();
 
+	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
+    m_wnd->setView(view);
+
     sf::Sprite sprite_background;
 	sprite_background.setTexture(m_texture_background);
 	sprite_background.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
@@ -375,7 +378,23 @@ void Renderer::drawGame()
 		text_stats_coolness_number.setPosition(1200, 600);
 		m_wnd->draw(text_stats_coolness_number);
 	}
+	else if(m_gst->getGameState() == STATE_CONTROLS)
+	{
+		// Controls texts
+		sf::Text text_title;
+		text_title.setFont(m_bold_font);
+		text_title.setString("Controls");
+		text_title.setCharacterSize(80);
+		text_title.setPosition(sf::Vector2f(m_gst->getPlayerLocation().x  -120 ,m_gst->getPlayerLocation().y -160));
+		m_wnd->draw(text_title);
 
+		sf::Text text_controls;
+		text_controls.setFont(m_normal_font);
+		text_controls.setString(" Pause \t\t\t\t\t\t\t\t\t\t <P>\n Mute \t\t\t\t\t\t\t\t\t\t  <M>\n Beenden\t\t\t\t\t\t\t\t\t <Escape>\n Spiel starten/fortsetzen \t\t <Space>\n Spiel neustarten\t\t\t\t\t\t<R>\n");
+		text_controls.setCharacterSize(20);
+		text_controls.setPosition(sf::Vector2f(m_gst->getPlayerLocation().x  -120 ,m_gst->getPlayerLocation().y +100));
+		m_wnd->draw(text_controls);
+	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
 	{
 		std::stringstream str;
