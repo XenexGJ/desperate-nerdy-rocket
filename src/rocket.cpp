@@ -24,7 +24,6 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
 		std::cout<<"blub\n";
 		if((*it)->price == 0)
 		{
-			std::cout<<"blub";
 			switch ((*it)->type)
 			{
 				case UPGRADE_BODY:

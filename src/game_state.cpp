@@ -206,11 +206,8 @@ void GameState::updateGameState()
 		delta.y -= m_velocity;
 		
 		m_velocity -= gravity;
-		std::cout<< "blub: " << m_velocity << "\n";
-		if(m_velocity < -10)
-		{
-			startShop();
-		}
+//		std::cout<< "blub: " << m_velocity << "\n";
+		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
 
@@ -220,7 +217,10 @@ void GameState::updateGameState()
 		{
 			setPlayerLocation(new_location); // Update location
 		}
-
+		if(new_location.y < 0 && m_velocity < 0)
+		{
+			startShop();
+		}
 		// Bounding box of the player
 		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
 
