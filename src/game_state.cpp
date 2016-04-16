@@ -42,6 +42,8 @@ void GameState::startPlaying()
 	rocket.updateStats();
 	m_velocity = rocket.boost;
 	// ADD COIN SPAWN
+	// Initialize random seed
+	srand (static_cast <unsigned> (time(0)));
 	
 }
 
@@ -289,7 +291,10 @@ float GameState::getVelocity()
 	return m_velocity;
 }
 
-
+void GameState::addDodgecoin(sf::Vector2f location)
+{
+	m_dodgecoin_locations.push_back(location);
+}
 
 std::vector<Upgrade*> *GameState::getUpgradeList()
 {	
