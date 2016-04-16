@@ -446,7 +446,7 @@ void Renderer::drawGame()
 	{
 		std::stringstream str;
 		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
-		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() ;		
+		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
 
 
 // a -b 
