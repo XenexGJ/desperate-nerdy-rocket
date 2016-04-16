@@ -11,6 +11,11 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     	m_wnd->close();
     }
     m_texture_background.setRepeated(true);
+    if (!m_texture_background2.loadFromFile("assets/tageshimmel.png"))
+	{
+    	m_wnd->close();
+    }
+    m_texture_background2.setRepeated(true);
 
     if (!m_texture_player.loadFromFile("assets/rocket_basic.png"))
 	{
@@ -66,13 +71,27 @@ void Renderer::drawGame()
 	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
     m_wnd->setView(view);
 
+	//zeichne hintergrund
     sf::Sprite sprite_background;
 	sprite_background.setTexture(m_texture_background);
 	sf::Vector2f textureSize(80,80);
 	float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 	sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 	sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
-	m_wnd->draw(sprite_background);	
+		
+	
+	//weltraum beginnt bei 1500
+	float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
+	
+	
+	m_wnd->draw(sprite_background);
+	
+	sf::Sprite sprite_background2;
+	sprite_background2.setTexture(m_texture_background2);
+	sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+	sprite_background2.setPosition(0,m_gst->getPlayerLocation().y - 400);
+	sprite_background2.setColor(sf::Color(255, 255, 255, transparency));
+	m_wnd->draw(sprite_background2);	
 	
 	// Coins einfügen
     sf::Sprite sprite_dodgecoin;
