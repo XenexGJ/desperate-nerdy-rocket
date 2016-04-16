@@ -160,15 +160,17 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
+		text_title.setColor(sf::Color::Black);
 		text_title.setString("The desperate Rocket Rocky's Path To Infinity ");
-		text_title.setCharacterSize(80);
-		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
+		text_title.setCharacterSize(50);
+		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,50));
 		m_wnd->draw(text_title);
 
 		sf::Text text_help;
-		text_help.setFont(m_normal_font);
-		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in space. :-( Help him get there! \nStart with the <SPACE> key.");
-		text_help.setCharacterSize(20);
+		text_help.setFont(m_bold_font);
+		text_help.setColor(sf::Color::Black);
+		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there! \nStart with the <SPACE> key.");
+		text_help.setCharacterSize(30);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
 		
