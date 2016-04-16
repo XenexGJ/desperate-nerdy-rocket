@@ -10,7 +10,7 @@ GameState::GameState(int x, int y)
 	m_size_y = y;
 	
 	//schwerkraft
-	gravity = 0.1;
+	gravity = 0.01;
 
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);
@@ -314,9 +314,10 @@ void GameState::loadUpgrades()
 {
 	//Upgrade			 			 (int price,int type,float boost,int coolness,float aerodynamic,std::string name,std::string assetPath);
 	//teure/bessere Upgrades oben
-	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,0,10,1,"Waffen","assets/waffen.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,0,10,0,"COLA","assets/cola_anne.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,0,10,5,"Waffen","assets/waffen.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,4,10,0,"kawaii2","assets/kawaii_2.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,2,10,0,"kawaii","assets/kawaii.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,2,40,0,"kawaii","assets/kawaii.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,1,10,0,"Basis","assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,20,10,0,"Balls","assets/rocket_balls.png"));
 }
