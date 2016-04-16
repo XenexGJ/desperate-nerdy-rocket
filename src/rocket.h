@@ -18,7 +18,7 @@ public:
 	int coolness;
 
 	//berechnet den boost aus den upgrades
-	void updateStats()
+	void updateStats();
 	
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
