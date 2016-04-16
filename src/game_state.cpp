@@ -39,7 +39,8 @@ void GameState::startPlaying()
 	
 	loadUpgrades();
 	rocket = Rocket(upgradeList);
-	
+	rocket.updateStats();
+	m_velocity = rocket.boost;
 	// ADD COIN SPAWN
 }
 
@@ -202,13 +203,13 @@ void GameState::updateGameState()
 			delta = sf::Vector2f(0,0);
 			break;
 		}
-		delta.y -= rocket.movementSpeed;
+		delta.y -= m_velocity;
 		
-		rocket.movementSpeed -= gravity*rocket.aerodynamic;
-		std::cout<< "blub: " << rocket.movementSpeed << "\n";
-		if(rocket.movementSpeed < -10)
+		m_velocity -= gravity;
+		std::cout<< "blub: " << m_velocity << "\n";
+		if(m_velocity < -10)
 		{
-			m_game_state == STATE_SHOP;
+			startShop();
 		}
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
