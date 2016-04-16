@@ -31,6 +31,7 @@ private:
 	sf::Font m_bold_font;
 	sf::Font m_funk;
 	Rocket rocket;
+	std::vector<Upgrade*> upgrades;
 };
 
 #endif

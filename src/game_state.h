@@ -65,7 +65,6 @@ private:
 	float m_velocity;
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
-
 };
 
 #endif
