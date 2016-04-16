@@ -6,6 +6,8 @@
 
 #define STATE_MENU 0
 #define STATE_PLAYING 1
+#define STATE_SHOP 2
+#define STATE_Mini 3
 
 
 
@@ -33,13 +35,13 @@ public:
 	void setPlayerLocation(sf::Vector2f location);
 	
 	sf::Vector2f getPlayerLocation();
-	sf:Vector getPlayerRotation();
+	//sf:Vector getPlayerRotation();
 	//void addScrew(sf::Vector2f location);
-	void GameState::addCoins(){}
+	//void GameState::addCoins(){}
 	std::vector<sf::Vector2f> getScrewLocations();
 	//int getVisibleScrewsCount();
 	int getCollectedScrewsCount();
-	int getCollectedDodgeCoins();
+	//int getCollectedDodgeCoins();
 
 
 private:

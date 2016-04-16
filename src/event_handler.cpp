@@ -44,5 +44,10 @@ void EventHandler::handleEvents()
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_NONE);
         }
+
+	// TODO
+	// MAUS
+
+
     }
 }

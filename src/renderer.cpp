@@ -52,10 +52,10 @@ void Renderer::drawGame()
 	Rocket r(m_gst);
 	m_wnd->draw(r);	
 	
-	
+	// Coins einfügen
     sf::Sprite sprite_screws;
 	sprite_screws.setTexture(m_texture_screws);
-
+	//Coin vector bauen
 	std::vector<sf::Vector2f> screws = m_gst->getScrewLocations();
 	std::vector<sf::Vector2f>::iterator s_it;
 
@@ -85,14 +85,13 @@ void Renderer::drawGame()
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
 	{
-		
+		//ToDo
 	}
-	else
+	else if(m_gst->getGameState() == STATE_PLAYING)
 	{
 		std::stringstream str;
 		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
 
-		str << mgst->
 
 		// Game texts
 		sf::Text text_screws;
@@ -102,8 +101,6 @@ void Renderer::drawGame()
 		text_screws.setPosition(sf::Vector2f(30,30));
 		m_wnd->draw(text_screws);
 	}
-	
-	
 	
 	
 	m_wnd->display();

@@ -28,29 +28,29 @@ void GameState::startPlaying()
 
 	// Reset all values
 	m_screws_collected = 0;
-	m_dodgecoins_collected = 0;
+	//m_dodgecoins_collected = 0;
 
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2));
+	setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); // Auf bodenhöhe setzen
 	m_screw_locations.clear();
+
+	// ADD COIN SPAWN
 
 }
 
 void GameState::updateGameState()
 {
 	// Do nothing if the game is not in playing state
-	if(m_game_state != STATE_PLAYING)
+	if(m_game_state == STATE_MENU)
 	{
 		return;
 	}
-
-	// Return to menu state when losing the game
-	if(getVisibleScrewsCount() >= 10)
+	else if (m_game_state == STATE_SHOP)
 	{
-		m_game_state = STATE_MENU;
-		return;
+		
 	}
-
+	else if(m_game_state == STATE_PLAYING)
+	{
 	// Update the player location
 	sf::Vector2f delta;
 
@@ -112,7 +112,7 @@ void GameState::updateGameState()
 			s_it++;
 		}
 	}
-
+/* SCREW SPAWN
 	// Add a new screw when threshold value is reached
 	m_new_screw_threshold += static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 	if(m_new_screw_threshold > SCREW_SPAWN_THRESHOLD)
@@ -124,13 +124,30 @@ void GameState::updateGameState()
 		float y = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(m_size_y-SCREW_HEIGHT)));
 		m_screw_locations.push_back(sf::Vector2f(x,y));
 	}
+*/
+
+
+	}
+	else // Do nothing if the game is not in playing state
+		return;
+
+ 	
+// Return to menu state when losing the game
+	/*if(getVisibleScrewsCount() >= 10)
+	{
+		m_game_state = STATE_MENU;
+		return;
+	}*/
+
 }
 
+//UMBAUEN
 void GameState::setPlayerMovementDirection(int direction)
 {
 	m_player_direction = direction;
 }
 
+//CHECKEN 
 void GameState::setPlayerLocation(sf::Vector2f location)
 {
 	m_player_location = location;
@@ -141,16 +158,17 @@ sf::Vector2f GameState::getPlayerLocation()
 	return m_player_location;
 }
 
+/*
 sf::Vector2f GameState::getPlayerRotation()
 {
 	return m_player_rotation;
-}
+}*/
+
+/* DUNNo DONT CARE
 void GameState::addScrew(sf::Vector2f location)
 {
 	m_screw_locations.push_back(location);
-}
-
-void GameState::addCoins(){}
+}*/
 
 
 std::vector<sf::Vector2f> GameState::getScrewLocations()
@@ -164,11 +182,7 @@ int GameState::getVisibleScrewsCount()
 }
 */
 
-
-int GameState::getCollectedDodgeCoins()
-{
-	return m_dodgecoins_collected;
-}
+//Ändern auf Coins
 int GameState::getCollectedScrewsCount()
 {
 	return m_screws_collected;
