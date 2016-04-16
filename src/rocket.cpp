@@ -122,7 +122,7 @@ float Rocket::getBoost()
 
 	return boost;
 }
-float Rocket::getCoolness()
+int Rocket::getCoolness()
 {
 	float coolness = 0.0f;
 	if(rocketbody)

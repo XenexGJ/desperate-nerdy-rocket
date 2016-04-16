@@ -20,7 +20,7 @@ public:
 	int price;
 	float boost;
 	int coolness;
-	int aerodynamic;
+	float aerodynamic;
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
