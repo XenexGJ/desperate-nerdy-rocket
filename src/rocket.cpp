@@ -7,19 +7,19 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
 	if (!texture.loadFromFile("assets/rocket_basic.png"))
 	{
     	//TODO
-    }
+	}
     
-   	rocketbody = NULL;
-    rocketgoggles  = NULL;
-    rocketwings  = NULL;
-    rocketbooster  = NULL;
-    rockettail  = NULL;
+	rocketbody = NULL;
+	rocketgoggles  = NULL;
+	rocketwings  = NULL;
+	rocketbooster  = NULL;
+	rockettail  = NULL;
+   
+	//std::cout << "ittt\n";
     
-    //std::cout << "ittt\n";
     
     
-    
-    for(std::vector<Upgrade*>::iterator it = upgradeList.begin(); it != upgradeList.end(); ++it) 
+	for(std::vector<Upgrade*>::iterator it = upgradeList.begin(); it != upgradeList.end(); ++it) 
 	{
 		std::cout<<"blub\n";
 		if((*it)->price == 0)
@@ -102,7 +102,7 @@ void Rocket::setLocation(sf::Vector2f loc)
 	position = loc;
 }
  
-float Rocket::getBoost()
+void Rocket::updateBoost()
 {
 	float boost = 0.0f;
 	if(rocketbody)
@@ -116,9 +116,9 @@ float Rocket::getBoost()
 	if(rockettail)
 		boost += rockettail->boost;
 
-	return boost;
+	// return boost;
 }
-int Rocket::getCoolness()
+void Rocket::updateCoolness()
 {
 	int coolness = 0 ;
 	if(rocketbody)
@@ -132,11 +132,10 @@ int Rocket::getCoolness()
 	if(rockettail)
 		coolness += rockettail->coolness;
 
-	return coolness;
+	// return coolness;
 }
-float Rocket::getAerodynamic()
+void Rocket::updateAerodynamic()
 {
-	float aerodynamic = 0.0f;
 	if(rocketbody)
 		aerodynamic += rocketbody->aerodynamic;
 	if(rocketgoggles)
@@ -148,5 +147,5 @@ float Rocket::getAerodynamic()
 	if(rockettail)
 		aerodynamic += rockettail->aerodynamic;
 
-	return aerodynamic;
+	// return aerodynamic;
 }
