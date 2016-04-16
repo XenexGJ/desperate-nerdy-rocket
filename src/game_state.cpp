@@ -8,6 +8,9 @@ GameState::GameState(int x, int y)
 	// Size of the game area
 	m_size_x = x;
 	m_size_y = y;
+	
+	//schwerkraft
+	gravity = 10;
 
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);
@@ -163,10 +166,10 @@ void GameState::updateGameState()
 	{
 		return;
 	}
-	else if (m_game_state == STATE_SHOP)
+	/*else if (m_game_state == STATE_SHOP)
 	{
 		//TODO: START BUTTON (IM RENDERER BILD ERZEUGEN)
-	}
+	}//*/
 	else if(m_game_state == STATE_PLAYING)
 	{
 		// Update the player location
@@ -182,19 +185,18 @@ void GameState::updateGameState()
 			delta = sf::Vector2f(5,0);
 			break;
 
-			case DIRECTION_UP:
-			delta = sf::Vector2f(0,-5);
-			break;
-
-			case DIRECTION_DOWN:
-			delta = sf::Vector2f(0,5);
-			break;
-
 			default:
 			delta = sf::Vector2f(0,0);
 			break;
 		}
-
+		delta.y -= rocket.movementSpeed;
+		
+		rocket.movementSpeed -= gravity*rocket.getAerodynamic();
+		std::cout<< "blub: " << rocket.movementSpeed << "\n";
+		if(rocket.movementSpeed < -10)
+		{
+			m_game_state == STATE_SHOP;
+		}
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
 
@@ -272,8 +274,8 @@ void GameState::loadUpgrades()
 {
 	//Upgrade			 			 (int price,int type,float boost,int coolness,float aerodynamic,std::string name,std::string assetPath);
 	//teure/bessere Upgrades oben
-	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,0,10,0,"Waffen","assets/waffen.png"));
-	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,40,10,0,"kawaii2","assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,0,10,1,"Waffen","assets/waffen.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,40,10,0,"kawaii2","assets/kawaii_2.png"));
 	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,20,10,0,"kawaii","assets/kawaii.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,10,0,"Basis","assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,200,10,0,"Balls","assets/rocket_balls.png"));

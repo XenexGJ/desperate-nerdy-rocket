@@ -17,10 +17,11 @@ public:
 	float getBoost();
 	float getAerodynamic();
 	int getCoolness();
+	float movementSpeed;
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
-	float movementSpeed;
+	
 	sf::Vector2f position;
 	sf::Texture texture;
 	std::vector<Upgrade*> myUpgradeList;
