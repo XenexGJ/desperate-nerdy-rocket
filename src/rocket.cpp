@@ -102,9 +102,8 @@ void Rocket::setLocation(sf::Vector2f loc)
 	position = loc;
 }
  
-void Rocket::updateBoost()
+void Rocket::updateStats()
 {
-	float boost = 0.0f;
 	if(rocketbody)
 		boost += rocketbody->boost;
 	if(rocketgoggles)
@@ -116,11 +115,6 @@ void Rocket::updateBoost()
 	if(rockettail)
 		boost += rockettail->boost;
 
-	// return boost;
-}
-void Rocket::updateCoolness()
-{
-	int coolness = 0 ;
 	if(rocketbody)
 		coolness += rocketbody->coolness;
 	if(rocketgoggles)
@@ -132,10 +126,6 @@ void Rocket::updateCoolness()
 	if(rockettail)
 		coolness += rockettail->coolness;
 
-	// return coolness;
-}
-void Rocket::updateAerodynamic()
-{
 	if(rocketbody)
 		aerodynamic += rocketbody->aerodynamic;
 	if(rocketgoggles)
@@ -147,5 +137,5 @@ void Rocket::updateAerodynamic()
 	if(rockettail)
 		aerodynamic += rockettail->aerodynamic;
 
-	// return aerodynamic;
 }
+
