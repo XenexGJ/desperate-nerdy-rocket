@@ -3,8 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "game_state.h"
-#include "renderer.h" // TEST
-
+#include "sound_handler.h"
 class EventHandler
 {
 public:
@@ -13,6 +12,7 @@ public:
 private:
 	sf::RenderWindow *m_wnd;
 	GameState *m_gst;
+	SoundHandler* s;
 };
 
 #endif

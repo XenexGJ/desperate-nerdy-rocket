@@ -4,6 +4,7 @@ EventHandler::EventHandler(sf::RenderWindow *window, GameState *state)
 {
 	m_wnd = window;
 	m_gst = state;
+	s = SoundHandler::getSoundHandler();
 }
 
 void EventHandler::handleEvents()
@@ -17,10 +18,18 @@ void EventHandler::handleEvents()
             m_wnd->close();
         }
 
-        // Start playing when SPACE is pressed
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_gst->getGameState() == STATE_MENU)
+        if (m_gst->getGameState() == STATE_MENU || m_gst->getGameState() == STATE_PAUSE || m_gst->getGameState() == STATE_CONTROLS)
         {
-        	m_gst->startPlaying();
+        	// Start/continue playing when SPACE is pressed
+        	if(event.key.code == sf::Keyboard::Space)
+        	{
+        		m_gst->setGameState(STATE_PLAYING);
+        	}
+        	//show control when C is pressed
+        	else if(event.key.code == sf::Keyboard::C)
+        	{
+        		m_gst->setGameState(STATE_CONTROLS);
+        	}
         }
         // TEST: Open shop when B is pressed
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_MENU)
@@ -49,7 +58,15 @@ void EventHandler::handleEvents()
         {
         	m_gst->setPlayerMovementDirection(DIRECTION_NONE);
         }
-
+		
+		if(event.type == sf::Event::KeyPressed)
+		{
+			if(event.key.code == sf::Keyboard::M)
+			{
+				s->toggleMute();
+			}
+		}
+		
 	// TODO
 	// MAUS
 

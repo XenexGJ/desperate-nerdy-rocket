@@ -11,6 +11,8 @@
 #define STATE_SHOP 2
 #define STATE_Mini 3
 #define STATE_REFRESH 4
+#define STATE_PAUSE 5
+#define STATE_CONTROLS 6
 
 
 
@@ -38,6 +40,7 @@ public:
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
+	void setGameState(int state);
 	
 	sf::Vector2f getPlayerLocation();
 	//sf:Vector getPlayerRotation();

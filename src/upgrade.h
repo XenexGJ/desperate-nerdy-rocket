@@ -14,10 +14,10 @@
 class Upgrade : public sf::Drawable
 {
 public:
-	Upgrade(int prize,int type,std::string assetPath);
+	Upgrade(int price,int type,std::string assetPath);
 	void setPosition(sf::Vector2f pos);
 	int type;
-	int prize;
+	int price;
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
