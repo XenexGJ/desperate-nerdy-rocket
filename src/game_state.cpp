@@ -204,7 +204,7 @@ void GameState::updateGameState()
 		}
 		delta.y -= rocket.movementSpeed;
 		
-		rocket.movementSpeed -= gravity*rocket.getAerodynamic();
+		rocket.movementSpeed -= gravity*rocket.aerodynamic;
 		std::cout<< "blub: " << rocket.movementSpeed << "\n";
 		if(rocket.movementSpeed < -10)
 		{
@@ -289,7 +289,7 @@ void GameState::loadUpgrades()
 	//teure/bessere Upgrades oben
 	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,0,10,1,"Waffen","assets/waffen.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,40,10,0,"kawaii2","assets/kawaii_2.png"));
-	upgradeList.push_back(new Upgrade(1,UPGRADE_BODY,20,10,0,"kawaii","assets/kawaii.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,20,10,0,"kawaii","assets/kawaii.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,10,0,"Basis","assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,200,10,0,"Balls","assets/rocket_balls.png"));
 }

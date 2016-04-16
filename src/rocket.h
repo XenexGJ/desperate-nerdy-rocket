@@ -16,6 +16,7 @@ public:
 	float boost;
 	float aerodynamic;
 	int coolness;
+	float movementSpeed;
 
 	//berechnet den boost aus den upgrades
 	void updateBoost();
