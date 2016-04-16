@@ -25,13 +25,19 @@ private:
 	sf::Texture m_texture_player;
 	sf::Texture m_texture_dodgecoin;
 	sf::Texture m_texture_shopbackground;
+	sf::Texture m_texture_minibackground;
 	sf::Texture m_texture_slot1;
 	sf::Texture m_texture_upgrade_bought;
 	sf::Texture m_texture_fappsy;
+	sf::Texture m_texture_mower;
+	sf::Texture m_texture_jung_und_geld;
+	sf::Texture m_texture_start;
+	sf::Texture m_texture_menu;
 	sf::Font m_normal_font;
 	sf::Font m_bold_font;
 	sf::Font m_funk;
-	Rocket rocket;
+	//Rocket rocket;
+	
 	std::vector<Upgrade*> upgrades;
 };
 

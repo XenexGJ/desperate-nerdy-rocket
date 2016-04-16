@@ -17,35 +17,52 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     }
     m_texture_background2.setRepeated(true);
 
-    if (!m_texture_player.loadFromFile("assets/rocket_basic.png"))
+	if (!m_texture_player.loadFromFile("assets/rocket_basic.png"))
 	{
-    	m_wnd->close();
-    }
-
+		m_wnd->close();
+	}
     if (!m_texture_dodgecoin.loadFromFile("assets/Qoin_klein.png"))
 	{
     	m_wnd->close();
-    }
-	
+    }	
 	if (!m_texture_shopbackground.loadFromFile("assets/brickwall.png"))
 	{
     	m_wnd->close();
-    }
-	
+    }	
     if (!m_texture_slot1.loadFromFile("assets/Kaufen.png"))
 	{
     	m_wnd->close();
     }
-
-    if (!m_texture_upgrade_bought.loadFromFile("assets/NV.png"))
+	if (!m_texture_upgrade_bought.loadFromFile("assets/na.png"))
 	{
-    	m_wnd->close();
-    }
+		m_wnd->close();
+	}
 	
 	if (!m_texture_fappsy.loadFromFile("assets/fappsi.png"))
 	{
 		m_wnd->close();
 	}
+	if (!m_texture_mower.loadFromFile("assets/mower.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_jung_und_geld.loadFromFile("assets/achieve_jungundgeld.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_start.loadFromFile("assets/start.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_menu.loadFromFile("assets/menu.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_minibackground.loadFromFile("assets/anfang.png"))
+	{
+		m_wnd->close();
+	}
+
 
     // Load all the fonts
     if (!m_normal_font.loadFromFile("assets/Roboto-Regular.ttf"))
@@ -58,7 +75,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     	m_wnd->close();
     }
 	
-	if (!m_funk.loadFromFile("assets/Funk.ttf"))
+	if (!m_funk.loadFromFile("assets/Cocksure.ttf"))
     {
     	m_wnd->close();
     }
@@ -135,12 +152,12 @@ void Renderer::drawGame()
 		sprite_shopbackground.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
 		m_wnd->draw(sprite_shopbackground);
 
-		//Headline
+		//Headline Shop
 		sf::Text text_head;
 		text_head.setFont(m_funk);
 		text_head.setCharacterSize(80);
 		text_head.setPosition(75, 10);
-		text_head.setString("Fappsy's Fappulous Fapprik");
+		text_head.setString("Fappsy's Fappulous Fanshop");
 		m_wnd->draw(text_head);
 		
 		//Fappsy
@@ -152,13 +169,13 @@ void Renderer::drawGame()
 		
 		//Start Button
 		sf::Sprite sprite_start;
-		sprite_start.setTexture(m_texture_upgrade_bought); // START TEXTUR ERSTELLEN
+		sprite_start.setTexture(m_texture_start); 
 		sprite_start.setPosition(1000,700);
 		m_wnd->draw(sprite_start);
 		
 		//Menue Button
 		sf::Sprite sprite_menue;
-		sprite_menue.setTexture(m_texture_upgrade_bought); // MENUButton TEXTUR ERSTELLEN
+		sprite_menue.setTexture(m_texture_menu);
 		sprite_menue.setPosition(100,700);
 		m_wnd->draw(sprite_menue);
 
@@ -465,7 +482,6 @@ void Renderer::drawGame()
 	else if(m_gst->getGameState() == STATE_PLAYING)
 	{
 		std::stringstream str;
-		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
 		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
 
 
@@ -481,5 +497,38 @@ void Renderer::drawGame()
 		
 		m_wnd->draw(m_gst->rocket);	
 	}
+	else if (m_gst->getGameState() == STATE_MINI)
+	{
+		sf::View nils_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
+   		m_wnd->setView(nils_view);
+   		
+		// Coins collected text		
+		std::stringstream str;		
+		str << "Coins: " << m_gst->getCollectedDodgecoinCount();	
+		
+		sf::Sprite sprite_minibackground;
+		sprite_minibackground.setTexture(m_texture_minibackground);
+		sprite_minibackground.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
+		m_wnd->draw(sprite_minibackground);
+		
+		sf::Sprite sprite_achieve;
+		sprite_achieve.setTexture(m_texture_jung_und_geld); 
+		sprite_achieve.setPosition(294,50);
+		m_wnd->draw(sprite_achieve);
+		
+		/*
+sf::Text text_coins;
+		text_coins.setFont(m_bold_font);
+		text_coins.setString(str.str());
+		text_coins.setCharacterSize(30);
+		text_coins.setPosition(sf::Vector2f(30,m_gst->getPlayerLocation().y));
+		m_wnd->draw(text_coins);
+	*/
+		m_gst->nils.setLocation(m_gst->getPlayerLocation());  //panda
+
+		m_wnd->draw(m_gst->nils);
+
+	}
+
 	m_wnd->display();
 }
