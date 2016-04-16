@@ -32,10 +32,11 @@ void GameState::startPlaying()
 
 	// Reset all values
 	m_dodgecoins_collected = 0;
+	m_dodgecoin_locations.clear();
 
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(600, 10)); // Start zentriert auf Bodenhöhe
-	m_dodgecoin_locations.clear();
+	
 	
 	loadUpgrades();
 	rocket = Rocket(upgradeList);
@@ -179,6 +180,19 @@ void GameState::buyUpgrade(sf::Vector2i location)
 
 }
 
+//start Minigame
+void GameState::startMini()
+{
+	m_game_state = STATE_MINI;
+	//m_dodgecoins_collected = 0;
+	//m_dodgecoin_locations.clear();
+
+	std::cout << "start mini" <<std::endl;
+	setPlayerMovementDirection (DIRECTION_NONE);
+	setPlayerLocation(sf::Vector2f (50,700));
+	
+}
+
 void GameState::updateGameState()
 {
 	// Do nothing if the game is not in playing state
@@ -247,12 +261,60 @@ void GameState::updateGameState()
 			}
 			else
 			{
-				// Advance iterator to next screw
+				// Advance iterator to next coin
 				s_it++;
 			}
 		}
 	}
-	else // Do nothing if the game is not in playing state
+	else if(m_game_state == STATE_MINI)
+	{
+		// Update the player location
+		sf::Vector2f delta;
+		//startMini();
+	
+	
+		switch(m_player_direction)
+		{
+			case DIRECTION_LEFT:
+			delta = sf::Vector2f(-5,0);
+			break;
+			std::cout << "leftmini" <<std::endl;
+			
+			case DIRECTION_RIGHT:
+			delta = sf::Vector2f(5,0);
+			break;
+			std::cout << "rightmini" <<std::endl;
+
+			case DIRECTION_UP:
+			delta = sf::Vector2f(0,0);
+			break;
+
+			case DIRECTION_DOWN:
+			delta = sf::Vector2f(0,0);
+			break;
+
+			default:
+			delta = sf::Vector2f(0,0);
+			break;
+		}
+		
+		// Apply delta to the player position
+		sf::Vector2f new_location(getPlayerLocation() + delta);
+
+		// Check if new position is inside the game area
+		if(new_location.x >= 0 && new_location.x + ROBOT_WIDTH <= m_size_x)
+		{
+			setPlayerLocation(new_location); // Update location
+			std::cout << "neue position??" << std::endl;
+		}
+
+		else
+		{
+			return;
+			setGameState(2); //end Minigame and return to shop
+		}
+	}
+	else // Do nothing if the game is not in mini state
 		return;
 }
 
@@ -264,6 +326,7 @@ void GameState::setPlayerMovementDirection(int direction)
 }
 
 //CHECKEN 
+// ggf. sauber das rocket.setlocation verschieben
 void GameState::setPlayerLocation(sf::Vector2f location)
 {
 	m_player_location = location;

@@ -5,6 +5,7 @@
 #include <vector>
 #include "upgrade.h"
 #include "rocket.h"
+#include "nils.h"
 
 #define STATE_MENU 0
 #define STATE_PLAYING 1
@@ -40,6 +41,9 @@ public:
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
 	void setGameState(int state);
+
+	void startMini();
+	void updateMini();
 	
 	sf::Vector2f getPlayerLocation();
 	float getVelocity();
@@ -50,7 +54,7 @@ public:
 	
 		std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
-	
+	Nils nils;
 private:
 	int m_game_state;
 	int m_size_x;
