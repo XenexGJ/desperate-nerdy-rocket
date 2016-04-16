@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "game_state.h"
+#include "renderer.h" // TEST
 
 class EventHandler
 {

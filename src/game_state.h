@@ -32,6 +32,7 @@ public:
 	GameState(int x, int y);
 	int getGameState();
 	void startPlaying();
+	void startShop();
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);

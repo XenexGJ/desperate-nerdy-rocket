@@ -22,6 +22,11 @@ void EventHandler::handleEvents()
         {
         	m_gst->startPlaying();
         }
+        // TEST: Open shop when B is pressed
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_MENU)
+        {
+        	m_gst->startShop();
+        }
 
         // Get robot direction
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
