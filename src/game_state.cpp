@@ -15,10 +15,11 @@ GameState::GameState(int x, int y)
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(x/2-ROBOT_WIDTH/2,y/2-ROBOT_HEIGHT/2));
-
+	
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
 	rocket = Rocket(upgradeList);
+	m_dodgecoin_locations.clear();
 }
 
 int GameState::getGameState()
@@ -41,9 +42,10 @@ void GameState::startPlaying()
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
 	m_velocity = rocket.boost;
-	// ADD COIN SPAWN
+
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
+
 	
 }
 
@@ -229,7 +231,10 @@ void GameState::updateGameState()
 		}
 		// Bounding box of the player
 		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
-
+		
+		//ADD COIN
+		addDodgecoin();
+		
 		std::vector<sf::Vector2f>::iterator s_it;
 		s_it = m_dodgecoin_locations.begin();
 
@@ -291,9 +296,14 @@ float GameState::getVelocity()
 	return m_velocity;
 }
 
-void GameState::addDodgecoin(sf::Vector2f location)
+void GameState::addDodgecoin()
 {
-	m_dodgecoin_locations.push_back(location);
+	sf::Vector2f newcoin;
+	int random = rand()%100;
+	if (random <= 10)
+	{
+		m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y-1000));
+	}
 }
 
 std::vector<Upgrade*> *GameState::getUpgradeList()

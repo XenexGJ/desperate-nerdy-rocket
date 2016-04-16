@@ -93,15 +93,16 @@ void Renderer::drawGame()
 	sprite_background2.setColor(sf::Color(255, 255, 255, transparency));
 	m_wnd->draw(sprite_background2);	
 	
-	// Coins einfügen
-    sf::Sprite sprite_dodgecoin;
-	sprite_dodgecoin.setTexture(m_texture_dodgecoin);
+
 	//Coin vector bauen
 	std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
 	std::vector<sf::Vector2f>::iterator s_it;
 
 	for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
 	{
+		// Coins einfügen
+    	sf::Sprite sprite_dodgecoin;
+		sprite_dodgecoin.setTexture(m_texture_dodgecoin);
 		sprite_dodgecoin.setPosition(*s_it);
 		m_wnd->draw(sprite_dodgecoin);
 	}
