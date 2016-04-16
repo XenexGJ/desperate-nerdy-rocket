@@ -37,6 +37,7 @@ void GameState::startPlaying()
 	
 	loadUpgrades();
 	
+	std::cout<<"loaded upgrades\n";
 	rocket = Rocket(upgradeList);
 	
 	// ADD COIN SPAWN
@@ -235,7 +236,7 @@ std::vector<Upgrade*> *GameState::getUpgradeList()
 }
 void GameState::loadUpgrades()
 {
-	upgradeList.push_back(new Upgrade(10,UPGRADE_BODY,"assets/rocket_basic.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
 }
 void GameState::setGameState(int state)

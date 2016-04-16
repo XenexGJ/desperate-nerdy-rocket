@@ -18,7 +18,20 @@ void EventHandler::handleEvents()
             m_wnd->close();
         }
 
-        if (m_gst->getGameState() == STATE_MENU || m_gst->getGameState() == STATE_PAUSE || m_gst->getGameState() == STATE_CONTROLS)
+        if (m_gst->getGameState() == STATE_MENU)
+        {
+        	// Start/continue playing when SPACE is pressed
+        	if(event.key.code == sf::Keyboard::Space)
+        	{
+        		m_gst->startPlaying();
+        	}
+        	//show control when C is pressed
+        	else if(event.key.code == sf::Keyboard::C)
+        	{
+        		m_gst->setGameState(STATE_CONTROLS);
+        	}
+        }
+        if ( m_gst->getGameState() == STATE_PAUSE || m_gst->getGameState() == STATE_CONTROLS)
         {
         	// Start/continue playing when SPACE is pressed
         	if(event.key.code == sf::Keyboard::Space)
