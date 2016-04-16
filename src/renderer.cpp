@@ -71,8 +71,6 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
-	
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if (!m_texture_play.loadFromFile("assets/play.png"))
 	{
 		m_wnd->close();

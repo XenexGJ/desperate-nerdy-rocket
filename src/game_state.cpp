@@ -189,19 +189,18 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 {
 	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256)
 	{	
-			m_game_state = STATE_SHOP;
+		m_game_state = STATE_SHOP;
 	}
 	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
 	{	
-			m_game_state = STATE_SHOP;
+		m_game_state = STATE_CONTROLS;
 	}
 	if (location.x >= 100 && location.x <= 238 && location.y >= 600 && location.y <= 656)
 	{	
-			m_game_state = STATE_SHOP;
+		//m_wnd->close();;
+		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
 	}
-	
-	//100,200);
-	//138 x 56
+
 }
 
 //start Minigame

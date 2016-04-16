@@ -50,11 +50,13 @@ void EventHandler::handleEvents()
         	{
         		m_gst->setGameState(STATE_PLAYING);
         	}
+        	/*
         	//show control when C is pressed
         	else if(event.key.code == sf::Keyboard::C)
         	{
         		m_gst->setGameState(STATE_CONTROLS);
         	}
+        	*/
         }
         // TEST: Open shop when B is pressed
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_PLAYING)
@@ -73,8 +75,6 @@ void EventHandler::handleEvents()
 			m_gst->startMini();
         }
 
-
-
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_SHOP)
 	{
 		m_gst->shopMouseHandling(sf::Mouse::getPosition(*m_wnd));
@@ -83,7 +83,6 @@ void EventHandler::handleEvents()
 	{
 		m_gst->menuMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
-
 
 	// Get robot direction
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
