@@ -17,10 +17,14 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
     
     //std::cout << "ittt\n";
     
+    
+    
     for(std::vector<Upgrade*>::iterator it = upgradeList.begin(); it != upgradeList.end(); ++it) 
 	{
+		std::cout<<"blub\n";
 		if((*it)->price == 0)
 		{
+			std::cout<<"blub";
 			switch ((*it)->type)
 			{
 				case UPGRADE_BODY:

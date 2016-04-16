@@ -74,7 +74,7 @@ void Renderer::drawGame()
 	m_wnd->draw(sprite_player); */
 
 	
-	m_wnd->draw(m_gst->rocket);	
+	
 	
 	// Coins einfügen
     sf::Sprite sprite_screws;
@@ -389,6 +389,8 @@ void Renderer::drawGame()
 		text_screws.setCharacterSize(30);
 		text_screws.setPosition(sf::Vector2f(30,30));
 		m_wnd->draw(text_screws);
+		
+		m_wnd->draw(m_gst->rocket);	
 	}
 	
 	
