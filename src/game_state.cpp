@@ -257,11 +257,16 @@ void GameState::updateGameState()
 		sf::Vector2f new_location(getPlayerLocation() + delta);
 
 		// Check if new position is inside the game area
-		if(new_location.x >= 0
-			&& new_location.x + ROBOT_WIDTH <= m_size_x)
+		if(new_location.x < 0)
 		{
-			setPlayerLocation(new_location); // Update location
+			new_location.x = 0;
 		}
+		else if(new_location.x + ROBOT_WIDTH >= m_size_x)
+		{
+			new_location.x = m_size_x - ROBOT_WIDTH;
+		}
+		setPlayerLocation(new_location); // Update location
+		
 		if(new_location.y < 0 && m_velocity < 0)
 		{
 			startShop();
