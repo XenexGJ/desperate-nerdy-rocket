@@ -10,7 +10,6 @@
 #define STATE_PLAYING 1
 #define STATE_SHOP 2
 #define STATE_Mini 3
-#define STATE_REFRESH 4
 
 
 
@@ -34,7 +33,7 @@ public:
 	int getGameState();
 	void startPlaying();
 	void startShop();
-	void buyUpgrade();
+	void buyUpgrade(int x, int y);
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
@@ -59,8 +58,7 @@ private:
 	std::vector<sf::Vector2f> m_screw_locations;
 	float m_new_screw_threshold;
 	int m_screws_collected;
-
-	int m_dodgecoins;
+	int m_dodgecoins_collected;
 	float m_velocity;
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();

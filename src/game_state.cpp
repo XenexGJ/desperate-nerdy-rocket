@@ -29,7 +29,7 @@ void GameState::startPlaying()
 
 	// Reset all values
 	m_screws_collected = 0;
-	//m_dodgecoins_collected = 0;
+	m_dodgecoins_collected = 0;
 
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(600, 710)); // Start zentriert auf Bodenhöhe
@@ -50,10 +50,16 @@ void GameState::startShop()
 
 
 //Experimental
-void GameState::buyUpgrade()
+void GameState::buyUpgrade(int x, int y)
 {
-	m_game_state = STATE_REFRESH; // Verändern des Zustands zum neubilden des Shops und "ausblenden" von gekauften Upgrade
-	m_game_state = STATE_SHOP;
+	//Upgrade 1
+	if (x >= 150 && x <= 280 && y >= 200 && y <= 247)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(1)->price && upgradeList.at(1) != 0)
+		{
+			upgradeList.at(1)->price = 0;
+		}
+	}
 }
 
 void GameState::updateGameState()
@@ -229,6 +235,6 @@ std::vector<Upgrade*> *GameState::getUpgradeList()
 }
 void GameState::loadUpgrades()
 {
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/rocket_basic.png"));
+	upgradeList.push_back(new Upgrade(10,UPGRADE_BODY,"assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
 }
