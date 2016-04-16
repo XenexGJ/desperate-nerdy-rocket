@@ -24,8 +24,10 @@ private:
 	sf::Texture m_texture_shopbackground;
 	sf::Texture m_texture_slot1;
 	sf::Texture m_texture_upgrade_bought;
+	sf::Texture m_texture_fappsy;
 	sf::Font m_normal_font;
 	sf::Font m_bold_font;
+	sf::Font m_funk;
 	Rocket rocket;
 };
 
