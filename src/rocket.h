@@ -19,10 +19,8 @@ public:
 	float movementSpeed;
 
 	//berechnet den boost aus den upgrades
-	void updateBoost();
-	void updateAerodynamic();
-	void updateCoolness();
-
+	void updateStats()
+	
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
 	

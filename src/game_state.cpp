@@ -179,10 +179,10 @@ void GameState::updateGameState()
 	{
 		return;
 	}
-	/*else if (m_game_state == STATE_SHOP)
+	else if (m_game_state == STATE_SHOP)
 	{
 		//TODO: START BUTTON (IM RENDERER BILD ERZEUGEN)
-	}//*/
+	}
 	else if(m_game_state == STATE_PLAYING)
 	{
 		// Update the player location
