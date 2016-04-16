@@ -26,6 +26,7 @@ private:
 	sf::Texture m_texture_dodgecoin;
 	sf::Texture m_texture_shopbackground;
 	sf::Texture m_texture_minibackground;
+	sf::Texture m_texture_graffitti;
 	sf::Texture m_texture_slot1;
 	sf::Texture m_texture_upgrade_bought;
 	sf::Texture m_texture_fappsy;
@@ -33,6 +34,7 @@ private:
 	sf::Texture m_texture_jung_und_geld;
 	sf::Texture m_texture_start;
 	sf::Texture m_texture_menu;
+	sf::Texture m_texture_startBg;
 	sf::Font m_normal_font;
 	sf::Font m_bold_font;
 	sf::Font m_funk;
