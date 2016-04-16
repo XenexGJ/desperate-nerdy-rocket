@@ -19,39 +19,57 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
     
     for(std::vector<Upgrade*>::iterator it = upgradeList.begin(); it != upgradeList.end(); ++it) 
 	{
-    	switch ((*it)->type)
-    	{
-    		case UPGRADE_BODY:
-    			rocketbooster = &**it;
-    			std::cout << "it\n";
-    		break;
-    		case UPGRADE_GOGGLES:
-    			rocketbooster = &**it;
-    			std::cout << "it\n";
-    		break;
-    		case UPGRADE_WINGS:
-    			rocketbooster = &**it;
-    			std::cout << "it\n";
-    		break;
-    		case UPGRADE_BOOSTER:
-    			rocketbooster = &**it;
-    			std::cout << "it\n";
-    		break;
-    		case UPGRADE_TAIL:
-    			rocketbooster = &**it;
-    			std::cout << "it\n";
-    		break;
-    	}
+		if((*it)->prize == 0)
+		{
+			switch ((*it)->type)
+			{
+				case UPGRADE_BODY:
+					if(rocketbody == NULL)
+					{
+						rocketbody = &**it;
+						std::cout << "it\n";
+					}
+				break;
+				case UPGRADE_GOGGLES:
+					if(rocketgoggles == NULL)
+					{
+						rocketgoggles = &**it;
+						std::cout << "it\n";
+					}
+				break;
+				case UPGRADE_WINGS:
+					if(rocketwings == NULL)
+					{
+						rocketwings = &**it;
+						std::cout << "it\n";
+					}
+				break;
+				case UPGRADE_BOOSTER:
+					if(rocketbooster == NULL)
+					{
+						rocketbooster = &**it;
+						std::cout << "it\n";
+					}
+				break;
+				case UPGRADE_TAIL:
+					if(rockettail == NULL)
+					{
+						rockettail = &**it;
+						std::cout << "it\n";
+					}
+				break;
+			}
+		}
 	}
 }
 
 //zeichne
 void Rocket::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
-	sf::Sprite sprite_rocket;
+/*	sf::Sprite sprite_rocket;
 	sprite_rocket.setTexture(texture);
 	sprite_rocket.setPosition(position);
-	target.draw(sprite_rocket,states);
+	target.draw(sprite_rocket,states);*/
 	if(rocketbody != NULL)
 	{
 		rocketbody->setPosition(position);
