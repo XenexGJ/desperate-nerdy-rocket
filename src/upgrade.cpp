@@ -1,13 +1,14 @@
 #include "upgrade.h"
 
-Upgrade::Upgrade(int price,int type,std::string assetPath)
+Upgrade::Upgrade(int price,int type,float boost,int coolness,float aerodynamic,std::string name,std::string assetPath)
 {
 	this->price = price;
 	this->type = type;
 	this->assetPath = assetPath;
-	this->boost = price; //TODO
-	this->coolness = price; //TODO
-	this->aerodynamic = price; //TODO
+	this->boost = boost;
+	this->coolness = coolness; 
+	this->aerodynamic = aerodynamic;
+	this->name = name;
 	
    	if (!texture.loadFromFile(assetPath))
 	{
@@ -28,10 +29,5 @@ void Upgrade::setPosition(sf::Vector2f pos)
 	position = pos;
 }
 
-
-/*void move()
-{
-
-}*/
 
 

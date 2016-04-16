@@ -124,7 +124,7 @@ float Rocket::getBoost()
 }
 int Rocket::getCoolness()
 {
-	float coolness = 0.0f;
+	int coolness = 0 ;
 	if(rocketbody)
 		coolness += rocketbody->coolness;
 	if(rocketgoggles)
