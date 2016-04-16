@@ -138,13 +138,17 @@ void Renderer::drawGame()
 		sprite_fappsy.scale(sf::Vector2f(5, 5)); // factor relative to the current scale
 		m_wnd->draw(sprite_fappsy);
 		
+		std::vector<Upgrade*> *upgrades = m_gst->getUpgradeList();
 		//Upgrade 1
 		sf::Sprite sprite_slot1;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(0)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot1.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot1.setTexture(m_texture_slot1);
+		{
+			sprite_slot1.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot1.setPosition(150, 200);
 		sf::Text text_slot1;
 		text_slot1.setFont(m_bold_font);
@@ -156,11 +160,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 2
 		sf::Sprite sprite_slot2;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(1)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot2.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot2.setTexture(m_texture_slot1);
+		{
+			sprite_slot2.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot2.setPosition(300, 200);
 		sf::Text text_slot2;
 		text_slot2.setFont(m_bold_font);
@@ -172,11 +179,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 3
 		sf::Sprite sprite_slot3;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(2)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot3.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot3.setTexture(m_texture_slot1);
+		{
+			sprite_slot3.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot3.setPosition(450, 200);
 		sf::Text text_slot3;
 		text_slot3.setFont(m_bold_font);
@@ -188,11 +198,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 4
 		sf::Sprite sprite_slot4;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(3)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot4.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot4.setTexture(m_texture_slot1);
+		{
+			sprite_slot4.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot4.setPosition(600, 200);
 		sf::Text text_slot4;
 		text_slot4.setFont(m_bold_font);
@@ -201,14 +214,17 @@ void Renderer::drawGame()
 		text_slot4.setPosition(600, 150);
 		m_wnd->draw(text_slot4);
 		m_wnd->draw(sprite_slot4);
-		
+		/*
 		//Upgrade 5
 		sf::Sprite sprite_slot5;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(4)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot5.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot5.setTexture(m_texture_slot1);
+		{
+			sprite_slot5.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot5.setPosition(150, 400);
 		sf::Text text_slot5;
 		text_slot5.setFont(m_bold_font);
@@ -220,11 +236,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 6
 		sf::Sprite sprite_slot6;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(5)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot6.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot6.setTexture(m_texture_slot1);
+		{
+			sprite_slot6.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot6.setPosition(300, 400);
 		sf::Text text_slot6;
 		text_slot6.setFont(m_bold_font);
@@ -236,11 +255,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 7
 		sf::Sprite sprite_slot7;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(6)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot7.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot7.setTexture(m_texture_slot1);
+		{
+			sprite_slot7.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot7.setPosition(450, 400);
 		sf::Text text_slot7;
 		text_slot7.setFont(m_bold_font);
@@ -252,10 +274,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 8
 		sf::Sprite sprite_slot8;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(7)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot8.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
+		{
+			sprite_slot8.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot8.setTexture(m_texture_slot1);
 		sprite_slot8.setPosition(600, 400);
 		sf::Text text_slot8;
@@ -268,11 +294,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 9
 		sf::Sprite sprite_slot9;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(8)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot9.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot9.setTexture(m_texture_slot1);
+		{
+			sprite_slot9.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot9.setPosition(150, 600);
 		sf::Text text_slot9;
 		text_slot9.setFont(m_bold_font);
@@ -284,11 +313,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 10
 		sf::Sprite sprite_slot10;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(9)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot10.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot10.setTexture(m_texture_slot1);
+		{
+			sprite_slot10.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot10.setPosition(300, 600);
 		sf::Text text_slot10;
 		text_slot10.setFont(m_bold_font);
@@ -300,11 +332,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 11
 		sf::Sprite sprite_slot11;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(10)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot11.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot11.setTexture(m_texture_slot1);
+		{
+			sprite_slot11.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot11.setPosition(450, 600);
 		sf::Text text_slot11;
 		text_slot11.setFont(m_bold_font);
@@ -316,11 +351,14 @@ void Renderer::drawGame()
 		
 		//Upgrade 12
 		sf::Sprite sprite_slot12;
-		/*if upgradevector.bought == false;	// if nicht gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_slot1);
+		if (upgrades->at(11)->price != 0)	// if nicht gekauft / Seite
+		{
+			sprite_slot12.setTexture(m_texture_slot1);
+		}
 		else // if gekauft / Seite
-			sprite_upgrade1.setTexture(m_texture_upgrade_bought);*/
-		sprite_slot12.setTexture(m_texture_slot1);
+		{
+			sprite_slot12.setTexture(m_texture_upgrade_bought);
+		}
 		sprite_slot12.setPosition(600, 600);
 		sf::Text text_slot12;
 		text_slot12.setFont(m_bold_font);
@@ -330,7 +368,7 @@ void Renderer::drawGame()
 		m_wnd->draw(text_slot12);
 		m_wnd->draw(sprite_slot12);
 		
-		
+		*/
 		//Stats
 		sf::Text text_stats;
 		text_stats.setFont(m_bold_font);
