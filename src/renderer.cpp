@@ -17,7 +17,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     	m_wnd->close();
     }
 
-    if (!m_texture_screws.loadFromFile("assets/screws.png"))
+    if (!m_texture_dodgecoin.loadFromFile("assets/screws.png"))
 	{
     	m_wnd->close();
     }
@@ -75,16 +75,16 @@ void Renderer::drawGame()
 	m_wnd->draw(sprite_background);	
 	
 	// Coins einfügen
-    sf::Sprite sprite_screws;
-	sprite_screws.setTexture(m_texture_screws);
+    sf::Sprite sprite_dodgecoin;
+	sprite_dodgecoin.setTexture(m_texture_dodgecoin);
 	//Coin vector bauen
-	std::vector<sf::Vector2f> screws = m_gst->getScrewLocations();
+	std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
 	std::vector<sf::Vector2f>::iterator s_it;
 
-	for(s_it = screws.begin();s_it != screws.end();s_it++)
+	for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
 	{
-		sprite_screws.setPosition(*s_it);
-		m_wnd->draw(sprite_screws);
+		sprite_dodgecoin.setPosition(*s_it);
+		m_wnd->draw(sprite_dodgecoin);
 	}
 
 	if(m_gst->getGameState() == STATE_MENU)

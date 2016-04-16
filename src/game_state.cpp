@@ -35,13 +35,14 @@ void GameState::startPlaying()
 
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(600, 10)); // Start zentriert auf Bodenhöhe
-	//m_screw_locations.clear();
+	m_dodgecoin_locations.clear();
 	
 	loadUpgrades();
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
 	m_velocity = rocket.boost;
 	// ADD COIN SPAWN
+	
 }
 
 
@@ -225,19 +226,19 @@ void GameState::updateGameState()
 		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
 
 		std::vector<sf::Vector2f>::iterator s_it;
-		s_it = m_screw_locations.begin();
+		s_it = m_dodgecoin_locations.begin();
 
 		//NACHFOLGEND DURCH COINS ERSETZEN
 		// Check for each screw location ...
-		while(s_it != m_screw_locations.end())
+		while(s_it != m_dodgecoin_locations.end())
 		{
 			// ... if the robot is "eating" the screw
-			sf::FloatRect screw_box(*s_it,sf::Vector2f(SCREW_WIDTH,SCREW_HEIGHT));
-			if(screw_box.intersects(player_box))
+			sf::FloatRect dodgecoin_box(*s_it,sf::Vector2f(COIN_WIDTH,COIN_HEIGHT));
+			if(dodgecoin_box.intersects(player_box))
 			{
 				// Remove screw
-				m_screw_locations.erase(s_it);
-				m_screws_collected++;
+				m_dodgecoin_locations.erase(s_it);
+				m_dodgecoins_collected++;
 			}
 			else
 			{
@@ -270,15 +271,15 @@ sf::Vector2f GameState::getPlayerLocation()
 	return m_player_location;
 }
 
-std::vector<sf::Vector2f> GameState::getScrewLocations()
+std::vector<sf::Vector2f> GameState::getDodgecoinLocations()
 {
-	return m_screw_locations;
+	return m_dodgecoin_locations;
 }
 
 //Ändern auf Coins
-int GameState::getCollectedScrewsCount()
+int GameState::getCollectedDodgecoinCount()
 {
-	return m_screws_collected;
+	return m_dodgecoins_collected;
 }
 std::vector<Upgrade*> *GameState::getUpgradeList()
 {	
