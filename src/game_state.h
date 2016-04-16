@@ -42,13 +42,8 @@ public:
 	void setGameState(int state);
 	
 	sf::Vector2f getPlayerLocation();
-	//sf:Vector getPlayerRotation();
-	//void addScrew(sf::Vector2f location);
-	//void GameState::addCoins(){}
 	std::vector<sf::Vector2f> getScrewLocations();
-	//int getVisibleScrewsCount();
 	int getCollectedScrewsCount();
-	//int getCollectedDodgeCoins();
 	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
 	

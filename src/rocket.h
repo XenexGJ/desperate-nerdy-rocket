@@ -11,8 +11,6 @@ class Rocket : public sf::Drawable
 public:
 	Rocket();
 	Rocket(std::vector<Upgrade*> upgradeList);
-	//void move() = 0;
-//	sf::Vector2f getPosition();
 	void setLocation(sf::Vector2f loc);
 
 private:

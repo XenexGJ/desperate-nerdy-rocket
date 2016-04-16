@@ -28,19 +28,16 @@ void GameState::startPlaying()
 	m_game_state = STATE_PLAYING;
 
 	// Reset all values
-	m_screws_collected = 0;
 	m_dodgecoins_collected = 0;
 
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(600, 710)); // Start zentriert auf Bodenhöhe
-	m_screw_locations.clear();
+	//m_screw_locations.clear();
 	
 	loadUpgrades();
-	
 	rocket = Rocket(upgradeList);
 	
 	// ADD COIN SPAWN
-
 }
 
 void GameState::startShop()
@@ -48,12 +45,9 @@ void GameState::startShop()
 	m_game_state = STATE_SHOP;
 }
 
-
-//Experimental
 void GameState::buyUpgrade(sf::Vector2i location)
 {
 	//Upgrade 1
-	//std::cout << location.x << "  " << location.y << "\n";
 	if (location.x >= 150 && location.x <= 280 && location.y >= 176 && location.y <= 223)
 	{
 		if (m_dodgecoins_collected >= upgradeList.at(0)->price && upgradeList.at(0)->price != 0)
@@ -171,78 +165,70 @@ void GameState::updateGameState()
 	}
 	else if (m_game_state == STATE_SHOP)
 	{
-		
+		//TODO: START BUTTON (IM RENDERER BILD ERZEUGEN)
 	}
 	else if(m_game_state == STATE_PLAYING)
 	{
+		// Update the player location
+		sf::Vector2f delta;
 
-	// Return to menu state when losing the game
-	/*if(getVisibleScrewsCount() >= 10)
-	{
-		m_game_state = STATE_MENU;
-		return;
-	}*/
-	// Update the player location
-	sf::Vector2f delta;
-
-	switch(m_player_direction)
-	{
-		case DIRECTION_LEFT:
-		delta = sf::Vector2f(-5,0);
-		break;
-
-		case DIRECTION_RIGHT:
-		delta = sf::Vector2f(5,0);
-		break;
-
-		case DIRECTION_UP:
-		delta = sf::Vector2f(0,-5);
-		break;
-
-		case DIRECTION_DOWN:
-		delta = sf::Vector2f(0,5);
-		break;
-
-		default:
-		delta = sf::Vector2f(0,0);
-		break;
-	}
-
-	// Apply delta to the player position
-	sf::Vector2f new_location(getPlayerLocation() + delta);
-
-	// Check if new position is inside the game area
-	if(new_location.x >= 0
-		&& new_location.x + ROBOT_WIDTH <= m_size_x)
-	{
-		setPlayerLocation(new_location); // Update location
-	}
-	
-	// Bounding box of the player
-	sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
-
-	std::vector<sf::Vector2f>::iterator s_it;
-	s_it = m_screw_locations.begin();
-
-	// Check for each screw location ...
-	while(s_it != m_screw_locations.end())
-	{
-		// ... if the robot is "eating" the screw
-		sf::FloatRect screw_box(*s_it,sf::Vector2f(SCREW_WIDTH,SCREW_HEIGHT));
-		if(screw_box.intersects(player_box))
+		switch(m_player_direction)
 		{
-			// Remove screw
-			m_screw_locations.erase(s_it);
-			m_screws_collected++;
+			case DIRECTION_LEFT:
+			delta = sf::Vector2f(-5,0);
+			break;
+
+			case DIRECTION_RIGHT:
+			delta = sf::Vector2f(5,0);
+			break;
+
+			case DIRECTION_UP:
+			delta = sf::Vector2f(0,-5);
+			break;
+
+			case DIRECTION_DOWN:
+			delta = sf::Vector2f(0,5);
+			break;
+
+			default:
+			delta = sf::Vector2f(0,0);
+			break;
 		}
-		else
+
+		// Apply delta to the player position
+		sf::Vector2f new_location(getPlayerLocation() + delta);
+
+		// Check if new position is inside the game area
+		if(new_location.x >= 0
+			&& new_location.x + ROBOT_WIDTH <= m_size_x)
 		{
-			// Advance iterator to next screw
-			s_it++;
+			setPlayerLocation(new_location); // Update location
 		}
-	}
 
+		// Bounding box of the player
+		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
 
+		std::vector<sf::Vector2f>::iterator s_it;
+		s_it = m_screw_locations.begin();
+
+		//NACHFOLGEND DURCH COINS ERSETZEN
+		// Check for each screw location ...
+		while(s_it != m_screw_locations.end())
+		{
+			// ... if the robot is "eating" the screw
+			sf::FloatRect screw_box(*s_it,sf::Vector2f(SCREW_WIDTH,SCREW_HEIGHT));
+			if(screw_box.intersects(player_box))
+			{
+				// Remove screw
+				m_screw_locations.erase(s_it);
+				m_screws_collected++;
+			}
+			else
+			{
+				// Advance iterator to next screw
+				s_it++;
+			}
+		}
 	}
 	else // Do nothing if the game is not in playing state
 		return;
@@ -268,38 +254,10 @@ sf::Vector2f GameState::getPlayerLocation()
 	return m_player_location;
 }
 
-
-/*
-sf::Vector2f GameState::getPlayerRotation()
-{
-	return m_player_rotation;
-}*/
-
-/* DUNNo DONT CARE
-void GameState::addScrew(sf::Vector2f location)
-{
-	m_screw_locations.push_back(location);
-}*//*
-float GameState::getPlayerRotation()
-{
-	return m_player_rotation;
-}*/
-/*void GameState::addScrew(sf::Vector2f location)
-{
-	m_screw_locations.push_back(location);
-}*/
-
-
 std::vector<sf::Vector2f> GameState::getScrewLocations()
 {
 	return m_screw_locations;
 }
-/*
-int GameState::getVisibleScrewsCount()
-{
-	return m_screw_locations.size();
-}
-*/
 
 //Ändern auf Coins
 int GameState::getCollectedScrewsCount()

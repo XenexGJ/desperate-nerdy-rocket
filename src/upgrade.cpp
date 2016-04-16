@@ -23,11 +23,3 @@ void Upgrade::setPosition(sf::Vector2f pos)
 {
 	position = pos;
 }
-
-
-/*void move()
-{
-
-}*/
-
-
