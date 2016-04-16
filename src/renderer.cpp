@@ -17,7 +17,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     	m_wnd->close();
     }
 
-    if (!m_texture_dodgecoin.loadFromFile("assets/screws.png"))
+    if (!m_texture_dodgecoin.loadFromFile("assets/Qoin_klein.png"))
 	{
     	m_wnd->close();
     }
