@@ -29,19 +29,22 @@ int GameState::getGameState()
 
 void GameState::startPlaying()
 {
-	m_game_state = STATE_PLAYING;
+	//m_game_state = STATE_PLAYING;
 
 	// Reset all values
 	m_dodgecoins_collected = 0;
 	m_dodgecoin_locations.clear();
 
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(600, 10)); // Start zentriert auf Bodenhöhe
+	
 	
 	
 	loadUpgrades();
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
+	
+	setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
+	
 	m_velocity = rocket.boost;
 
 	// Initialize random seed
@@ -271,15 +274,15 @@ void GameState::updateGameState()
 		std::vector<sf::Vector2f>::iterator s_it;
 		s_it = m_dodgecoin_locations.begin();
 
-		//NACHFOLGEND DURCH COINS ERSETZEN
-		// Check for each screw location ...
+		
+		// Check for each coin location ...
 		while(s_it != m_dodgecoin_locations.end())
 		{
-			// ... if the robot is "eating" the screw
+			// ... if the rocket is collecting the coin
 			sf::FloatRect dodgecoin_box(*s_it,sf::Vector2f(COIN_WIDTH,COIN_HEIGHT));
 			if(dodgecoin_box.intersects(player_box))
 			{
-				// Remove screw
+				// Remove coin
 				m_dodgecoin_locations.erase(s_it);
 				m_dodgecoins_collected++;
 			}
@@ -294,20 +297,19 @@ void GameState::updateGameState()
 	{
 		// Update the player location
 		sf::Vector2f delta;
-		//startMini();
-	
+
 	
 		switch(m_player_direction)
 		{
 			case DIRECTION_LEFT:
 			delta = sf::Vector2f(-5,0);
 			break;
-			std::cout << "leftmini" <<std::endl;
+			//std::cout << "leftmini" <<std::endl;
 			
 			case DIRECTION_RIGHT:
 			delta = sf::Vector2f(5,0);
 			break;
-			std::cout << "rightmini" <<std::endl;
+			//std::cout << "rightmini" <<std::endl;
 
 			case DIRECTION_UP:
 			delta = sf::Vector2f(0,0);
@@ -329,17 +331,24 @@ void GameState::updateGameState()
 		if(new_location.x >= 0 && new_location.x + ROBOT_WIDTH <= m_size_x)
 		{
 			setPlayerLocation(new_location); // Update location
-			std::cout << "neue position??" << std::endl;
+			//std::cout << "neue position??" << std::endl;
 		}
-
+		if(new_location.x >=1200)
+		{
+			startShop();
+		}	
+		
 		else
 		{
 			return;
-			setGameState(2); //end Minigame and return to shop
 		}
-	}
+		
+	}	
 	else // Do nothing if the game is not in mini state
+	{		
 		return;
+	}
+	
 }
 
 

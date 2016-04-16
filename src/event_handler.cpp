@@ -23,7 +23,9 @@ void EventHandler::handleEvents()
         	// Start/continue playing when SPACE is pressed
         	if(event.key.code == sf::Keyboard::Space)
         	{
+        		m_gst->setGameState(STATE_READY_TO_LAUNCH);
         		m_gst->startPlaying();
+        		//std::cout<< "blaaaaa\n";
         	}
         	//show control when C is pressed
         	else if(event.key.code == sf::Keyboard::C)
@@ -31,7 +33,17 @@ void EventHandler::handleEvents()
         		m_gst->setGameState(STATE_CONTROLS);
         	}
         }
-        if ( m_gst->getGameState() == STATE_PAUSE || m_gst->getGameState() == STATE_CONTROLS)
+        else if (event.type == sf::Event::KeyPressed && m_gst->getGameState() == STATE_READY_TO_LAUNCH)
+        {
+        	// Start/continue playing when SPACE is pressed
+        	if(event.key.code == sf::Keyboard::Space)
+        	{
+        		
+        		m_gst->setGameState(STATE_PLAYING);
+        		//std::cout<< "blaaaaabbbbbaaaa\n";
+        	}
+        }
+        else if ( m_gst->getGameState() == STATE_PAUSE || m_gst->getGameState() == STATE_CONTROLS)
         {
         	// Start/continue playing when SPACE is pressed
         	if(event.key.code == sf::Keyboard::Space)
@@ -53,12 +65,14 @@ void EventHandler::handleEvents()
 
 	//SUPER SPECIAL MINIGAME
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && m_gst->getGameState() == STATE_PLAYING)
+
         {
 				//m_gst->startShop();
 			m_gst->setGameState(STATE_MINI);
 			std::cout << "event start mini" <<std::endl;
 			m_gst->startMini();
         }
+
 
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_SHOP)
@@ -69,6 +83,7 @@ void EventHandler::handleEvents()
 	{
 		m_gst->menuMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
+
 
 	// Get robot direction
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
