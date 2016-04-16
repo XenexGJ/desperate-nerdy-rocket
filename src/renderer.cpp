@@ -6,7 +6,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	m_gst = state;
 
 	// Load all the textures
-	if (!m_texture_background.loadFromFile("assets/redplanet2.png"))
+	if (!m_texture_background.loadFromFile("assets/bg1.jpg"))
 	{
     	m_wnd->close();
     }
@@ -112,6 +112,9 @@ void Renderer::drawGame()
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
 	{
+	
+		sf::View shop_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
+   		m_wnd->setView(shop_view);
 		//TODO
 		m_wnd->clear();
 
