@@ -55,9 +55,11 @@ void GameState::buyUpgrade(int x, int y)
 	//Upgrade 1
 	if (x >= 150 && x <= 280 && y >= 200 && y <= 247)
 	{
+		m_dodgecoins_collected = 10;
 		if (m_dodgecoins_collected >= upgradeList.at(1)->price && upgradeList.at(1) != 0)
 		{
 			upgradeList.at(1)->price = 0;
+			std::cout << "Kauf erfolgreich!";
 		}
 	}
 }
