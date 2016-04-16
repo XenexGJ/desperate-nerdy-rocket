@@ -35,7 +35,7 @@ public:
 	int getGameState();
 	void startPlaying();
 	void startShop();
-	void buyUpgrade(int x, int y);
+	void buyUpgrade(sf::Vector2i location);
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);

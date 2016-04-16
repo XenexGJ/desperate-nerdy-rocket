@@ -51,16 +51,114 @@ void GameState::startShop()
 
 
 //Experimental
-void GameState::buyUpgrade(int x, int y)
+void GameState::buyUpgrade(sf::Vector2i location)
 {
 	//Upgrade 1
-	if (x >= 150 && x <= 280 && y >= 200 && y <= 247)
+	//std::cout << location.x << "  " << location.y << "\n";
+	if (location.x >= 150 && location.x <= 280 && location.y >= 176 && location.y <= 223)
 	{
-		m_dodgecoins_collected = 10;
-		if (m_dodgecoins_collected >= upgradeList.at(1)->price && upgradeList.at(1) != 0)
+		if (m_dodgecoins_collected >= upgradeList.at(1)->price && upgradeList.at(1)->price != 0)
 		{
 			upgradeList.at(1)->price = 0;
-			std::cout << "Kauf erfolgreich!";
+		}
+	}
+	
+	//Upgrade 2
+	if (location.x >= 300 && location.x <= 430 && location.y >= 176 && location.y <= 223)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(2)->price && upgradeList.at(2)->price != 0)
+		{
+			upgradeList.at(2)->price = 0;
+		}
+	}
+	
+	//Upgrade 3
+	if (location.x >= 450 && location.x <= 580 && location.y >= 176 && location.y <= 223)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(3)->price && upgradeList.at(3)->price != 0)
+		{
+			upgradeList.at(3)->price = 0;
+		}
+	}
+	
+	//Upgrade 4
+	if (location.x >= 600 && location.x <= 730 && location.y >= 176 && location.y <= 223)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(4)->price && upgradeList.at(4)->price != 0)
+		{
+			upgradeList.at(4)->price = 0;
+		}
+	}
+
+	//Upgrade 5
+	if (location.x >= 150 && location.x <= 280 && location.y >= 376 && location.y <= 423)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(5)->price && upgradeList.at(5)->price != 0)
+		{
+			upgradeList.at(5)->price = 0;
+		}
+	}
+
+	//Upgrade 6
+	if (location.x >= 300 && location.x <= 430 && location.y >= 376 && location.y <= 423)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(6)->price && upgradeList.at(6)->price != 0)
+		{
+			upgradeList.at(6)->price = 0;
+		}
+	}
+
+	//Upgrade 7
+	if (location.x >= 450 && location.x <= 580 && location.y >= 376 && location.y <= 423)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(7)->price && upgradeList.at(7)->price != 0)
+		{
+			upgradeList.at(7)->price = 0;
+		}
+	}
+	
+	//Upgrade 8
+	if (location.x >= 600 && location.x <= 730 && location.y >= 376 && location.y <= 423)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(8)->price && upgradeList.at(8)->price != 0)
+		{
+			upgradeList.at(8)->price = 0;
+		}
+	}
+	
+	//Upgrade 9
+	if (location.x >= 150 && location.x <= 280 && location.y >= 576 && location.y <= 623)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(9)->price && upgradeList.at(9)->price != 0)
+		{
+			upgradeList.at(9)->price = 0;
+		}
+	}
+	
+	//Upgrade 10
+	if (location.x >= 300 && location.x <= 430 && location.y >= 576 && location.y <= 623)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(10)->price && upgradeList.at(10)->price != 0)
+		{
+			upgradeList.at(10)->price = 0;
+		}
+	}
+
+	//Upgrade 11
+	if (location.x >= 450 && location.x <= 580 && location.y >= 576 && location.y <= 623)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(11)->price && upgradeList.at(11)->price != 0)
+		{
+			upgradeList.at(11)->price = 0;
+		}
+	}
+	
+	//Upgrade 12
+	if (location.x >= 600 && location.x <= 730 && location.y >= 576 && location.y <= 623)
+	{
+		if (m_dodgecoins_collected >= upgradeList.at(12)->price && upgradeList.at(12)->price != 0)
+		{
+			upgradeList.at(12)->price = 0;
 		}
 	}
 }
@@ -238,7 +336,7 @@ std::vector<Upgrade*> *GameState::getUpgradeList()
 }
 void GameState::loadUpgrades()
 {
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,"assets/rocket_basic.png"));
+	upgradeList.push_back(new Upgrade(10,UPGRADE_BODY,"assets/rocket_basic.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
 }
 void GameState::setGameState(int state)
