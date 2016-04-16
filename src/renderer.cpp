@@ -22,7 +22,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     	m_wnd->close();
     }
 	
-	if (!m_texture_shopbackground.loadFromFile("assets/brickwall.jpg"))
+	if (!m_texture_shopbackground.loadFromFile("assets/brickwall.png"))
 	{
     	m_wnd->close();
     }

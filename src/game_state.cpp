@@ -32,7 +32,7 @@ void GameState::startPlaying()
 	//m_dodgecoins_collected = 0;
 
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); // Auf bodenhöhe setzen
+	setPlayerLocation(sf::Vector2f(600, 710)); // Start zentriert auf Bodenhöhe
 	m_screw_locations.clear();
 	
 	loadUpgrades();
