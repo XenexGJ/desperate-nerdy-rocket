@@ -17,6 +17,11 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     }
     m_texture_background2.setRepeated(true);
 
+    if (!m_texture_startBg.loadFromFile("assets/anfang.png"))
+	{
+    	m_wnd->close();
+    }
+
 	if (!m_texture_player.loadFromFile("assets/rocket_basic.png"))
 	{
 		m_wnd->close();
@@ -25,7 +30,11 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
     	m_wnd->close();
     }	
-	if (!m_texture_shopbackground.loadFromFile("assets/brickwall.png"))
+	if (!m_texture_shopbackground.loadFromFile("assets/brickwall.jpg"))
+	{
+    	m_wnd->close();
+    }	
+    if (!m_texture_graffitti.loadFromFile("assets/FF.png"))
 	{
     	m_wnd->close();
     }	
@@ -50,7 +59,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
-	if (!m_texture_start.loadFromFile("assets/start.png"))
+	if (!m_texture_takeoff.loadFromFile("assets/takeoff.png"))
 	{
 		m_wnd->close();
 	}
@@ -62,6 +71,23 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
+	
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	if (!m_texture_play.loadFromFile("assets/play.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_help.loadFromFile("assets/help.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_quit.loadFromFile("assets/quit.png"))
+	{
+		m_wnd->close();
+	}
+
+	
+	
 
 
     // Load all the fonts
@@ -95,13 +121,13 @@ void Renderer::drawGame()
 	float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 	sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 	sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
-		
+	m_wnd->draw(sprite_background);		
 	
 	//weltraum beginnt bei 1500
 	float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
 	
 	
-	m_wnd->draw(sprite_background);
+
 	
 	sf::Sprite sprite_background2;
 	sprite_background2.setTexture(m_texture_background2);
@@ -110,6 +136,11 @@ void Renderer::drawGame()
 	sprite_background2.setColor(sf::Color(255, 255, 255, transparency));
 	m_wnd->draw(sprite_background2);	
 	
+	sf::Sprite sprite_startBg;
+	sprite_startBg.setTexture(m_texture_startBg);
+	sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+	sprite_startBg.setPosition(0,0);
+	m_wnd->draw(sprite_startBg);
 
 	//Coin vector bauen
 	std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
@@ -129,7 +160,7 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setString("Spieletitel ");
+		text_title.setString("The desperate Rocket Rocky's Path To Infinity ");
 		text_title.setCharacterSize(80);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		m_wnd->draw(text_title);
@@ -140,6 +171,36 @@ void Renderer::drawGame()
 		text_help.setCharacterSize(20);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
+		
+		//Start Button
+		sf::Sprite sprite_play;
+		sprite_play.setTexture(m_texture_play); 
+		sprite_play.setPosition(100,200);
+		m_wnd->draw(sprite_play);
+		
+		//Hilfe Button
+		sf::Sprite sprite_help;
+		sprite_help.setTexture(m_texture_help); 
+		sprite_help.setPosition(100,400);
+		m_wnd->draw(sprite_help);
+		
+		//Beenden Button
+		sf::Sprite sprite_quit;
+		sprite_quit.setTexture(m_texture_quit); 
+		sprite_quit.setPosition(100,600);
+		m_wnd->draw(sprite_quit);
+		
+	}
+	if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
+	{
+		// Menu texts
+		sf::Text text_title;
+		text_title.setFont(m_bold_font);
+		text_title.setString("Drücke <SPACE> zum starten ");
+		text_title.setCharacterSize(80);
+		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
+		m_wnd->draw(text_title);
+
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
 	{
@@ -151,7 +212,12 @@ void Renderer::drawGame()
 		sprite_shopbackground.setTexture(m_texture_shopbackground);
 		sprite_shopbackground.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
 		m_wnd->draw(sprite_shopbackground);
-
+		
+		sf::Sprite sprite_graffitti;
+		sprite_graffitti.setTexture(m_texture_graffitti);
+		sprite_graffitti.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
+		m_wnd->draw(sprite_graffitti);
+		
 		//Headline Shop
 		sf::Text text_head;
 		text_head.setFont(m_funk);
@@ -168,10 +234,10 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_fappsy);
 		
 		//Start Button
-		sf::Sprite sprite_start;
-		sprite_start.setTexture(m_texture_start); 
-		sprite_start.setPosition(1000,700);
-		m_wnd->draw(sprite_start);
+		sf::Sprite sprite_takeoff;
+		sprite_takeoff.setTexture(m_texture_takeoff); 
+		sprite_takeoff.setPosition(1000,700);
+		m_wnd->draw(sprite_takeoff);
 		
 		//Menue Button
 		sf::Sprite sprite_menue;

@@ -381,14 +381,30 @@ std::vector<Upgrade*> *GameState::getUpgradeList()
 }
 void GameState::loadUpgrades()
 {
+	//EXPERIMENTELLES BALANCING! KOMMENTARE STEHEN LASSEN!!!!
+	
 	//Upgrade			 			 (int price,int type,float boost,int coolness,float aerodynamic,std::string name,std::string assetPath);
 	//teure/bessere Upgrades oben
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,0,10,0,"COLA","assets/cola_anne.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_WINGS,0,10,5,"Waffen","assets/waffen.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,4,10,0,"kawaii2","assets/kawaii_2.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,2,40,0,"kawaii","assets/kawaii.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,1,10,0,"Basis","assets/rocket_basic.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,20,10,0,"Balls","assets/rocket_balls.png"));
+	//Bodies - Bietet Boost, Aerodynamic
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
+	upgradeList.push_back(new Upgrade(100,UPGRADE_BODY,50,0,25,"kawaii2","assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(25,UPGRADE_BODY,25,0,10,"kawaii","assets/kawaii.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,0,0,"Basis","assets/rocket_basic.png")); //Start
+	
+	//GOGGLES - Bietet Coolness
+	//Sonnenbrille (500,UPGRADE_GOGGLES,0,8500,0,"Sonnenbrille",texturepath) -- Siegbedingung
+	//BRILLE2 (100,UPGRADE_GOGGLES,0,50,0,"BRILLE2",texturepath)
+	//Hornbrille (25,UPGRADE_GOGGLES,0,25,0,"Hornbrille",texturepath)
+	
+	//WINGS - Bietet Aerodynamic, Coolness
+	//WINGEXTRA2 (500,UPGRADE_WINGS,0,501,50,"WINGEXTRA2",texturepath)
+	//WINGEXTRA	(100,UPGRADE_WINGS,0,25,25,"WINGEXTRA",texturepath)
+	upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
+	
+	//BOOSTER Bietet Boost
+	//TOPBOOSTER (500,UPGRADE_BOOSTER,25,0,0,"TOPBOOSTER",texturepath);
+	//BOOSTER(100,UPGRADE_BOOSTER,15,0,0,"BOOSTER",texturepath);
+	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Balls","assets/rocket_balls.png"));
 }
 
 void GameState::setGameState(int state)
