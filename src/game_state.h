@@ -10,6 +10,7 @@
 #define STATE_PLAYING 1
 #define STATE_SHOP 2
 #define STATE_Mini 3
+#define STATE_REFRESH 4
 
 
 
@@ -33,6 +34,7 @@ public:
 	int getGameState();
 	void startPlaying();
 	void startShop();
+	void buyUpgrade();
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);

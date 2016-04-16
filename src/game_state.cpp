@@ -48,6 +48,14 @@ void GameState::startShop()
 	m_game_state = STATE_SHOP;
 }
 
+
+//Experimental
+void GameState::buyUpgrade()
+{
+	m_game_state = STATE_REFRESH; // Verändern des Zustands zum neubilden des Shops und "ausblenden" von gekauften Upgrade
+	m_game_state = STATE_SHOP;
+}
+
 void GameState::updateGameState()
 {
 	// Do nothing if the game is not in playing state
