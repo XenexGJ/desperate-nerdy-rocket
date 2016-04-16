@@ -129,7 +129,7 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setString("Spieletitel ");
+		text_title.setString("The desperate Rocket Rocky's Path To Infinity ");
 		text_title.setCharacterSize(80);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		m_wnd->draw(text_title);
@@ -140,6 +140,25 @@ void Renderer::drawGame()
 		text_help.setCharacterSize(20);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
+		
+		//Start Button
+		sf::Sprite sprite_start;
+		sprite_start.setTexture(m_texture_start); 
+		sprite_start.setPosition(1000,700);
+		m_wnd->draw(sprite_start);
+		
+		//Hilfe Button
+		sf::Sprite sprite_start;
+		sprite_start.setTexture(m_texture_start); 
+		sprite_start.setPosition(1000,700);
+		m_wnd->draw(sprite_start);
+		
+		//Beenden Button
+		sf::Sprite sprite_start;
+		sprite_start.setTexture(m_texture_start); 
+		sprite_start.setPosition(1000,700);
+		m_wnd->draw(sprite_start);
+		
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
 	{
