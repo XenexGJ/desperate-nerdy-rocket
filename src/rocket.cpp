@@ -70,10 +70,6 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
 //zeichne
 void Rocket::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
-/*	sf::Sprite sprite_rocket;
-	sprite_rocket.setTexture(texture);
-	sprite_rocket.setPosition(position);
-	target.draw(sprite_rocket,states);*/
 	if(rocketbody != NULL)
 	{
 		rocketbody->setPosition(position);

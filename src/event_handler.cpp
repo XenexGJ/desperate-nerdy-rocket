@@ -52,7 +52,6 @@ void EventHandler::handleEvents()
 		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_SHOP)
 		{
-			//sf::Vector2i mouse_location = sf::Mouse::getPosition();
 			m_gst->buyUpgrade(sf::Mouse::getPosition(*m_wnd));
 		}
 
@@ -85,10 +84,5 @@ void EventHandler::handleEvents()
 				s->toggleMute();
 			}
 		}
-		
-	// TODO
-	// MAUS
-
-
     }
 }

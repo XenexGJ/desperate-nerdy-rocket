@@ -72,15 +72,7 @@ void Renderer::drawGame()
 	float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 	sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 	sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
-	m_wnd->draw(sprite_background);
-
-/*    sf::Sprite sprite_player;
-	sprite_player.setTexture(m_texture_player);
-	sprite_player.setPosition(m_gst->getPlayerLocation());
-	m_wnd->draw(sprite_player); */
-
-	
-	
+	m_wnd->draw(sprite_background);	
 	
 	// Coins einfügen
     sf::Sprite sprite_screws;
@@ -94,7 +86,6 @@ void Renderer::drawGame()
 		sprite_screws.setPosition(*s_it);
 		m_wnd->draw(sprite_screws);
 	}
-
 
 	if(m_gst->getGameState() == STATE_MENU)
 	{
@@ -118,8 +109,6 @@ void Renderer::drawGame()
 	
 		sf::View shop_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(shop_view);
-		
-		//m_wnd->clear();
 
 		sf::Sprite sprite_shopbackground;
 		sprite_shopbackground.setTexture(m_texture_shopbackground);
@@ -444,7 +433,6 @@ void Renderer::drawGame()
 		std::stringstream str;
 		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
 
-
 		// Game texts
 		sf::Text text_screws;
 		text_screws.setFont(m_bold_font);
@@ -455,8 +443,5 @@ void Renderer::drawGame()
 		
 		m_wnd->draw(m_gst->rocket);	
 	}
-	
-	
 	m_wnd->display();
-
 }
