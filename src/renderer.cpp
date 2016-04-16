@@ -248,8 +248,21 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_menue);
 
 
-
 		std::vector<Upgrade*> *upgrades = m_gst->getUpgradeList();
+		
+		//Upgrades
+		
+		/*sf::Sprite sprite_slot[12];  
+		for(int i = 0; i < 12; i++)
+		{
+			//sprite_slot();
+			if (upgrades->at(i)->price != 0)	// if nicht gekauft / Seite
+			{
+			//	sprite_slot[i].setTexture(m_texture_slot1);
+			}
+		}*/
+		
+		
 		//Upgrade 1
 		sf::Sprite sprite_slot1;
 		if (upgrades->at(0)->price != 0)	// if nicht gekauft / Seite
