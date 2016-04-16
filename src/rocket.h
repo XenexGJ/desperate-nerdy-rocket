@@ -14,6 +14,9 @@ public:
 	//void move() = 0;
 //	sf::Vector2f getPosition();
 	void setLocation(sf::Vector2f loc);
+	
+	//berechnet den boost aus den upgrades
+	float getBoost();
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
@@ -21,6 +24,8 @@ private:
 	sf::Vector2f position;
 	sf::Texture texture;
 	std::vector<Upgrade*> myUpgradeList;
+	
+	
 
 	//Upgrades
 	Upgrade* rocketbody;

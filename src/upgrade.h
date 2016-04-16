@@ -18,6 +18,9 @@ public:
 	void setPosition(sf::Vector2f pos);
 	int type;
 	int price;
+	float boost;
+	int coolness;
+	int aerodynamic;
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;

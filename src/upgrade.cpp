@@ -5,6 +5,10 @@ Upgrade::Upgrade(int price,int type,std::string assetPath)
 	this->price = price;
 	this->type = type;
 	this->assetPath = assetPath;
+	this->boost = price; //TODO
+	this->coolness = price; //TODO
+	this->aerodynamic = price; //TODO
+	
    	if (!texture.loadFromFile(assetPath))
 	{
     	//TODO

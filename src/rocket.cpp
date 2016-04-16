@@ -106,4 +106,51 @@ void Rocket::setLocation(sf::Vector2f loc)
 	position = loc;
 }
  
+float Rocket::getBoost()
+{
+	float boost = 0.0f;
+	if(rocketbody)
+		boost += rocketbody->boost;
+	if(rocketgoggles)
+		boost += rocketgoggles->boost;
+	if(rocketwings)
+		boost += rocketwings->boost;
+	if(rocketbooster)
+		boost += rocketbooster->boost;
+	if(rockettail)
+		boost += rockettail->boost;
 
+	return boost;
+}
+float Rocket::getCoolness()
+{
+	float coolness = 0.0f;
+	if(rocketbody)
+		coolness += rocketbody->coolness;
+	if(rocketgoggles)
+		coolness += rocketgoggles->coolness;
+	if(rocketwings)
+		coolness += rocketwings->coolness;
+	if(rocketbooster)
+		coolness += rocketbooster->coolness;
+	if(rockettail)
+		coolness += rockettail->coolness;
+
+	return coolness;
+}
+float Rocket::getAerodynamic()
+{
+	float aerodynamic = 0.0f;
+	if(rocketbody)
+		aerodynamic += rocketbody->aerodynamic;
+	if(rocketgoggles)
+		aerodynamic += rocketgoggles->aerodynamic;
+	if(rocketwings)
+		aerodynamic += rocketwings->aerodynamic;
+	if(rocketbooster)
+		aerodynamic += rocketbooster->aerodynamic;
+	if(rockettail)
+		aerodynamic += rockettail->aerodynamic;
+
+	return aerodynamic;
+}
