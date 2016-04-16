@@ -29,19 +29,22 @@ int GameState::getGameState()
 
 void GameState::startPlaying()
 {
-	m_game_state = STATE_PLAYING;
+	//m_game_state = STATE_PLAYING;
 
 	// Reset all values
 	m_dodgecoins_collected = 0;
 	m_dodgecoin_locations.clear();
 
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(600, 10)); // Start zentriert auf Bodenhöhe
+	
 	
 	
 	loadUpgrades();
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
+	
+	setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
+	
 	m_velocity = rocket.boost;
 
 	// Initialize random seed

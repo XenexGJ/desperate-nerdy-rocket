@@ -196,10 +196,12 @@ void Renderer::drawGame()
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setString("Drücke <SPACE> zum starten ");
+		text_title.setString("PRESS <SPACE> TO LAUNCH");
 		text_title.setCharacterSize(80);
+		text_title.setColor(sf::Color::Red);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		m_wnd->draw(text_title);
+		m_wnd->draw(m_gst->rocket);	
 
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
