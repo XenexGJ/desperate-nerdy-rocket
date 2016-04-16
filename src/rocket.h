@@ -3,23 +3,24 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "game_state.h"
 #include <vector>
+#include "upgrade.h"
 
 class Rocket : public sf::Drawable
 {
 public:
-	Rocket(GameState *state);
+	Rocket();
+	Rocket(std::vector<Upgrade*> upgradeList);
 	//void move() = 0;
 //	sf::Vector2f getPosition();
+	void setLocation(sf::Vector2f loc);
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
 	float movementSpeed;
 	sf::Vector2f position;
 	sf::Texture texture;
-	GameState *m_gst;
-	std::vector<Upgrade> myUpgradeList;
+	std::vector<Upgrade*> myUpgradeList;
 
 	//Upgrades
 	Upgrade* rocketbody;

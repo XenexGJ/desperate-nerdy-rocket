@@ -22,6 +22,7 @@ private:
 	sf::Texture m_texture_screws;
 	sf::Font m_normal_font;
 	sf::Font m_bold_font;
+	Rocket rocket;
 };
 
 #endif

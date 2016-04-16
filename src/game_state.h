@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "upgrade.h"
+#include "rocket.h"
 
 #define STATE_MENU 0
 #define STATE_PLAYING 1
@@ -42,8 +44,9 @@ public:
 	//int getVisibleScrewsCount();
 	int getCollectedScrewsCount();
 	//int getCollectedDodgeCoins();
-
-
+	std::vector<Upgrade*> *getUpgradeList();
+	Rocket rocket;
+	
 private:
 	int m_game_state;
 	int m_size_x;
@@ -56,7 +59,8 @@ private:
 
 	int m_dodgecoins;
 	float m_velocity;
-	
+	std::vector<Upgrade*> upgradeList;
+	void loadUpgrades();
 
 };
 

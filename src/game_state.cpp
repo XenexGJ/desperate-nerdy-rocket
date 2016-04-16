@@ -15,6 +15,7 @@ GameState::GameState(int x, int y)
 
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
+	rocket = Rocket(upgradeList);
 }
 
 int GameState::getGameState()
@@ -33,7 +34,11 @@ void GameState::startPlaying()
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); // Auf bodenhöhe setzen
 	m_screw_locations.clear();
-
+	
+	loadUpgrades();
+	
+	rocket = Rocket(upgradeList);
+	
 	// ADD COIN SPAWN
 
 }
@@ -158,6 +163,8 @@ void GameState::setPlayerMovementDirection(int direction)
 void GameState::setPlayerLocation(sf::Vector2f location)
 {
 	m_player_location = location;
+	
+	rocket.setLocation(location);
 }
 
 sf::Vector2f GameState::getPlayerLocation()
@@ -203,7 +210,11 @@ int GameState::getCollectedScrewsCount()
 {
 	return m_screws_collected;
 }
-std::vector<Upgrade> *GameState::getUpgradeList()
+std::vector<Upgrade*> *GameState::getUpgradeList()
 {	
 	return &upgradeList;
+}
+void GameState::loadUpgrades()
+{
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BOOSTER,"assets/rocket_balls.png"));
 }

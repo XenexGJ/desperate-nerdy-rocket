@@ -10,10 +10,11 @@ Upgrade::Upgrade(int prize,int type,std::string assetPath)
 
 void Upgrade::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
-	/*sf::Sprite sprite_rocket;
-	sprite_rocket.setTexture(texture);
-	sprite_rocket.setPosition(m_gst->getPlayerLocation());
-	target.draw(sprite_rocket,states);*/
+	//if (!texture.loadFromFile(assetPath)
+	{
+    	//TODO
+    }
+    std::cout << "blub";
 }
 
 void Upgrade::setPosition(sf::Vector2f pos)

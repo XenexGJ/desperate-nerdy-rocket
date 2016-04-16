@@ -1,12 +1,13 @@
 #include "rocket.h"
 
-Rocket::Rocket(GameState *state)
+Rocket::Rocket(){}
+
+Rocket::Rocket(std::vector<Upgrade*> upgradeList)
 {
 	if (!texture.loadFromFile("assets/rocket_basic.png"))
 	{
     	//TODO
     }
-    m_gst = state;
     
    	rocketbody = NULL;
     rocketgoggles  = NULL;
@@ -14,9 +15,17 @@ Rocket::Rocket(GameState *state)
     rocketbooster  = NULL;
     rockettail  = NULL;
     
-    for(std::vector<Upgrade>::iterator it = m_gst->getUpgradeList()->begin(); it != m_gst->getUpgradeList()->end(); ++it) 
+    //std::cout << "ittt\n";
+    
+    for(std::vector<Upgrade*>::iterator it = upgradeList.begin(); it != upgradeList.end(); ++it) 
 	{
-    	/* std::cout << *it; ... */
+    	switch ((*it)->type)
+    	{
+    		case UPGRADE_BOOSTER:
+    			rocketbooster = &**it;
+    			std::cout << "it\n";
+    		break;
+    	}
 	}
 }
 
@@ -25,8 +34,17 @@ void Rocket::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
 	sf::Sprite sprite_rocket;
 	sprite_rocket.setTexture(texture);
-	sprite_rocket.setPosition(m_gst->getPlayerLocation());
+	sprite_rocket.setPosition(position);
 	target.draw(sprite_rocket,states);
+	if(rocketbooster != NULL)
+	{
+		target.draw(*rocketbooster,states);
+	}
+}
+
+void Rocket::setLocation(sf::Vector2f loc)
+{
+	position = loc;
 }
  
 

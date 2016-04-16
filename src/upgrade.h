@@ -16,14 +16,18 @@ class Upgrade : public sf::Drawable
 public:
 	Upgrade(int prize,int type,std::string assetPath);
 	void setPosition(sf::Vector2f pos);
+	int type;
+	int prize;
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
 	sf::Vector2f position;
-	int type;
+	
 	//if prize == 0 -> bought
-	int prize;
+	
 	std::string assetPath;
+	//gibt an wo die Upgrades gezeichnet werden
+	sf::Vector2f positionOffsets;
 
 };
 

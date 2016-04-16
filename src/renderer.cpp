@@ -32,7 +32,6 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     {
     	m_wnd->close();
     }
-
 }
 
 void Renderer::drawGame()
@@ -49,8 +48,8 @@ void Renderer::drawGame()
 	sprite_player.setPosition(m_gst->getPlayerLocation());
 	m_wnd->draw(sprite_player); */
 
-	Rocket r(m_gst);
-	m_wnd->draw(r);	
+	
+	m_wnd->draw(m_gst->rocket);	
 	
 	// Coins einfügen
     sf::Sprite sprite_screws;
@@ -92,10 +91,6 @@ void Renderer::drawGame()
 		std::stringstream str;
 		//str << m_gst->getCollectedScrewsCount() << " collected\n" << m_gst->getVisibleScrewsCount() << " visible";
 
-<<<<<<< HEAD
-=======
-		
->>>>>>> e492700b034233b5a2c36bae73b7204fba3e1f20
 
 		// Game texts
 		sf::Text text_screws;
