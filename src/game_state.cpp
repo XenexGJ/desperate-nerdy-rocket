@@ -154,7 +154,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 void GameState::controlMouseHandling(sf::Vector2i location)
 {
 	//std::cout<<location.x << "  " << location.y << "\n";
-	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256) ///////// FIX LOCATIONS
+	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756) ///////// FIX LOCATIONS
 	{	
 		m_game_state = STATE_MENU;
 	}
@@ -191,8 +191,7 @@ void GameState::creditsMouseHandling(sf::Vector2i location)
 	{	
 		m_game_state = STATE_MENU;
 	}
-}
-	
+}	
 
 //start Minigame
 void GameState::startMini()
