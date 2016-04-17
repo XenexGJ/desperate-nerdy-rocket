@@ -271,6 +271,29 @@ void GameState::updateGameState()
 				s_it++;
 			}
 		}
+		
+		s_it = m_meteor_locations.begin();
+		
+		// Check for each meteor location ...
+		while(s_it != m_meteor_locations.end())
+		{
+			// ... if the rocket is colliding the meteor
+			sf::FloatRect meteor_box(*s_it,sf::Vector2f(80,80));
+			if(meteor_box.intersects(player_box))
+			{
+				// Remove meteor
+				m_meteor_locations.erase(s_it);
+				m_velocity -= 500*gravity;
+				std::cout<<"collisiion\n";
+				
+			}
+			else
+			{
+				// Advance iterator to next coin
+				s_it++;
+			}
+		}
+		
 	}
 	else if(m_game_state == STATE_MINI)
 	{
@@ -446,9 +469,9 @@ void GameState::loadUpgrades()
 	//teure/bessere Upgrades oben
 	//Bodies - Bietet Boost, Aerodynamic
 	//upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
-	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"kawaii2","assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"kawaii2","assets/kawaiii.png"));
 	upgradeList.push_back(new Upgrade(250,UPGRADE_BODY,25,0,25,"kawaii","assets/kawaii.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,15,0,10,"Basis","assets/rocket_basic.png")); //Start
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,15,0,10,"Basis","assets/kawai.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
 	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/cool.png")); //Ersetze assets/Name sinvoll
@@ -456,14 +479,14 @@ void GameState::loadUpgrades()
 	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/horn.png")); //Ersetze assets/Name sinvoll
 	
 	//WINGS - Bietet Aerodynamic, Coolness
-	upgradeList.push_back(new Upgrade(500,UPGRADE_WINGS,0,501,50,"TopWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(100,UPGRADE_WINGS,0,25,25,"SimpleWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(500,UPGRADE_WINGS,0,501,50,"TopWings","assets/grossefee.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_WINGS,0,25,25,"SimpleWings","assets/fee.png")); //Ersetze assets/Name sinvoll
 	upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
 	
 	//BOOSTER Bietet Boost
-	upgradeList.push_back(new Upgrade(500,UPGRADE_BOOSTER,25,0,0,"Topbooster","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(100,UPGRADE_BOOSTER,15,0,0,"Booster","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Balls","assets/rocket_balls.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BOOSTER,25,0,0,"Jetpack>9000","assets/topjetpack.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_BOOSTER,15,0,0,"Jetpack^2","assets/jetpack2.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Jetpack","assets/jetpack.png"));
 	
 	//dummys for SHOP
 	while(upgradeList.size()%12 != 0)
