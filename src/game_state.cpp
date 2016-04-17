@@ -102,6 +102,9 @@ void GameState::readyToLaunch()
 	s->playSound(SOUND_INTRO);
 	std::cout<<"ready steady go \n";
 	//setPlayerLocation(sf::Vector2f(640, 700));
+
+	setPlayerLocation(sf::Vector2f(640, 700));
+	//setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); 
 }
 
 

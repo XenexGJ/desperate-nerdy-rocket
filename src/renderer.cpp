@@ -181,6 +181,9 @@ void Renderer::drawGame()
 	}
 	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
 	{
+		sf::View launch_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
+   		m_wnd->setView(launch_view);
+		
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
 		text_title.setString("PRESS <SPACE> TO LAUNCH");
