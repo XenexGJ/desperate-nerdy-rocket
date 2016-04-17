@@ -474,7 +474,7 @@ void Renderer::drawGame()
 	}
 	else if(m_gst->getGameState() == STATE_MINI)
 	{
-		sf::View nils_view(sf::Vector2f(320,200), sf::Vector2f(1280,800));
+		sf::View nils_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(nils_view);
    		
 		
