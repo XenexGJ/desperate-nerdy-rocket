@@ -54,6 +54,9 @@ private:
 	//Credits
 	sf::Texture m_texture_back;
 	
+	//Controls
+	sf::Sprite sprite_cback;
+	
 	//Fonts
 	sf::Font m_normal_font;
 	sf::Font m_bold_font;

@@ -159,6 +159,7 @@ void GameState::controlMouseHandling(sf::Vector2i location)
 	{	
 		m_game_state = STATE_MENU;
 	}
+	
 }
 void GameState::menuMouseHandling(sf::Vector2i location)
 {
@@ -262,7 +263,7 @@ void GameState::updateGameState()
 			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
 		}
-		else if ((getPlayerLocation().y/100)*-1 >= 500)
+		else if ((getPlayerLocation().y/100)*-1 >= 500 && rocket.coolness >= 9000) // Aus Präsentationsgründen auf 500 gesetzt
 		{
 			startEnd();
 		}	
@@ -310,9 +311,7 @@ void GameState::updateGameState()
 			{
 				// Remove meteor
 				m_meteor_locations.erase(s_it);
-				m_velocity -= 500*gravity;
-				std::cout<<"collisiion\n";
-				
+				m_velocity -= 50*gravity;
 			}
 			else
 			{

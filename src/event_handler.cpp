@@ -77,6 +77,8 @@ void EventHandler::handleEvents()
 		m_gst->controlMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
 	
+	
+	
 
 
 	// Get robot direction
