@@ -29,6 +29,10 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     if (!m_texture_dodgecoin.loadFromFile("assets/Qoin_klein.png"))
 	{
     	m_wnd->close();
+    }
+    if (!m_texture_meteor.loadFromFile("assets/meteor.png"))
+	{
+    	m_wnd->close();
     }	
 	if (!m_texture_shopbackground.loadFromFile("assets/licht.png"))
 	{
@@ -360,6 +364,18 @@ void Renderer::drawGame()
 			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
 			sprite_dodgecoin.setPosition(*s_it);
 			m_wnd->draw(sprite_dodgecoin);
+		}	
+		
+		std::vector<sf::Vector2f> meteor = m_gst->getMeteorLocations();
+		//std::vector<sf::Vector2f>::iterator s_it;
+
+		for(s_it = meteor.begin();s_it != meteor.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_meteor;
+			sprite_meteor.setTexture(m_texture_meteor);
+			sprite_meteor.setPosition(*s_it);
+			m_wnd->draw(sprite_meteor);
 		}	
 		
 		

@@ -33,6 +33,7 @@ private:
 	sf::Texture m_texture_background2;
 	sf::Texture m_texture_player;
 	sf::Texture m_texture_dodgecoin;
+	sf::Texture m_texture_meteor;
 	sf::Texture m_texture_startBg;
 	//Shop
 	sf::Texture m_texture_shopbackground;

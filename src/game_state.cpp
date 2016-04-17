@@ -143,8 +143,7 @@ void GameState::startMini()
 		{
 			sf::Vector2f newcoin;
 			m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y));
-		}
-	
+		}	
 }
 
 void GameState::updateGameState()
@@ -212,6 +211,9 @@ void GameState::updateGameState()
 		
 		//ADD COIN
 		addDodgecoin();
+		
+		//add meteor
+		addMeteor();
 		
 		std::vector<sf::Vector2f>::iterator s_it;
 		s_it = m_dodgecoin_locations.begin();
@@ -346,6 +348,10 @@ std::vector<sf::Vector2f> GameState::getDodgecoinLocations()
 {
 	return m_dodgecoin_locations;
 }
+std::vector<sf::Vector2f> GameState::getMeteorLocations()
+{
+	return m_meteor_locations;
+}
 
 //Ändern auf Coins
 int GameState::getCollectedDodgecoinCount()
@@ -365,6 +371,17 @@ void GameState::addDodgecoin()
 	{
 		m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y-1000));
 	}
+}
+
+void GameState::addMeteor()
+{
+	sf::Vector2f newmeteor;
+	int random = rand()%100;
+	if (random <= 5)
+	{
+		m_meteor_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y-1000));
+	}
+
 }
 
 int GameState::getTotalDodgecoins()

@@ -51,6 +51,7 @@ public:
 	float getVelocity();
 
 	std::vector<sf::Vector2f> getDodgecoinLocations();
+	std::vector<sf::Vector2f> getMeteorLocations();
 	int getCollectedDodgecoinCount();
 	void addDodgecoin();
 	int getTotalDodgecoins();
@@ -74,12 +75,15 @@ private:
 
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_dodgecoin_locations;
+	std::vector<sf::Vector2f> m_meteor_locations;
 	float m_new_screw_threshold;
 	
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
 	bool upgradesLoaded;
 	SoundHandler* s;
+	
+	void addMeteor();
 		
 };
 
