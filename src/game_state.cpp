@@ -244,7 +244,7 @@ void GameState::updateGameState()
 			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
 		}
-		else if ((getPlayerLocation().y/100)*-1 >= 500)
+		else if ((getPlayerLocation().y/100)*-1 >= 2000 && rocket.coolness >= 9000)
 		{
 			startEnd();
 		}	
