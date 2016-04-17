@@ -28,7 +28,6 @@ private:
 	sf::Texture m_texture_quit;
 	sf::Texture m_texture_credits;
 	
-	
 	//Main Game
 	sf::Texture m_texture_background;
 	sf::Texture m_texture_background2;
@@ -51,7 +50,9 @@ private:
 	sf::Texture m_texture_minibackground;
 	sf::Texture m_texture_mower;
 	sf::Texture m_texture_jung_und_geld;
+	
 	//Credits
+	sf::Texture m_texture_back;
 	
 	//Fonts
 	sf::Font m_normal_font;

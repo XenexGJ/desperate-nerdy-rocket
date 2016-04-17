@@ -154,7 +154,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 void GameState::controlMouseHandling(sf::Vector2i location)
 {
 	//std::cout<<location.x << "  " << location.y << "\n";
-	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256) ///////// FIX LOCATIONS
+	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756) ///////// FIX LOCATIONS
 	{	
 		m_game_state = STATE_MENU;
 	}
@@ -170,17 +170,33 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
+
+	
 	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
+	{
+		startCredits();
+	}
+	
+	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
+
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
-	{
-		startCredits();
-	}
+
 
 }
+
+
+void GameState::creditsMouseHandling(sf::Vector2i location)
+{
+	
+	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
+	{	
+		m_game_state = STATE_MENU;
+
+	}
+}	
 
 
 void GameState::updateGameState()
