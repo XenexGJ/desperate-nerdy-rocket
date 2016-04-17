@@ -129,8 +129,6 @@ void Renderer::drawGame()
 	//sf::View view_shop(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
     //m_wnd->setView(view_shop);
 
-
-
 	if(m_gst->getGameState() == STATE_MENU)
 	{
 		sf::Sprite sprite_startBg;
@@ -475,6 +473,6 @@ void Renderer::drawGame()
 		sprite_papa.setTexture(m_texture_papa);
 		m_wnd->draw(sprite_papa);
 		
-		m_wnd->display();
 	}
+	m_wnd->display();
 }

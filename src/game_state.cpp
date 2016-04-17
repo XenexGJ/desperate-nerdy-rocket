@@ -195,10 +195,10 @@ void GameState::updateGameState()
 		
 		m_velocity -= gravity;
 		
-		if (getPlayerLocation().y/100 >= 4500 && rocket.coolness >= 9000)
-		{
-			setGameState(STATE_END);
-		}
+		//if (getPlayerLocation().y/100 >= 4500 && rocket.coolness >= 9000)
+		//{
+		//	setGameState(STATE_END);
+		//}
 		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
