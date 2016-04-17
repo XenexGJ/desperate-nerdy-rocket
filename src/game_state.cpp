@@ -19,7 +19,10 @@ GameState::GameState(int x, int y)
 	s = SoundHandler::getSoundHandler();
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f(x/2-ROBOT_WIDTH/2,y/2-ROBOT_HEIGHT/2));
+	setPlayerLocation(sf::Vector2f(x/2-ROBOT_WIDTH/2,y/2-ROBOT_HEIGHT/2));     // ORIGINAL
+	
+	//setPlayerLocation(sf::Vector2f(x/2-ROBOT_WIDTH/2,700));					// BROKEN EXPERIMENTAL
+	
 	
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
@@ -236,6 +239,7 @@ void GameState::updateGameState()
 		{
 			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 			m_dodgecoins_collected =0;
+			setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); 		// Reset Player Location
 			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
 			

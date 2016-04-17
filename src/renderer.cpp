@@ -360,7 +360,7 @@ void Renderer::drawGame()
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
-		sf::Vector2f textureSize(80,80);
+		sf::Vector2f textureSize(320,200);
 		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 		sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 		sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
