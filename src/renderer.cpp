@@ -229,6 +229,7 @@ void Renderer::drawGame()
 		sf::Sprite sprite_slot[12];
 		sf::Sprite sprite_button_slot[12];
 		sf::Text text_slot[12];  
+		std::cout<<numberOfUpgrades<<"höhöhihi\n";
 		for(int i = 0; i < numberOfUpgrades; i++)
 		{
 			float x = 150 * (i %4 +1);

@@ -23,6 +23,8 @@ GameState::GameState(int x, int y)
 	srand (static_cast <unsigned> (time(0)));
 	rocket = Rocket(upgradeList);
 	m_dodgecoin_locations.clear();
+	
+	loadUpgrades();
 }
 
 int GameState::getGameState()
@@ -40,9 +42,6 @@ void GameState::startPlaying()
 
 	setPlayerMovementDirection(DIRECTION_NONE);
 	
-	
-	
-	loadUpgrades();
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
 	
@@ -60,7 +59,7 @@ void GameState::startPlaying()
 void GameState::startShop()
 {
 	m_game_state = STATE_SHOP;
-	loadUpgrades();
+	//loadUpgrades();
 }
 
 void GameState::shopMouseHandling(sf::Vector2i location)

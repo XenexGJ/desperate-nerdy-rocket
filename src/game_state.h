@@ -76,6 +76,7 @@ private:
 	
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
+	bool upgradesLoaded;
 		
 };
 
