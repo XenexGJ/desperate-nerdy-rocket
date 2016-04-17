@@ -12,8 +12,7 @@
 #define STATE_PLAYING 1
 #define STATE_SHOP 2
 #define STATE_MINI 3
-
-#define STATE_REFRESH 4
+#define STATE_CREDITS 4
 #define STATE_PAUSE 5
 #define STATE_CONTROLS 6
 #define STATE_READY_TO_LAUNCH 7
@@ -54,6 +53,8 @@ public:
 	std::vector<sf::Vector2f> getDodgecoinLocations();
 	int getCollectedDodgecoinCount();
 	void addDodgecoin();
+	int getTotalDodgecoins();
+	void setTotalDodgecoins(int totalCount);
 	
 	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
@@ -62,6 +63,7 @@ private:
 	int m_game_state;
 	int m_size_x;
 	int m_size_y;
+	unsigned int total_dodgecoins = 0;
 	int m_player_direction;
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_dodgecoin_locations;
@@ -72,6 +74,7 @@ private:
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
 	float gravity;
+	
 };
 
 #endif

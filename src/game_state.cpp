@@ -209,12 +209,19 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 void GameState::startMini()
 {
 	m_game_state = STATE_MINI;
-	//m_dodgecoins_collected = 0;
+	m_dodgecoins_collected = 0;
 	//m_dodgecoin_locations.clear();
 
-	std::cout << "start mini" <<std::endl;
+	//std::cout << "start mini" <<std::endl;
 	setPlayerMovementDirection (DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f (50,700));
+	
+	//ADD COIN
+		for (int i=0; i<10; i++)
+		{
+			sf::Vector2f newcoin;
+			m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y));
+		}
 	
 }
 
@@ -271,6 +278,8 @@ void GameState::updateGameState()
 		
 		if(new_location.y < 0 && m_velocity < 0)
 		{
+			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
 		}
 		// Bounding box of the player
@@ -293,6 +302,7 @@ void GameState::updateGameState()
 				// Remove coin
 				m_dodgecoin_locations.erase(s_it);
 				m_dodgecoins_collected++;
+				
 			}
 			else
 			{
@@ -305,8 +315,8 @@ void GameState::updateGameState()
 	{
 		// Update the player location
 		sf::Vector2f delta;
-
-	
+		
+		
 		switch(m_player_direction)
 		{
 			case DIRECTION_LEFT:
@@ -343,21 +353,47 @@ void GameState::updateGameState()
 		}
 		if(new_location.x >=1200)
 		{
+			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 			startShop();
 		}	
 		
-		else
-		{
-			return;
-		}
+		// Bounding box of the player
+		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
 		
-	}	
+		std::vector<sf::Vector2f>::iterator s_it;
+		s_it = m_dodgecoin_locations.begin();
+
+		
+		// Check for each coin location ...
+		while(s_it != m_dodgecoin_locations.end())
+		{
+			// ... if the nils is collecting the coin
+			sf::FloatRect dodgecoin_box(*s_it,sf::Vector2f(COIN_WIDTH,COIN_HEIGHT));
+			if(dodgecoin_box.intersects(player_box))
+			{
+				// Remove coin
+				m_dodgecoin_locations.erase(s_it);
+				m_dodgecoins_collected++;
+				std::cout << "coooooooooooooiiiiin" << std::endl;
+				//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+				std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
+				//std::cout << "collectedcoins: " << m_dodgecoins_collected <<std::endl;
+				
+			}
+			else
+			{
+				// Advance iterator to next coin
+				s_it++;
+			}
+	}
+	}		
 	else // Do nothing if the game is not in mini state
 	{		
 		return;
 	}
 	
 }
+
 
 
 //UMBAUEN
@@ -405,6 +441,18 @@ void GameState::addDodgecoin()
 	}
 }
 
+int GameState::getTotalDodgecoins()
+{
+	return total_dodgecoins;
+}
+
+void GameState::setTotalDodgecoins(int totalCount)
+{
+	total_dodgecoins = totalCount;
+	//total_dodgecoins += totalCount;
+	//total_dodgecoins = total_dodgecoins + totalCount ;
+}
+
 std::vector<Upgrade*> *GameState::getUpgradeList()
 {	
 	return &upgradeList;
@@ -441,3 +489,4 @@ void GameState::setGameState(int state)
 {
 	m_game_state = state;
 }
+
