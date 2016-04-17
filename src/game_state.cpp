@@ -96,6 +96,8 @@ void GameState::readyToLaunch()
 {
 	m_game_state = STATE_READY_TO_LAUNCH;
 	setPlayerMovementDirection (DIRECTION_NONE);
+	s->playSound(SOUND_INTRO);
+	std::cout<<"ready steady go \n";
 	//setPlayerLocation(sf::Vector2f(640, 700));
 }
 
@@ -128,7 +130,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	//STARTBUTTON 
 	if (location.x >= 1000 && location.x <= 1138 && location.y >= 700 && location.y <= 756)
 	{
-		m_game_state = STATE_READY_TO_LAUNCH;
+		readyToLaunch();
 		//startPlaying();
 	}
 	//MenueBUTTON 
