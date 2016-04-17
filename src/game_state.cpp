@@ -11,6 +11,9 @@ GameState::GameState(int x, int y)
 	
 	//schwerkraft
 	gravity = 0.01;
+	
+	total_dodgecoins = 0;
+	m_dodgecoins_collected = 0;
 
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);

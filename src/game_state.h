@@ -63,18 +63,20 @@ private:
 	int m_game_state;
 	int m_size_x;
 	int m_size_y;
-	unsigned int total_dodgecoins;
+	int total_dodgecoins;
 	int m_player_direction;
+	int m_dodgecoins_collected;
+
+	float gravity;
+	float m_velocity;
+
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_dodgecoin_locations;
 	float m_new_screw_threshold;
-	//int m_screws_collected;
-	int m_dodgecoins_collected;
-	float m_velocity;
+	
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
-	float gravity;
-	
+		
 };
 
 #endif
