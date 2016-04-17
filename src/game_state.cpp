@@ -70,6 +70,7 @@ void GameState::startShop()
 	//loadUpgrades();
 }
 
+
 //start Minigame
 void GameState::startMini()
 {
@@ -98,6 +99,11 @@ void GameState::readyToLaunch()
 	//setPlayerLocation(sf::Vector2f(640, 700));
 }
 
+
+void GameState::startCredits()
+{
+	m_game_state = STATE_CREDITS;
+}
 
 void GameState::shopMouseHandling(sf::Vector2i location)
 {
@@ -131,6 +137,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		m_game_state = STATE_MENU;
 	}
 	
+	
 	//Stats Updaten
 	rocket.updateStats();
 
@@ -151,15 +158,19 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		startShop();
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 350 && location.y <= 506)
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 600 && location.y <= 656)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
-	}//*/
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
+	{
+		startCredits();
+	}
 
 }
 
@@ -202,6 +213,11 @@ void GameState::updateGameState()
 		
 		m_velocity -= gravity;
 		
+		//if (getPlayerLocation().y/100 >= 4500 && rocket.coolness >= 9000)
+		//{
+		//	setGameState(STATE_END);
+		//}
+		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
 
@@ -229,6 +245,9 @@ void GameState::updateGameState()
 		
 		//ADD COIN
 		addDodgecoin();
+		
+		//add meteor
+		addMeteor();
 		
 		std::vector<sf::Vector2f>::iterator s_it;
 		s_it = m_dodgecoin_locations.begin();
@@ -328,8 +347,12 @@ void GameState::updateGameState()
 				// Advance iterator to next coin
 				s_it++;
 			}
-	}
+		}
 	}		
+	
+	else if(m_game_state == STATE_CREDITS)
+	{
+	}	
 	else // Do nothing if the game is not in mini state
 	{		
 		return;
@@ -363,6 +386,10 @@ std::vector<sf::Vector2f> GameState::getDodgecoinLocations()
 {
 	return m_dodgecoin_locations;
 }
+std::vector<sf::Vector2f> GameState::getMeteorLocations()
+{
+	return m_meteor_locations;
+}
 
 //Ändern auf Coins
 int GameState::getCollectedDodgecoinCount()
@@ -382,6 +409,17 @@ void GameState::addDodgecoin()
 	{
 		m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y-1000));
 	}
+}
+
+void GameState::addMeteor()
+{
+	sf::Vector2f newmeteor;
+	int random = rand()%100;
+	if (random <= 5)
+	{
+		m_meteor_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y-1000));
+	}
+
 }
 
 int GameState::getTotalDodgecoins()

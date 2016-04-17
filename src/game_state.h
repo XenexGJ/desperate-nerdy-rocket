@@ -16,6 +16,7 @@
 #define STATE_PAUSE 5
 #define STATE_CONTROLS 6
 #define STATE_READY_TO_LAUNCH 7
+#define STATE_END 8
 
 #define DIRECTION_NONE 0
 #define DIRECTION_LEFT 1
@@ -38,6 +39,9 @@ public:
 	void startPlaying();
 	void startShop();
 	void readyToLaunch();
+	
+	void startCredits();
+
 	void shopMouseHandling(sf::Vector2i location);
 	void menuMouseHandling(sf::Vector2i location);
 	void controlMouseHandling(sf::Vector2i location);
@@ -53,6 +57,7 @@ public:
 	float getVelocity();
 
 	std::vector<sf::Vector2f> getDodgecoinLocations();
+	std::vector<sf::Vector2f> getMeteorLocations();
 	int getCollectedDodgecoinCount();
 	void addDodgecoin();
 	int getTotalDodgecoins();
@@ -76,12 +81,15 @@ private:
 
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_dodgecoin_locations;
+	std::vector<sf::Vector2f> m_meteor_locations;
 	float m_new_screw_threshold;
 	
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
 	bool upgradesLoaded;
 	SoundHandler* s;
+	
+	void addMeteor();
 		
 };
 

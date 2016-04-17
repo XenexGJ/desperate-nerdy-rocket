@@ -29,6 +29,10 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     if (!m_texture_dodgecoin.loadFromFile("assets/Qoin_klein.png"))
 	{
     	m_wnd->close();
+    }
+    if (!m_texture_meteor.loadFromFile("assets/meteor.png"))
+	{
+    	m_wnd->close();
     }	
 	if (!m_texture_shopbackground.loadFromFile("assets/licht.png"))
 	{
@@ -88,9 +92,15 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 		m_wnd->close();
 	}
 
+	if (!m_texture_credits.loadFromFile("assets/credits.png"))
+	{
+		m_wnd->close();
+	}
 	
-	
-
+	if (!m_texture_papa.loadFromFile("assets/cola_anne.png"))
+	{
+		m_wnd->close();
+	}
 
     // Load all the fonts
     if (!m_normal_font.loadFromFile("assets/Roboto-Regular.ttf"))
@@ -139,7 +149,7 @@ void Renderer::drawGame()
 		text_help.setColor(sf::Color::White);
 		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there!");
 		text_help.setCharacterSize(30);
-		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
+		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
 		
 		//Start Button
@@ -151,14 +161,22 @@ void Renderer::drawGame()
 		//Hilfe Button
 		sf::Sprite sprite_help;
 		sprite_help.setTexture(m_texture_help); 
-		sprite_help.setPosition(100,400);
+		sprite_help.setPosition(100,350);
 		m_wnd->draw(sprite_help);
 		
 		//Beenden Button
 		sf::Sprite sprite_quit;
 		sprite_quit.setTexture(m_texture_quit); 
-		sprite_quit.setPosition(100,600);
+		sprite_quit.setPosition(100,500);
 		m_wnd->draw(sprite_quit);
+		
+		//Credits Button
+		sf::Sprite sprite_credits;
+		sprite_credits.setTexture(m_texture_credits); 
+		sprite_credits.setPosition(100,650); 
+		m_wnd->draw(sprite_credits);
+		
+		
 		
 	}
 	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
@@ -337,8 +355,7 @@ void Renderer::drawGame()
 		m_wnd->draw(text_controls);
 	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
-	{
-			
+	{			
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
@@ -374,6 +391,18 @@ void Renderer::drawGame()
 			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
 			sprite_dodgecoin.setPosition(*s_it);
 			m_wnd->draw(sprite_dodgecoin);
+		}	
+		
+		std::vector<sf::Vector2f> meteor = m_gst->getMeteorLocations();
+		//std::vector<sf::Vector2f>::iterator s_it;
+
+		for(s_it = meteor.begin();s_it != meteor.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_meteor;
+			sprite_meteor.setTexture(m_texture_meteor);
+			sprite_meteor.setPosition(*s_it);
+			m_wnd->draw(sprite_meteor);
 		}	
 		
 		
@@ -436,8 +465,30 @@ void Renderer::drawGame()
 		m_gst->nils.setLocation(m_gst->getPlayerLocation());  //panda
 
 		m_wnd->draw(m_gst->nils);
-
 	}
-
+	else if (m_gst->getGameState() == STATE_END)
+	{
+		//Zeichne Hintergrund
+		sf::Sprite sprite_background;
+		sprite_background.setTexture(m_texture_background);
+		sf::Vector2f textureSize(80,80);
+		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
+		sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
+		m_wnd->draw(sprite_background);		
+		
+		//Zeichne Raketen
+		sf::Sprite sprite_papa;
+		sf::Vector2f location;
+		location.x = 680;
+		location.y = 400;
+		m_gst->rocket.setLocation(location);
+		m_wnd->draw(m_gst->rocket);
+		
+		sprite_papa.setPosition(600,400);
+		sprite_papa.setTexture(m_texture_papa);
+		m_wnd->draw(sprite_papa);
+		
+	}
 	m_wnd->display();
 }
