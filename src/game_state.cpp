@@ -23,10 +23,14 @@ GameState::GameState(int x, int y)
 	
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
+	
+	loadUpgrades();
+	
 	rocket = Rocket(upgradeList);
 	m_dodgecoin_locations.clear();
 	
-	loadUpgrades();
+	
+	rocket.updateStats();
 }
 
 int GameState::getGameState()
@@ -96,7 +100,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 			std::cout << "gekauft\n";
 		}
 		else 
-			std::cout << "zu teuer\n";
+			std::cout << "zu teuer "<<upgradeList.at(2)->price<<"\n";
 	}
 	
 	//Upgrade 4
