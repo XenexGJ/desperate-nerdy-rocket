@@ -164,17 +164,19 @@ void Renderer::drawGame()
 		sprite_help.setPosition(100,350);
 		m_wnd->draw(sprite_help);
 		
-		//Beenden Button
-		sf::Sprite sprite_quit;
-		sprite_quit.setTexture(m_texture_quit); 
-		sprite_quit.setPosition(100,500);
-		m_wnd->draw(sprite_quit);
-		
 		//Credits Button
 		sf::Sprite sprite_credits;
 		sprite_credits.setTexture(m_texture_credits); 
-		sprite_credits.setPosition(100,650); 
+		sprite_credits.setPosition(100,500); 
 		m_wnd->draw(sprite_credits);
+		
+		//Beenden Button
+		sf::Sprite sprite_quit;
+		sprite_quit.setTexture(m_texture_quit); 
+		sprite_quit.setPosition(100,650);
+		m_wnd->draw(sprite_quit);
+		
+		
 		
 		
 		

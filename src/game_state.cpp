@@ -170,12 +170,12 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 656)
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 806)
 	{
 		startCredits();
 	}
