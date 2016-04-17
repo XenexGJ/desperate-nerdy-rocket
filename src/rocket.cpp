@@ -14,6 +14,11 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
 	rocketwings  = NULL;
 	rocketbooster  = NULL;
 	rockettail  = NULL;
+	
+	coolness = 0;
+	boost = 0;
+	aerodynamic = 0;
+	
    
 	//std::cout << "ittt\n";
     
