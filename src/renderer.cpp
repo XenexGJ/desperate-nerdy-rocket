@@ -367,6 +367,18 @@ void Renderer::drawGame()
 		sprite_minibackground.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
 		m_wnd->draw(sprite_minibackground);
 		
+		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
+		std::vector<sf::Vector2f>::iterator s_it;
+
+		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_dodgecoin;
+			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
+			sprite_dodgecoin.setPosition(*s_it);
+			m_wnd->draw(sprite_dodgecoin);
+		}
+		
 		sf::Sprite sprite_achieve;
 		sprite_achieve.setTexture(m_texture_jung_und_geld); 
 		sprite_achieve.setPosition(294,50);
