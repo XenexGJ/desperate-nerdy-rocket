@@ -316,7 +316,7 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_background);		
 	
 		//weltraum beginnt bei 1500
-		float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
+		float transparency = 255 - m_gst->getPlayerLocation().y/(1500*100); 
 	
 	
 
