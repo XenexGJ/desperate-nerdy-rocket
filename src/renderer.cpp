@@ -123,7 +123,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     	m_wnd->close();
     }
 	
-	if (!m_funk.loadFromFile("assets/Cocksure.ttf"))
+	if (!m_funk.loadFromFile("assets/Funk.ttf"))
     {
     	m_wnd->close();
     }
@@ -135,9 +135,6 @@ void Renderer::drawGame()
 
 	sf::View view(sf::Vector2f(640, m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
 	m_wnd->setView(view);
-	
-	//sf::View view_shop(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
-    //m_wnd->setView(view_shop);
 
 	if(m_gst->getGameState() == STATE_MENU)
 	{
@@ -149,8 +146,8 @@ void Renderer::drawGame()
 	
 		// Menu texts
 		sf::Text text_title;
-		text_title.setFont(m_bold_font);
-		text_title.setColor(sf::Color::White);
+		text_title.setFont(m_funk);
+		text_title.setColor(sf::Color::Magenta);
 		text_title.setString("The desperate Rocket Rocky's Path To Infinity ");
 		text_title.setCharacterSize(50);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,50));
@@ -160,9 +157,9 @@ void Renderer::drawGame()
 		sf::Text text_help;
 		text_help.setFont(m_bold_font);
 		text_help.setColor(sf::Color::White);
-		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there! \nStart with the <SPACE> key.");
+		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there!");
 		text_help.setCharacterSize(30);
-		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x - text_help.getLocalBounds().width/2,500));
+		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
 		
 		//Start Button
@@ -218,18 +215,40 @@ void Renderer::drawGame()
 	}
 	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
 	{
+		sf::View launch_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
+   		m_wnd->setView(launch_view);
+		
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
 		text_title.setString("PRESS <SPACE> TO LAUNCH");
-		text_title.setCharacterSize(80);
+		text_title.setCharacterSize(70);
 		text_title.setColor(sf::Color::Red);
-		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
 		
+		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,100));
+		
+		//weltraum beginnt bei 1500
+		float transparency = 255 - m_gst->getPlayerLocation().y/(1500*100); 
+		
+		sf::Sprite sprite_background2;
+		sf::Vector2f textureSize(80,80);
+		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
+		sprite_background2.setTexture(m_texture_background2);
+		sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_background2.setPosition(0,m_gst->getPlayerLocation().y - 400);
+		sprite_background2.setColor(sf::Color(255, 255, 255, transparency));
+		m_wnd->draw(sprite_background2);	
+	
 		sf::Sprite sprite_startBg;
 		sprite_startBg.setTexture(m_texture_startBg);
 		//sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 		sprite_startBg.setPosition(0,0);
-		m_wnd->draw(sprite_startBg);		
+		m_wnd->draw(sprite_startBg);
+		
+		
+
+		
+		
+
 		
 		m_wnd->draw(text_title);
 		m_wnd->draw(m_gst->rocket);	
@@ -254,6 +273,7 @@ void Renderer::drawGame()
 		//Headline Shop
 		sf::Text text_head;
 		text_head.setFont(m_funk);
+		text_head.setColor(sf::Color::Cyan);
 		text_head.setCharacterSize(80);
 		text_head.setPosition(75, 10);
 		text_head.setString("Fappsy's Fappulous Fanshop");
@@ -377,7 +397,7 @@ void Renderer::drawGame()
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
-		sf::Vector2f textureSize(80,80);
+		sf::Vector2f textureSize(320,200);
 		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 		sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 		sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
