@@ -114,7 +114,7 @@ void Renderer::drawGame()
 
 	
 
-	if(m_gst->getGameState() == STATE_MINI || m_gst->getGameState() == STATE_PLAYING)
+	/*if(m_gst->getGameState() == STATE_MINI || m_gst->getGameState() == STATE_PLAYING)
 	{//Coin vector bauen
 		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
 		std::vector<sf::Vector2f>::iterator s_it;
@@ -127,7 +127,7 @@ void Renderer::drawGame()
 			sprite_dodgecoin.setPosition(*s_it);
 			m_wnd->draw(sprite_dodgecoin);
 		}
-	}
+	}*/
 	if(m_gst->getGameState() == STATE_MENU)
 	{
 		// Menu texts
@@ -277,49 +277,6 @@ void Renderer::drawGame()
 		text_stats.setColor(sf::Color::White);
 		text_stats.setPosition(1000, 450);
 		m_wnd->draw(text_stats);
-		/*
-		sf::Text text_stats_startspeed;
-		text_stats_startspeed.setFont(m_bold_font);
-		text_stats_startspeed.setString("Startspeed: ");
-		text_stats_startspeed.setColor(sf::Color::White);
-		text_stats_startspeed.setPosition(1000, 500);
-		m_wnd->draw(text_stats_startspeed);
-		
-		sf::Text text_stats_startspeed_number;
-		text_stats_startspeed_number.setFont(m_bold_font);
-		text_stats_startspeed_number.setString("X");
-		text_stats_startspeed_number.setColor(sf::Color::White);
-		text_stats_startspeed_number.setPosition(1200, 500);
-		m_wnd->draw(text_stats_startspeed_number);
-		
-		sf::Text text_stats_aerodynamic;
-		text_stats_aerodynamic.setFont(m_bold_font);
-		text_stats_aerodynamic.setString("Aerodynamic: ");
-		text_stats_aerodynamic.setColor(sf::Color::White);
-		text_stats_aerodynamic.setPosition(1000, 550);
-		m_wnd->draw(text_stats_aerodynamic);
-		
-		sf::Text text_stats_aerodynamic_number;
-		text_stats_aerodynamic_number.setFont(m_bold_font);
-		text_stats_aerodynamic_number.setString("X");
-		text_stats_aerodynamic_number.setColor(sf::Color::White);
-		text_stats_aerodynamic_number.setPosition(1200, 550);
-		m_wnd->draw(text_stats_aerodynamic_number);
-		
-		sf::Text text_stats_coolness;
-		text_stats_coolness.setFont(m_bold_font);
-		text_stats_coolness.setString("Coolness: ");
-		text_stats_coolness.setColor(sf::Color::White);
-		text_stats_coolness.setPosition(1000, 600);
-		m_wnd->draw(text_stats_coolness);
-		
-		sf::Text text_stats_coolness_number;
-		text_stats_coolness_number.setFont(m_bold_font);
-		text_stats_coolness_number.setString("X");
-		text_stats_coolness_number.setColor(sf::Color::White);
-		text_stats_coolness_number.setPosition(1200, 600);
-		m_wnd->draw(text_stats_coolness_number);
-		*/
 	}
 	else if(m_gst->getGameState() == STATE_CONTROLS)
 	{
@@ -373,7 +330,19 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_startBg);
 
 // a -b 
+		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
+		std::vector<sf::Vector2f>::iterator s_it;
 
+		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_dodgecoin;
+			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
+			sprite_dodgecoin.setPosition(*s_it);
+			m_wnd->draw(sprite_dodgecoin);
+		}	
+		
+		
 		// Game texts
 		sf::Text text_height;
 		text_height.setFont(m_bold_font);

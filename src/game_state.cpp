@@ -265,10 +265,12 @@ void GameState::updateGameState()
 		{
 			case DIRECTION_LEFT:
 			delta = sf::Vector2f(-5,0);
+			m_velocity -= gravity/2;
 			break;
 
 			case DIRECTION_RIGHT:
 			delta = sf::Vector2f(5,0);
+			m_velocity -= gravity/2;
 			break;
 
 			default:
@@ -278,7 +280,6 @@ void GameState::updateGameState()
 		delta.y -= m_velocity;
 		
 		m_velocity -= gravity;
-//		std::cout<< "blub: " << m_velocity << "\n";
 		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
