@@ -372,10 +372,10 @@ void GameState::updateGameState()
 				// Remove coin
 				m_dodgecoin_locations.erase(s_it);
 				m_dodgecoins_collected++;
-				std::cout << "coooooooooooooiiiiin" << std::endl;
+				//std::cout << "coooooooooooooiiiiin" << std::endl;
 				//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 				std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
-				//std::cout << "collectedcoins: " << m_dodgecoins_collected <<std::endl;
+				std::cout << "collectedcoins: " << m_dodgecoins_collected <<std::endl;
 				
 			}
 			else
