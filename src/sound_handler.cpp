@@ -6,7 +6,7 @@
 SoundHandler::SoundHandler()
 {
 	bgVolume = 30;
-	muted = 1;
+	muted = 0;
 	soundVolume = 100;
 	loadBuffers();
 	
@@ -38,7 +38,10 @@ void SoundHandler::playSound(int soundNumber)
 		switch(soundNumber) {
 			case SOUND_INTRO:
 			sound.setBuffer(introSound);
-			sound.play();
+			break;
+			
+			case SOUND_FFF:
+			sound.setBuffer(FFF);
 			break;
 		}
 
@@ -82,6 +85,7 @@ void SoundHandler::loadBuffers()
 {
 	bgMusicBuff.loadFromFile("sfx/bg/sound2.ogg");
 	introSound.loadFromFile("sfx/rocky_sadder.ogg");
+	FFF.loadFromFile("sfx/FFFJingle.ogg");
 }
 
 void SoundHandler::del()

@@ -7,6 +7,7 @@
 #include <list>
 
 #define SOUND_INTRO 0
+#define SOUND_FFF 1
 
 
 class SoundHandler
@@ -60,6 +61,7 @@ private:
 	//Buffers
 	sf::SoundBuffer bgMusicBuff;
 	sf::SoundBuffer introSound;
+	sf::SoundBuffer FFF;
 	
 	
 	

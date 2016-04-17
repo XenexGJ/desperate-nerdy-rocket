@@ -14,7 +14,9 @@ GameState::GameState(int x, int y)
 	
 	total_dodgecoins = 0;
 	m_dodgecoins_collected = 0;
-
+	
+	//hole Soundhandler
+	s = SoundHandler::getSoundHandler();
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(x/2-ROBOT_WIDTH/2,y/2-ROBOT_HEIGHT/2));
@@ -59,6 +61,7 @@ void GameState::startPlaying()
 void GameState::startShop()
 {
 	m_game_state = STATE_SHOP;
+	s->playSound(SOUND_FFF);
 	//loadUpgrades();
 }
 
