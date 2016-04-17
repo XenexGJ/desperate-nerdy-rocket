@@ -28,10 +28,10 @@ void EventHandler::handleEvents()
         		//std::cout<< "blaaaaa\n";
         	}
         	//show control when C is pressed
-        	else if(event.key.code == sf::Keyboard::C)
+        	/*else if(event.key.code == sf::Keyboard::C)
         	{
         		m_gst->setGameState(STATE_CONTROLS);
-        	}
+        	}*/
         }
         //restart game when r pressed
         else if (m_gst->getGameState() == STATE_PLAYING)

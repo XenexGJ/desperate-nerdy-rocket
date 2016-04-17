@@ -113,8 +113,13 @@ void Renderer::drawGame()
 {
 	m_wnd->clear();
 
-	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
-    m_wnd->setView(view);
+	sf::View view(sf::Vector2f(640, m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
+	m_wnd->setView(view);
+	
+	//sf::View view_shop(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
+    //m_wnd->setView(view_shop);
+
+
 
 	if(m_gst->getGameState() == STATE_MENU)
 	{
@@ -372,7 +377,7 @@ void Renderer::drawGame()
 		
 		m_wnd->draw(m_gst->rocket);	
 	}
-	else if (m_gst->getGameState() == STATE_MINI)
+	else if(m_gst->getGameState() == STATE_MINI)
 	{
 		sf::View nils_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(nils_view);

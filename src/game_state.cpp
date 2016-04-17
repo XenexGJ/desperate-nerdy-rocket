@@ -51,7 +51,7 @@ void GameState::startPlaying()
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
 	
-	setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
+	//setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
 	
 	m_velocity = rocket.boost;
 	//std::cout << rocket.boost << "\n";
