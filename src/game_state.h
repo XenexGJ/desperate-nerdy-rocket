@@ -63,7 +63,7 @@ private:
 	int m_game_state;
 	int m_size_x;
 	int m_size_y;
-	unsigned int total_dodgecoins = 0;
+	unsigned int total_dodgecoins;
 	int m_player_direction;
 	sf::Vector2f m_player_location;
 	std::vector<sf::Vector2f> m_dodgecoin_locations;
