@@ -233,7 +233,7 @@ void Renderer::drawGame()
 		float transparency = 255 - m_gst->getPlayerLocation().y/(1500*100); 
 		
 		sf::Sprite sprite_background2;
-		sf::Vector2f textureSize(640,400);
+		sf::Vector2f textureSize(320,200);
 		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 		sprite_background2.setTexture(m_texture_background2);
 		sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
@@ -406,7 +406,7 @@ void Renderer::drawGame()
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
-		sf::Vector2f textureSize(640,400);
+		sf::Vector2f textureSize(320,200);
 
 
 		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
@@ -527,17 +527,22 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_background);		
 		
 		//Zeichne Raketen
-		sf::Sprite sprite_papa;
-		sf::Vector2f location;
-		location.x = 680;
-		location.y = 400;
+		sf::Vector2f location = m_gst->getPlayerLocation();
 		m_gst->rocket.setLocation(location);
 		m_wnd->draw(m_gst->rocket);
 		
-		sprite_papa.setPosition(600,400);
+		sf::Sprite sprite_papa;
+		sprite_papa.setPosition(m_gst->getPlayerLocation().x-100,m_gst->getPlayerLocation().y);
 		sprite_papa.setTexture(m_texture_papa);
 		m_wnd->draw(sprite_papa);
 		
+		//GAMEOVER
+		sf::Text text_ende;
+		text_ende.setFont(m_bold_font);
+		text_ende.setString("ROCKY AND HIS FATHER REINHARDT FINALLY FOUND TO EACH OTHER. THANK YOU!!");
+		text_ende.setCharacterSize(30);
+		text_ende.setPosition(100,m_gst->getPlayerLocation().y-100);
+		m_wnd->draw(text_ende);
 	}
 	m_wnd->display();
 }
