@@ -56,6 +56,7 @@ public:
 
 	void startMini();
 	void updateMini();
+	void menu();
 	
 	sf::Vector2f getPlayerLocation();
 	float getVelocity();

@@ -111,6 +111,7 @@ void GameState::readyToLaunch()
 void GameState::startCredits()
 {
 	m_game_state = STATE_CREDITS;
+	//s->playBg();
 }
 
 void GameState::shopMouseHandling(sf::Vector2i location)
@@ -142,7 +143,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	//MenueBUTTON 
 	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
 	{
-		m_game_state = STATE_MENU;
+		//menu();//m_game_state = STATE_MENU;
 	}
 	
 	
@@ -205,13 +206,14 @@ void GameState::updateGameState()
 	// Do nothing if the game is not in playing state
 	if(m_game_state == STATE_MENU)
 	{
-		SoundHandler* s = SoundHandler::getSoundHandler();
-		s->setBgVolume(0);
+		
+		//s->setBgVolume(0);
 		s->playSound(SOUND_INTRO);
 	}
 	else if (m_game_state == STATE_SHOP)
 	{
 		
+		//s->playSound(SOUND_INTRO);
 	}
 	else if(m_game_state == STATE_PLAYING)
 	{
@@ -420,6 +422,11 @@ void GameState::startEnd()
 void GameState::setPlayerMovementDirection(int direction)
 {
 	m_player_direction = direction;
+}
+
+void GameState::menu()
+{
+	m_game_state = STATE_MENU;
 }
 
 //CHECKEN 

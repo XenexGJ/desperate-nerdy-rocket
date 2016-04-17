@@ -5,7 +5,7 @@
 //constructor
 SoundHandler::SoundHandler()
 {
-	bgVolume = 30;
+	bgVolume = 100;
 	muted = 0;
 	soundVolume = 100;
 	loadBuffers();
@@ -23,8 +23,10 @@ SoundHandler* SoundHandler::getSoundHandler()
 	if(s == NULL)
 	{
 		s = new SoundHandler;
+		s->loadBuffers();
 		
 	}
+	
 	return s;
 }
 
@@ -54,9 +56,11 @@ void SoundHandler::playSound(int soundNumber)
 void SoundHandler::playBg()
 {
 	bgMusic.setBuffer(bgMusicBuff);
-	bgMusic.play();
+	
 	bgMusic.setLoop(true);
 	bgMusic.setVolume(bgVolume);
+	bgMusic.play();
+	std::cout<<"playbg\n";
 }
 
 
@@ -83,7 +87,7 @@ void SoundHandler::setSoundVolume(float volume)
 
 void SoundHandler::loadBuffers()
 {
-	bgMusicBuff.loadFromFile("sfx/bg/sound2.ogg");
+	bgMusicBuff.loadFromFile("sfx/bg/maintheme.ogg");
 	introSound.loadFromFile("sfx/rocky_sadder.ogg");
 	FFF.loadFromFile("sfx/FFFJingle.ogg");
 }
