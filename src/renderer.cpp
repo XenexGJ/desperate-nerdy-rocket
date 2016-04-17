@@ -30,7 +30,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
     	m_wnd->close();
     }	
-	if (!m_texture_shopbackground.loadFromFile("assets/brickwall.jpg"))
+	if (!m_texture_shopbackground.loadFromFile("assets/licht.png"))
 	{
     	m_wnd->close();
     }	
@@ -112,47 +112,22 @@ void Renderer::drawGame()
 	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
     m_wnd->setView(view);
 
-	//zeichne hintergrund
-    sf::Sprite sprite_background;
-	sprite_background.setTexture(m_texture_background);
-	sf::Vector2f textureSize(80,80);
-	float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
-	sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
-	sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
-	m_wnd->draw(sprite_background);		
-	
-	//weltraum beginnt bei 1500
-	float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
-	
 	
 
-	
-	sf::Sprite sprite_background2;
-	sprite_background2.setTexture(m_texture_background2);
-	sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
-	sprite_background2.setPosition(0,m_gst->getPlayerLocation().y - 400);
-	sprite_background2.setColor(sf::Color(255, 255, 255, transparency));
-	m_wnd->draw(sprite_background2);	
-	
-	sf::Sprite sprite_startBg;
-	sprite_startBg.setTexture(m_texture_startBg);
-	sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
-	sprite_startBg.setPosition(0,0);
-	m_wnd->draw(sprite_startBg);
+	if(m_gst->getGameState() == STATE_MINI || m_gst->getGameState() == STATE_PLAYING)
+	{//Coin vector bauen
+		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
+		std::vector<sf::Vector2f>::iterator s_it;
 
-	//Coin vector bauen
-	std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
-	std::vector<sf::Vector2f>::iterator s_it;
-
-	for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
-	{
-		// Coins einfügen
-    	sf::Sprite sprite_dodgecoin;
-		sprite_dodgecoin.setTexture(m_texture_dodgecoin);
-		sprite_dodgecoin.setPosition(*s_it);
-		m_wnd->draw(sprite_dodgecoin);
+		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_dodgecoin;
+			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
+			sprite_dodgecoin.setPosition(*s_it);
+			m_wnd->draw(sprite_dodgecoin);
+		}
 	}
-
 	if(m_gst->getGameState() == STATE_MENU)
 	{
 		// Menu texts
@@ -191,9 +166,8 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_quit);
 		
 	}
-	if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
+	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
 	{
-		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
 		text_title.setString("PRESS <SPACE> TO LAUNCH");
@@ -217,7 +191,7 @@ void Renderer::drawGame()
 		
 		sf::Sprite sprite_graffitti;
 		sprite_graffitti.setTexture(m_texture_graffitti);
-		sprite_graffitti.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
+		sprite_graffitti.setTextureRect(sf::IntRect(0,250,m_wnd->getSize().x,m_wnd->getSize().y));
 		m_wnd->draw(sprite_graffitti);
 		
 		//Headline Shop
@@ -590,7 +564,35 @@ void Renderer::drawGame()
 	{
 		std::stringstream str;
 		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
+		
+		
+		//zeichne hintergrund
+		sf::Sprite sprite_background;
+		sprite_background.setTexture(m_texture_background);
+		sf::Vector2f textureSize(80,80);
+		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
+		sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
+		m_wnd->draw(sprite_background);		
+	
+		//weltraum beginnt bei 1500
+		float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
+	
+	
 
+	
+		sf::Sprite sprite_background2;
+		sprite_background2.setTexture(m_texture_background2);
+		sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_background2.setPosition(0,m_gst->getPlayerLocation().y - 400);
+		sprite_background2.setColor(sf::Color(255, 255, 255, transparency));
+		m_wnd->draw(sprite_background2);	
+	
+		sf::Sprite sprite_startBg;
+		sprite_startBg.setTexture(m_texture_startBg);
+		sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_startBg.setPosition(0,0);
+		m_wnd->draw(sprite_startBg);
 
 // a -b 
 
