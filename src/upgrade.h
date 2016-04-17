@@ -10,6 +10,7 @@
 #define UPGRADE_WINGS 3
 #define UPGRADE_BOOSTER 4
 #define UPGRADE_TAIL 5
+#define UPGRADE_DUMMY 0
 
 class Upgrade : public sf::Drawable
 {

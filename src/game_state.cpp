@@ -226,7 +226,7 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 void GameState::startMini()
 {
 	m_game_state = STATE_MINI;
-	setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+	//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 	m_dodgecoins_collected = 0;
 	//m_dodgecoin_locations.clear();
 
@@ -506,6 +506,15 @@ void GameState::loadUpgrades()
 	//TOPBOOSTER (500,UPGRADE_BOOSTER,25,0,0,"TOPBOOSTER",texturepath);
 	//BOOSTER(100,UPGRADE_BOOSTER,15,0,0,"BOOSTER",texturepath);
 	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Balls","assets/rocket_balls.png"));
+	
+	
+	//dummys for SHOP
+	int anzahlDummys = 12 - upgradeList.size()%12;
+	//std::cout << "dummy: " << anzahlDummys << "\n";
+	for( int i = 0; i < anzahlDummys; i++)
+	{
+		upgradeList.push_back(new Upgrade(0,UPGRADE_DUMMY,0,0,0,"Leer","assets/dont_buy.png"));
+	}
 }
 
 void GameState::setGameState(int state)

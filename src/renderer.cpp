@@ -42,7 +42,11 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
     	m_wnd->close();
     }
-	if (!m_texture_upgrade_bought.loadFromFile("assets/na.png"))
+    if (!m_texture_item_bg.loadFromFile("assets/shop_item_bg.png"))
+	{
+    	m_wnd->close();
+    }
+	if (!m_texture_upgrade_bought.loadFromFile("assets/NV.png"))
 	{
 		m_wnd->close();
 	}
@@ -212,23 +216,32 @@ void Renderer::drawGame()
 		int numberOfUpgrades = upgrades->size();
 		sf::Sprite sprite_slot[12];
 		sf::Sprite sprite_button_slot[12];
+		sf::Sprite sprite_item_bg[12];
 		sf::Text text_slot[12];  
 		for(int i = 0; i < numberOfUpgrades; i++)
 		{
 			float x = 150 * (i %4 +1);
 			float y = 200 * (i/4 +1);
 			
+			sprite_item_bg[i].setPosition(x,y-100);
+			sprite_item_bg[i].setTexture(m_texture_item_bg);
+			sprite_item_bg[i].setColor(sf::Color(255,255,255,128));
+			m_wnd->draw(sprite_item_bg[i]);
+			
 			sprite_slot[i].setPosition(x, y-80);
 			sprite_slot[i].setTexture(upgrades->at(i)->texture);
 			text_slot[i].setFont(m_bold_font);
 			std::stringstream upgradeString;
 			upgradeString << upgrades->at(i)->name;
-			upgradeString << "\n \n\n\n\n\n Preis: ";
-			upgradeString << upgrades->at(i)->price;
+			if(upgrades->at(i)->price > 0)
+			{
+				upgradeString << "\n \n\n\n\n\n Preis: ";
+				upgradeString << upgrades->at(i)->price;
+			}
 			
 			text_slot[i].setString(upgradeString.str());
-			text_slot[i].setColor(sf::Color::White);
-			text_slot[i].setPosition(x, y-100);
+			text_slot[i].setColor(sf::Color::Black);
+			text_slot[i].setPosition(x+10, y-100);
 			text_slot[i].setCharacterSize(20);
 			m_wnd->draw(sprite_slot[i]);
 			m_wnd->draw(text_slot[i]);
@@ -264,14 +277,13 @@ void Renderer::drawGame()
 		
 		//coins
 		std::stringstream str;
-		str << "Coins: " << m_gst->getCollectedDodgecoinCount();	
-		
+		str << "Coins: " << m_gst->getTotalDodgecoins();	
 		
 		sf::Text text_coins;
 		text_coins.setFont(m_bold_font);
 		text_coins.setString(str.str());
 		text_coins.setCharacterSize(30);
-		text_coins.setPosition(sf::Vector2f(1000,m_gst->getPlayerLocation().y -500));
+		text_coins.setPosition(sf::Vector2f(1000,100));
 		m_wnd->draw(text_coins);
 	}
 	else if(m_gst->getGameState() == STATE_CONTROLS)

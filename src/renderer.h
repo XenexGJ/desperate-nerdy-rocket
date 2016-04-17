@@ -42,6 +42,7 @@ private:
 	sf::Texture m_texture_fappsy;
 	sf::Texture m_texture_takeoff;
 	sf::Texture m_texture_menu;
+	sf::Texture m_texture_item_bg;
 	
 	//Nils game
 	sf::Texture m_texture_minibackground;
