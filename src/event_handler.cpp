@@ -59,18 +59,17 @@ void EventHandler::handleEvents()
         	*/
         }
         // TEST: Open shop when B is pressed
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_PLAYING)
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_PLAYING)
         {
         	//m_gst->startShop();
 			m_gst->startShop();
-        }
+        }*/
 
 	//SUPER SPECIAL MINIGAME
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && m_gst->getGameState() == STATE_PLAYING)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && m_gst->getGameState() == STATE_SHOP)
     {
 			//m_gst->startShop();
 		m_gst->setGameState(STATE_MINI);
-		std::cout << "event start mini" <<std::endl;
 		m_gst->startMini();
     }
 
