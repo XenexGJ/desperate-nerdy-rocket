@@ -350,7 +350,7 @@ void Renderer::drawGame()
 		
 		//stats
 		std::stringstream str;
-		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
+		str << "Height: " << -m_gst->getPlayerLocation().y/100 << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
 		
 		// Game texts
 		sf::Text text_height;
