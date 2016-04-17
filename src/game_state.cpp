@@ -111,6 +111,7 @@ void GameState::readyToLaunch()
 void GameState::startCredits()
 {
 	m_game_state = STATE_CREDITS;
+	//s->playBg();
 }
 
 void GameState::shopMouseHandling(sf::Vector2i location)
@@ -204,13 +205,14 @@ void GameState::updateGameState()
 	// Do nothing if the game is not in playing state
 	if(m_game_state == STATE_MENU)
 	{
-		SoundHandler* s = SoundHandler::getSoundHandler();
-		s->setBgVolume(0);
+		
+		//s->setBgVolume(0);
 		s->playSound(SOUND_INTRO);
 	}
 	else if (m_game_state == STATE_SHOP)
 	{
 		
+		//s->playSound(SOUND_INTRO);
 	}
 	else if(m_game_state == STATE_PLAYING)
 	{
