@@ -130,14 +130,21 @@ void Renderer::drawGame()
 	}
 	if(m_gst->getGameState() == STATE_MENU)
 	{
+		sf::Sprite sprite_startBg;
+		sprite_startBg.setTexture(m_texture_startBg);
+		//sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_startBg.setPosition(0,0);
+		m_wnd->draw(sprite_startBg);
+	
 		// Menu texts
 		sf::Text text_title;
 		text_title.setFont(m_bold_font);
-		text_title.setColor(sf::Color::Black);
+		text_title.setColor(sf::Color::White);
 		text_title.setString("The desperate Rocket Rocky's Path To Infinity ");
 		text_title.setCharacterSize(50);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,50));
 		m_wnd->draw(text_title);
+	
 
 		sf::Text text_help;
 		text_help.setFont(m_bold_font);
@@ -174,6 +181,13 @@ void Renderer::drawGame()
 		text_title.setCharacterSize(80);
 		text_title.setColor(sf::Color::Red);
 		text_title.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_title.getLocalBounds().width/2,200));
+		
+		sf::Sprite sprite_startBg;
+		sprite_startBg.setTexture(m_texture_startBg);
+		//sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_startBg.setPosition(0,0);
+		m_wnd->draw(sprite_startBg);		
+		
 		m_wnd->draw(text_title);
 		m_wnd->draw(m_gst->rocket);	
 
@@ -578,9 +592,6 @@ void Renderer::drawGame()
 		//weltraum beginnt bei 1500
 		float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
 	
-	
-
-	
 		sf::Sprite sprite_background2;
 		sprite_background2.setTexture(m_texture_background2);
 		sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
@@ -593,8 +604,6 @@ void Renderer::drawGame()
 		sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 		sprite_startBg.setPosition(0,0);
 		m_wnd->draw(sprite_startBg);
-
-// a -b 
 
 		// Game texts
 		sf::Text text_height;
