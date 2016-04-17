@@ -539,9 +539,10 @@ void Renderer::drawGame()
 		//GAMEOVER
 		sf::Text text_ende;
 		text_ende.setFont(m_bold_font);
-		text_ende.setString("ROCKY AND HIS FATHER REINHARDT FINALLY FOUND TO EACH OTHER. THANK YOU!!");
+		text_ende.setColor(sf::Color::Cyan);
+		text_ende.setString("Rocky and his father Reinhardt finally found each other. \nSince Rocky's coolness was OVER 9000! He was accepted \nback into the herd of ZUGRAKETEN! \nThey'll be eternally thankfull. \n\n THANK YOU!!");
 		text_ende.setCharacterSize(30);
-		text_ende.setPosition(100,m_gst->getPlayerLocation().y-100);
+		text_ende.setPosition(100,m_gst->getPlayerLocation().y-200);
 		m_wnd->draw(text_ende);
 	}
 	m_wnd->display();
