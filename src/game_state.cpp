@@ -169,12 +169,12 @@ void GameState::updateGameState()
 		{
 			case DIRECTION_LEFT:
 			delta = sf::Vector2f(-5,0);
-			m_velocity -= gravity/2;
+			m_velocity -= gravity/(rocket.aerodynamic/10);
 			break;
 
 			case DIRECTION_RIGHT:
 			delta = sf::Vector2f(5,0);
-			m_velocity -= gravity/2;
+			m_velocity -= gravity/(rocket.aerodynamic/10);
 			break;
 
 			default:
@@ -392,8 +392,8 @@ void GameState::loadUpgrades()
 	//Bodies - Bietet Boost, Aerodynamic
 	//upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
 	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"kawaii2","assets/kawaii_2.png"));
-	upgradeList.push_back(new Upgrade(100,UPGRADE_BODY,35,0,25,"kawaii","assets/kawaii.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,0,0,"Basis","assets/rocket_basic.png")); //Start
+	upgradeList.push_back(new Upgrade(250,UPGRADE_BODY,25,0,25,"kawaii","assets/kawaii.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,15,0,10,"Basis","assets/rocket_basic.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
 	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
