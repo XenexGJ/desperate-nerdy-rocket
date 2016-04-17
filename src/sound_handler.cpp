@@ -6,7 +6,7 @@
 SoundHandler::SoundHandler()
 {
 	bgVolume = 30;
-	muted = 0;
+	muted = 1;
 	soundVolume = 100;
 	loadBuffers();
 	

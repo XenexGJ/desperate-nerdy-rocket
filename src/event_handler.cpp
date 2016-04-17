@@ -67,21 +67,19 @@ void EventHandler::handleEvents()
 
 	//SUPER SPECIAL MINIGAME
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && m_gst->getGameState() == STATE_PLAYING)
-
-        {
-
-        	//m_gst->startShop();
+    {
+			//m_gst->startShop();
 		m_gst->setGameState(STATE_MINI);
-		//std::cout << "event start mini" <<std::endl;
+		std::cout << "event start mini" <<std::endl;
 		m_gst->startMini();
+    }
 
-        }
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_SHOP)
 	{
 		m_gst->shopMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_MENU)
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_MENU)
 	{
 		m_gst->menuMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
