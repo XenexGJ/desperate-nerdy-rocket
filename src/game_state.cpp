@@ -57,6 +57,7 @@ void GameState::startPlaying()
 void GameState::startShop()
 {
 	m_game_state = STATE_SHOP;
+	loadUpgrades();
 }
 
 void GameState::shopMouseHandling(sf::Vector2i location)
@@ -187,9 +188,10 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 
 void GameState::menuMouseHandling(sf::Vector2i location)
 {
+	std::cout<<location.x << "  " << location.y << "\n";
 	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256)
 	{	
-		m_game_state = STATE_SHOP;
+		startShop();
 	}
 	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
 	{	
@@ -199,7 +201,7 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
-	}
+	}//*/
 
 }
 

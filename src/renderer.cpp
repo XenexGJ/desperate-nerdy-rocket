@@ -38,7 +38,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
     	m_wnd->close();
     }	
-    if (!m_texture_slot1.loadFromFile("assets/Kaufen.png"))
+    if (!m_texture_buy.loadFromFile("assets/Kaufen.png"))
 	{
     	m_wnd->close();
     }
@@ -251,20 +251,47 @@ void Renderer::drawGame()
 		std::vector<Upgrade*> *upgrades = m_gst->getUpgradeList();
 		
 		//Upgrades
-		
-		/*sf::Sprite sprite_slot[12];  
-		for(int i = 0; i < 12; i++)
+		int numberOfUpgrades = upgrades->size();
+		std::cout<< numberOfUpgrades << "hihi \n";
+		sf::Sprite sprite_slot[12];
+		sf::Sprite sprite_button_slot[12];
+		sf::Text text_slot[12];  
+		for(int i = 0; i < numberOfUpgrades; i++)
 		{
+			float x = 150 * (i %4 +1);
+			float y = 200 * (i/4 +1);
+			
+			sprite_slot[i].setPosition(x, y-80);
+			sprite_slot[i].setTexture(upgrades->at(i)->texture);
+			text_slot[i].setFont(m_bold_font);
+			std::stringstream upgradeString;
+			upgradeString << upgrades->at(i)->name;
+			upgradeString << "\n \n\n\n\n\n Preis: ";
+			upgradeString << upgrades->at(i)->price;
+			
+			text_slot[i].setString(upgradeString.str());
+			text_slot[i].setColor(sf::Color::White);
+			text_slot[i].setPosition(x, y-100);
+			text_slot[i].setCharacterSize(20);
+			m_wnd->draw(sprite_slot[i]);
+			m_wnd->draw(text_slot[i]);
 			//sprite_slot();
 			if (upgrades->at(i)->price != 0)	// if nicht gekauft / Seite
 			{
-			//	sprite_slot[i].setTexture(m_texture_slot1);
+				sprite_button_slot[i].setTexture(m_texture_buy);
 			}
-		}*/
+			else // if gekauft / Seite
+			{
+				sprite_button_slot[i].setTexture(m_texture_upgrade_bought);
+			}
+			sprite_button_slot[i].setPosition(x, y);
+			m_wnd->draw(sprite_button_slot[i]);
+		}
 		
 		
-		//Upgrade 1
+		/*//Upgrade 1
 		sf::Sprite sprite_slot1;
+		
 		if (upgrades->at(0)->price != 0)	// if nicht gekauft / Seite
 		{
 			sprite_slot1.setTexture(m_texture_slot1);
