@@ -51,7 +51,6 @@ int main()
             eventHandler.handleEvents();
             gameState.updateGameState();
         }
-
         renderer.drawGame();
     }
 
