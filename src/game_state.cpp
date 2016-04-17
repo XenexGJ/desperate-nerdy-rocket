@@ -126,13 +126,13 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	std::cout<< "mouse: "<< location.x << " " << location.y << "\n x:" << x << " y: " << y << "\n";
 		
 	//STARTBUTTON 
-	if (location.x >= 1000 && location.x <= 1130 && location.y >= 700 && location.y <= 747)
+	if (location.x >= 1000 && location.x <= 1138 && location.y >= 700 && location.y <= 756)
 	{
 		m_game_state = STATE_READY_TO_LAUNCH;
 		//startPlaying();
 	}
 	//MenueBUTTON 
-	if (location.x >= 100 && location.x <= 230 && location.y >= 700 && location.y <= 747)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
 	{
 		m_game_state = STATE_MENU;
 	}
