@@ -66,11 +66,18 @@ void EventHandler::handleEvents()
 	{
 		m_gst->menuMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
+
+	else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_CREDITS)
+	{
+		m_gst->creditsMouseHandling(sf::Mouse::getPosition(*m_wnd));
+	}
+
 	else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_gst->getGameState() == STATE_CONTROLS)
 	{
 		m_gst->controlMouseHandling(sf::Mouse::getPosition(*m_wnd));
 	}
 	
+
 
 	// Get robot direction
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
