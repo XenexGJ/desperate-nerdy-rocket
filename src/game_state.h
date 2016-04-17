@@ -16,6 +16,7 @@
 #define STATE_PAUSE 5
 #define STATE_CONTROLS 6
 #define STATE_READY_TO_LAUNCH 7
+#define STATE_END 8
 
 #define DIRECTION_NONE 0
 #define DIRECTION_LEFT 1
@@ -37,6 +38,7 @@ public:
 	int getGameState();
 	void startPlaying();
 	void startShop();
+	void startCredits();
 	void shopMouseHandling(sf::Vector2i location);
 	void menuMouseHandling(sf::Vector2i location);
 	void updateGameState();

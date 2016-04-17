@@ -26,6 +26,7 @@ private:
 	sf::Texture m_texture_play;
 	sf::Texture m_texture_help;
 	sf::Texture m_texture_quit;
+	sf::Texture m_texture_credits;
 	
 	
 	//Main Game
@@ -35,6 +36,7 @@ private:
 	sf::Texture m_texture_dodgecoin;
 	sf::Texture m_texture_meteor;
 	sf::Texture m_texture_startBg;
+	sf::Texture m_texture_papa;
 	//Shop
 	sf::Texture m_texture_shopbackground;
 	sf::Texture m_texture_graffitti;
