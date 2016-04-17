@@ -276,6 +276,8 @@ void GameState::updateGameState()
 		
 		if(new_location.y < 0 && m_velocity < 0)
 		{
+			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
 		}
 		// Bounding box of the player
@@ -298,7 +300,6 @@ void GameState::updateGameState()
 				// Remove coin
 				m_dodgecoin_locations.erase(s_it);
 				m_dodgecoins_collected++;
-				setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 				
 			}
 			else
@@ -374,7 +375,7 @@ void GameState::updateGameState()
 				std::cout << "coooooooooooooiiiiin" << std::endl;
 				//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 				std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
-				std::cout << "collectedcoins: " << m_dodgecoins_collected <<std::endl;
+				//std::cout << "collectedcoins: " << m_dodgecoins_collected <<std::endl;
 				
 			}
 			else
