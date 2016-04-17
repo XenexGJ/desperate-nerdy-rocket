@@ -39,6 +39,7 @@ public:
 	void startPlaying();
 	void startShop();
 	void startCredits();
+	void startEnd();
 	void shopMouseHandling(sf::Vector2i location);
 	void menuMouseHandling(sf::Vector2i location);
 	void updateGameState();

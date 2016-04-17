@@ -195,10 +195,7 @@ void GameState::updateGameState()
 		
 		m_velocity -= gravity;
 		
-		if (getPlayerLocation().y/100 >= 4500 && rocket.coolness >= 9000)
-		{
-			setGameState(STATE_END);
-		}
+
 		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
@@ -213,15 +210,18 @@ void GameState::updateGameState()
 			new_location.x = m_size_x - ROBOT_WIDTH;
 		}
 		setPlayerLocation(new_location); // Update location
-		
 		if(new_location.y < 0 && m_velocity < 0)
 		{
 			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 			m_dodgecoins_collected =0;
 			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
-			
 		}
+		else if ((getPlayerLocation().y/100)*-1 >= 500)
+		{
+			startEnd();
+		}	
+		
 		// Bounding box of the player
 		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
 		
@@ -335,14 +335,21 @@ void GameState::updateGameState()
 	else if(m_game_state == STATE_CREDITS)
 	{
 	}	
+	else if (m_game_state == STATE_END)
+	{
+	}
 	else // Do nothing if the game is not in mini state
 	{		
 		return;
 	}
+	//startEnd();
 	
 }
 
-
+void GameState::startEnd()
+{
+	m_game_state = STATE_END;
+}
 
 //UMBAUEN
 void GameState::setPlayerMovementDirection(int direction)
