@@ -17,7 +17,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
     }
     m_texture_background2.setRepeated(true);
 
-    if (!m_texture_startBg.loadFromFile("assets/anfang.png"))
+    if (!m_texture_startBg.loadFromFile("assets/rocky_mountains_screen.png"))
 	{
     	m_wnd->close();
     }
@@ -67,7 +67,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
-	if (!m_texture_minibackground.loadFromFile("assets/anfang.png"))
+	if (!m_texture_minibackground.loadFromFile("assets/rocky_mountains_screen.png"))
 	{
 		m_wnd->close();
 	}
@@ -252,7 +252,6 @@ void Renderer::drawGame()
 		
 		//Upgrades
 		int numberOfUpgrades = upgrades->size();
-		std::cout<< numberOfUpgrades << "hihi \n";
 		sf::Sprite sprite_slot[12];
 		sf::Sprite sprite_button_slot[12];
 		sf::Text text_slot[12];  

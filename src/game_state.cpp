@@ -68,6 +68,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(0)->price && upgradeList.at(0)->price != 0)
 		{
 			upgradeList.at(0)->price = 0;
+			std::cout << "gekauft\n";
 		}
 	}
 	
@@ -77,6 +78,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(1)->price && upgradeList.at(1)->price != 0)
 		{
 			upgradeList.at(1)->price = 0;
+			std::cout << "gekauft\n";
 		}
 	}
 	
@@ -86,7 +88,10 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(2)->price && upgradeList.at(2)->price != 0)
 		{
 			upgradeList.at(2)->price = 0;
+			std::cout << "gekauft\n";
 		}
+		else 
+			std::cout << "zu teuer\n";
 	}
 	
 	//Upgrade 4
@@ -95,7 +100,10 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(3)->price && upgradeList.at(3)->price != 0)
 		{
 			upgradeList.at(3)->price = 0;
+			std::cout << "gekauft\n";
 		}
+		else 
+			std::cout << "zu teuer\n";
 	}
 
 	//Upgrade 5
@@ -104,7 +112,10 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(4)->price && upgradeList.at(4)->price != 0)
 		{
 			upgradeList.at(4)->price = 0;
+			std::cout << "gekauft\n";
 		}
+		else 
+			std::cout << "zu teuer\n";
 	}
 
 	//Upgrade 6
@@ -113,7 +124,10 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(5)->price && upgradeList.at(5)->price != 0)
 		{
 			upgradeList.at(5)->price = 0;
+			std::cout << "gekauft\n";
 		}
+		else 
+			std::cout << "zu teuer\n";
 	}
 
 	//Upgrade 7
@@ -122,6 +136,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		if (m_dodgecoins_collected >= upgradeList.at(6)->price && upgradeList.at(6)->price != 0)
 		{
 			upgradeList.at(6)->price = 0;
+			std::cout << "gekauft\n";
 		}
 	}
 	
@@ -481,7 +496,8 @@ void GameState::loadUpgrades()
 	//WINGS - Bietet Aerodynamic, Coolness
 	//WINGEXTRA2 (500,UPGRADE_WINGS,0,501,50,"WINGEXTRA2",texturepath)
 	//WINGEXTRA	(100,UPGRADE_WINGS,0,25,25,"WINGEXTRA",texturepath)
-	upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
+	//upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
+	upgradeList.push_back(new Upgrade(1,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
 	
 	//BOOSTER Bietet Boost
 	//TOPBOOSTER (500,UPGRADE_BOOSTER,25,0,0,"TOPBOOSTER",texturepath);
