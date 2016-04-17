@@ -99,7 +99,8 @@ void GameState::readyToLaunch()
 {
 	m_game_state = STATE_READY_TO_LAUNCH;
 	setPlayerMovementDirection (DIRECTION_NONE);
-	//setPlayerLocation(sf::Vector2f(640, 700));
+	setPlayerLocation(sf::Vector2f(640, 700));
+	//setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); 
 }
 
 
@@ -131,7 +132,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	//STARTBUTTON 
 	if (location.x >= 1000 && location.x <= 1138 && location.y >= 700 && location.y <= 756)
 	{
-		m_game_state = STATE_READY_TO_LAUNCH;
+		readyToLaunch();
 		//startPlaying();
 	}
 	//MenueBUTTON 
