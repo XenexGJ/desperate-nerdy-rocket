@@ -193,7 +193,7 @@ void Renderer::drawGame()
 		float transparency = 255 - m_gst->getPlayerLocation().y/(1500*100); 
 		
 		sf::Sprite sprite_background2;
-		sf::Vector2f textureSize(80,80);
+		sf::Vector2f textureSize(640,400);
 		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 		sprite_background2.setTexture(m_texture_background2);
 		sprite_background2.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
@@ -360,7 +360,7 @@ void Renderer::drawGame()
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
-		sf::Vector2f textureSize(80,80);
+		sf::Vector2f textureSize(640,400);
 		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
 		sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
 		sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
