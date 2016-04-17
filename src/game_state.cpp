@@ -93,7 +93,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	//STARTBUTTON 
 	if (location.x >= 1000 && location.x <= 1130 && location.y >= 700 && location.y <= 747)
 	{
-		m_game_state = STATE_PLAYING;
+		m_game_state = STATE_READY_TO_LAUNCH;
 		startPlaying();
 	}
 	//MenueBUTTON 
