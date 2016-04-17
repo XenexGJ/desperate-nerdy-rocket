@@ -496,7 +496,7 @@ void GameState::loadUpgrades()
 	//upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
 	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"kawaii2","assets/kawaii_2.png"));
 	upgradeList.push_back(new Upgrade(250,UPGRADE_BODY,50,0,25,"kawaii","assets/kawaii.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,0,0,"Basis","assets/rocket_basic.png")); //Start
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,25,0,0,"Basis","assets/rocket_basic.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
 	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
