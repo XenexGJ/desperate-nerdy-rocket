@@ -484,9 +484,9 @@ void GameState::loadUpgrades()
 	upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
 	
 	//BOOSTER Bietet Boost
-	upgradeList.push_back(new Upgrade(500,UPGRADE_BOOSTER,25,0,0,"Topbooster","assets/jetpack.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(100,UPGRADE_BOOSTER,15,0,0,"Jetpack","assets/jetpack.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Balls","assets/rocket_balls.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BOOSTER,25,0,0,"Jetpack>9000","assets/topjetpack.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_BOOSTER,15,0,0,"Jetpack^2","assets/jetpack2.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Jetpack","assets/jetpack.png"));
 	
 	//dummys for SHOP
 	while(upgradeList.size()%12 != 0)
