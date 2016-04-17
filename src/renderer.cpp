@@ -91,6 +91,16 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
+	if (!m_texture_credits.loadFromFile("assets/credits.png"))
+	{
+		m_wnd->close();
+	}
+	if (!m_texture_back.loadFromFile("assets/back.png"))
+	{
+		m_wnd->close();
+	}
+	
+	
 
 	if (!m_texture_credits.loadFromFile("assets/credits.png"))
 	{
@@ -125,6 +135,9 @@ void Renderer::drawGame()
 
 	sf::View view(sf::Vector2f(640, m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
 	m_wnd->setView(view);
+
+	//sf::View view_shop(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
+    //m_wnd->setView(view_shop);
 
 	if(m_gst->getGameState() == STATE_MENU)
 	{
@@ -177,8 +190,30 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_quit);
 		
 		
+	}
+	else if(m_gst->getGameState() == STATE_CREDITS)
+	{
+		//Background
+		sf::Sprite sprite_startBg;
+		sprite_startBg.setTexture(m_texture_startBg);
+		//sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_startBg.setPosition(0,0);
+		m_wnd->draw(sprite_startBg);
 		
+		//Title
+		sf::Text text_credits;
+		text_credits.setFont(m_bold_font);
+		text_credits.setString("CREDITS");
+		text_credits.setCharacterSize(50);
+		text_credits.setColor(sf::Color::White);
+		text_credits.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_credits.getLocalBounds().width/2,50));
+		m_wnd->draw(text_credits);
 		
+		//Back Button
+		sf::Sprite sprite_back;
+		sprite_back.setTexture(m_texture_back); 
+		sprite_back.setPosition(100,700); 
+		m_wnd->draw(sprite_back);
 		
 	}
 	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)

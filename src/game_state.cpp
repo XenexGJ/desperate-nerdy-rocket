@@ -154,7 +154,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 void GameState::controlMouseHandling(sf::Vector2i location)
 {
 	//std::cout<<location.x << "  " << location.y << "\n";
-	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256) ///////// FIX LOCATIONS
+	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756) ///////// FIX LOCATIONS
 	{	
 		m_game_state = STATE_MENU;
 	}
@@ -170,17 +170,33 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 656)
+
+	
+	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
+	{
+		startCredits();
+	}
+	
+	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
+
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 806)
-	{
-		startCredits();
-	}
+
 
 }
+
+
+void GameState::creditsMouseHandling(sf::Vector2i location)
+{
+	
+	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
+	{	
+		m_game_state = STATE_MENU;
+
+	}
+}	
 
 
 void GameState::updateGameState()
@@ -221,10 +237,7 @@ void GameState::updateGameState()
 		
 		m_velocity -= gravity;
 		
-		//if (getPlayerLocation().y/100 >= 4500 && rocket.coolness >= 9000)
-		//{
-		//	setGameState(STATE_END);
-		//}
+
 		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
@@ -239,7 +252,6 @@ void GameState::updateGameState()
 			new_location.x = m_size_x - ROBOT_WIDTH;
 		}
 		setPlayerLocation(new_location); // Update location
-		
 		if(new_location.y < 0 && m_velocity < 0)
 		{
 			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
@@ -247,8 +259,12 @@ void GameState::updateGameState()
 			setPlayerLocation(sf::Vector2f(m_size_x/2-ROBOT_WIDTH/2,m_size_y/2-ROBOT_HEIGHT/2)); 		// Reset Player Location
 			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
-			
 		}
+		else if ((getPlayerLocation().y/100)*-1 >= 500)
+		{
+			startEnd();
+		}	
+		
 		// Bounding box of the player
 		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
 		
@@ -385,14 +401,21 @@ void GameState::updateGameState()
 	else if(m_game_state == STATE_CREDITS)
 	{
 	}	
+	else if (m_game_state == STATE_END)
+	{
+	}
 	else // Do nothing if the game is not in mini state
 	{		
 		return;
 	}
+	//startEnd();
 	
 }
 
-
+void GameState::startEnd()
+{
+	m_game_state = STATE_END;
+}
 
 //UMBAUEN
 void GameState::setPlayerMovementDirection(int direction)
