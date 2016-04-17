@@ -14,15 +14,23 @@ GameState::GameState(int x, int y)
 	
 	total_dodgecoins = 0;
 	m_dodgecoins_collected = 0;
-
+	
+	//hole Soundhandler
+	s = SoundHandler::getSoundHandler();
 	// Set initial player movement and location
 	setPlayerMovementDirection(DIRECTION_NONE);
 	setPlayerLocation(sf::Vector2f(x/2-ROBOT_WIDTH/2,y/2-ROBOT_HEIGHT/2));
 	
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
+	
+	loadUpgrades();
+	
 	rocket = Rocket(upgradeList);
 	m_dodgecoin_locations.clear();
+	
+	
+	rocket.updateStats();
 }
 
 int GameState::getGameState()
@@ -40,19 +48,17 @@ void GameState::startPlaying()
 
 	setPlayerMovementDirection(DIRECTION_NONE);
 	
-	
-	
-	loadUpgrades();
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
 	
 	setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
 	
 	m_velocity = rocket.boost;
+	//std::cout << rocket.boost << "\n";
 
 	// Initialize random seed
 	srand (static_cast <unsigned> (time(0)));
-
+	s->playBg();
 	
 }
 
@@ -60,138 +66,35 @@ void GameState::startPlaying()
 void GameState::startShop()
 {
 	m_game_state = STATE_SHOP;
-	loadUpgrades();
+	s->playSound(SOUND_FFF);
+	//loadUpgrades();
 }
 
 void GameState::shopMouseHandling(sf::Vector2i location)
 {
-	//Upgrade 1
-	if (location.x >= 150 && location.x <= 280 && location.y >= 176 && location.y <= 223)
+	int x = (location.x -200) /150;
+	int y = (location.y -100)/ 200;
+	
+	if(x<=4 && y<=3)
 	{
-		if (m_dodgecoins_collected >= upgradeList.at(0)->price && upgradeList.at(0)->price != 0)
+		int index = 4*y + x;
+		if (total_dodgecoins >= upgradeList.at(index)->price && upgradeList.at(index)->price != 0)
 		{
-			upgradeList.at(0)->price = 0;
+			total_dodgecoins -= upgradeList.at(index)->price;
+			upgradeList.at(index)->price = 0;
+			rocket = Rocket(upgradeList);
+			rocket.updateStats();
 			std::cout << "gekauft\n";
 		}
 	}
 	
-	//Upgrade 2
-	if (location.x >= 300 && location.x <= 430 && location.y >= 176 && location.y <= 223)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(1)->price && upgradeList.at(1)->price != 0)
-		{
-			upgradeList.at(1)->price = 0;
-			std::cout << "gekauft\n";
-		}
-	}
-	
-	//Upgrade 3
-	if (location.x >= 450 && location.x <= 580 && location.y >= 176 && location.y <= 223)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(2)->price && upgradeList.at(2)->price != 0)
-		{
-			upgradeList.at(2)->price = 0;
-			std::cout << "gekauft\n";
-		}
-		else 
-			std::cout << "zu teuer\n";
-	}
-	
-	//Upgrade 4
-	if (location.x >= 600 && location.x <= 730 && location.y >= 176 && location.y <= 223)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(3)->price && upgradeList.at(3)->price != 0)
-		{
-			upgradeList.at(3)->price = 0;
-			std::cout << "gekauft\n";
-		}
-		else 
-			std::cout << "zu teuer\n";
-	}
-
-	//Upgrade 5
-	if (location.x >= 150 && location.x <= 280 && location.y >= 376 && location.y <= 423)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(4)->price && upgradeList.at(4)->price != 0)
-		{
-			upgradeList.at(4)->price = 0;
-			std::cout << "gekauft\n";
-		}
-		else 
-			std::cout << "zu teuer\n";
-	}
-
-	//Upgrade 6
-	if (location.x >= 300 && location.x <= 430 && location.y >= 376 && location.y <= 423)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(5)->price && upgradeList.at(5)->price != 0)
-		{
-			upgradeList.at(5)->price = 0;
-			std::cout << "gekauft\n";
-		}
-		else 
-			std::cout << "zu teuer\n";
-	}
-
-	//Upgrade 7
-	if (location.x >= 450 && location.x <= 580 && location.y >= 376 && location.y <= 423)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(6)->price && upgradeList.at(6)->price != 0)
-		{
-			upgradeList.at(6)->price = 0;
-			std::cout << "gekauft\n";
-		}
-	}
-	
-	//Upgrade 8
-	if (location.x >= 600 && location.x <= 730 && location.y >= 376 && location.y <= 423)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(7)->price && upgradeList.at(7)->price != 0)
-		{
-			upgradeList.at(7)->price = 0;
-		}
-	}
-	
-	//Upgrade 9
-	if (location.x >= 150 && location.x <= 280 && location.y >= 576 && location.y <= 623)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(8)->price && upgradeList.at(8)->price != 0)
-		{
-			upgradeList.at(8)->price = 0;
-		}
-	}
-	
-	//Upgrade 10
-	if (location.x >= 300 && location.x <= 430 && location.y >= 576 && location.y <= 623)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(9)->price && upgradeList.at(9)->price != 0)
-		{
-			upgradeList.at(9)->price = 0;
-		}
-	}
-
-	//Upgrade 11
-	if (location.x >= 450 && location.x <= 580 && location.y >= 576 && location.y <= 623)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(10)->price && upgradeList.at(10)->price != 0)
-		{
-			upgradeList.at(10)->price = 0;
-		}
-	}
-	
-	//Upgrade 12
-	if (location.x >= 600 && location.x <= 730 && location.y >= 576 && location.y <= 623)
-	{
-		if (m_dodgecoins_collected >= upgradeList.at(11)->price && upgradeList.at(11)->price != 0)
-		{
-			upgradeList.at(11)->price = 0;
-		}
-	}
-	
+	std::cout<< "mouse: "<< location.x << " " << location.y << "\n x:" << x << " y: " << y << "\n";
+		
 	//STARTBUTTON 
 	if (location.x >= 1000 && location.x <= 1130 && location.y >= 700 && location.y <= 747)
 	{
 		m_game_state = STATE_PLAYING;
+		startPlaying();
 	}
 	//MenueBUTTON 
 	if (location.x >= 100 && location.x <= 230 && location.y >= 700 && location.y <= 747)
@@ -227,7 +130,7 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 void GameState::startMini()
 {
 	m_game_state = STATE_MINI;
-	setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+	//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 	m_dodgecoins_collected = 0;
 	//m_dodgecoin_locations.clear();
 
@@ -266,10 +169,12 @@ void GameState::updateGameState()
 		{
 			case DIRECTION_LEFT:
 			delta = sf::Vector2f(-5,0);
+			m_velocity -= gravity/(rocket.aerodynamic/10);
 			break;
 
 			case DIRECTION_RIGHT:
 			delta = sf::Vector2f(5,0);
+			m_velocity -= gravity/(rocket.aerodynamic/10);
 			break;
 
 			default:
@@ -279,7 +184,6 @@ void GameState::updateGameState()
 		delta.y -= m_velocity;
 		
 		m_velocity -= gravity;
-//		std::cout<< "blub: " << m_velocity << "\n";
 		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
@@ -486,26 +390,31 @@ void GameState::loadUpgrades()
 	//Upgrade			 			 (int price,int type,float boost,int coolness,float aerodynamic,std::string name,std::string assetPath);
 	//teure/bessere Upgrades oben
 	//Bodies - Bietet Boost, Aerodynamic
-	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
-	upgradeList.push_back(new Upgrade(100,UPGRADE_BODY,50,0,25,"kawaii2","assets/kawaii_2.png"));
-	upgradeList.push_back(new Upgrade(25,UPGRADE_BODY,25,0,10,"kawaii","assets/kawaii.png"));
-	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,0,0,"Basis","assets/rocket_basic.png")); //Start
+	//upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"kawaii2","assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(250,UPGRADE_BODY,25,0,25,"kawaii","assets/kawaii.png"));
+	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,15,0,10,"Basis","assets/rocket_basic.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
-	//Sonnenbrille (500,UPGRADE_GOGGLES,0,8500,0,"Sonnenbrille",texturepath) -- Siegbedingung
-	//BRILLE2 (100,UPGRADE_GOGGLES,0,50,0,"BRILLE2",texturepath)
-	//Hornbrille (25,UPGRADE_GOGGLES,0,25,0,"Hornbrille",texturepath)
+	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_GOGGLES,0,50,0,"SimpleGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
 	
 	//WINGS - Bietet Aerodynamic, Coolness
-	//WINGEXTRA2 (500,UPGRADE_WINGS,0,501,50,"WINGEXTRA2",texturepath)
-	//WINGEXTRA	(100,UPGRADE_WINGS,0,25,25,"WINGEXTRA",texturepath)
-	//upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
-	upgradeList.push_back(new Upgrade(1,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_WINGS,0,501,50,"TopWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_WINGS,0,25,25,"SimpleWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
 	
 	//BOOSTER Bietet Boost
-	//TOPBOOSTER (500,UPGRADE_BOOSTER,25,0,0,"TOPBOOSTER",texturepath);
-	//BOOSTER(100,UPGRADE_BOOSTER,15,0,0,"BOOSTER",texturepath);
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BOOSTER,25,0,0,"Topbooster","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_BOOSTER,15,0,0,"Booster","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
 	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Balls","assets/rocket_balls.png"));
+	
+	//dummys for SHOP
+	while(upgradeList.size()%12 != 0)
+	{
+		upgradeList.push_back(new Upgrade(0,UPGRADE_DUMMY,0,0,0,"Leer","assets/dont_buy.png"));
+	}
 }
 
 void GameState::setGameState(int state)

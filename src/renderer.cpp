@@ -42,12 +42,16 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
     	m_wnd->close();
     }
-	if (!m_texture_upgrade_bought.loadFromFile("assets/na.png"))
+    if (!m_texture_item_bg.loadFromFile("assets/shop_item_bg.png"))
+	{
+    	m_wnd->close();
+    }
+	if (!m_texture_upgrade_bought.loadFromFile("assets/NV.png"))
 	{
 		m_wnd->close();
 	}
 	
-	if (!m_texture_fappsy.loadFromFile("assets/fappsi.png"))
+	if (!m_texture_fappsy.loadFromFile("assets/morefappfapp.png"))
 	{
 		m_wnd->close();
 	}
@@ -112,22 +116,6 @@ void Renderer::drawGame()
 	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
     m_wnd->setView(view);
 
-	
-
-	if(m_gst->getGameState() == STATE_MINI || m_gst->getGameState() == STATE_PLAYING)
-	{//Coin vector bauen
-		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
-		std::vector<sf::Vector2f>::iterator s_it;
-
-		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
-		{
-			// Coins einfügen
-			sf::Sprite sprite_dodgecoin;
-			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
-			sprite_dodgecoin.setPosition(*s_it);
-			m_wnd->draw(sprite_dodgecoin);
-		}
-	}
 	if(m_gst->getGameState() == STATE_MENU)
 	{
 		sf::Sprite sprite_startBg;
@@ -242,23 +230,32 @@ void Renderer::drawGame()
 		int numberOfUpgrades = upgrades->size();
 		sf::Sprite sprite_slot[12];
 		sf::Sprite sprite_button_slot[12];
+		sf::Sprite sprite_item_bg[12];
 		sf::Text text_slot[12];  
 		for(int i = 0; i < numberOfUpgrades; i++)
 		{
 			float x = 150 * (i %4 +1);
 			float y = 200 * (i/4 +1);
 			
+			sprite_item_bg[i].setPosition(x,y-100);
+			sprite_item_bg[i].setTexture(m_texture_item_bg);
+			sprite_item_bg[i].setColor(sf::Color(255,255,255,128));
+			m_wnd->draw(sprite_item_bg[i]);
+			
 			sprite_slot[i].setPosition(x, y-80);
 			sprite_slot[i].setTexture(upgrades->at(i)->texture);
 			text_slot[i].setFont(m_bold_font);
 			std::stringstream upgradeString;
 			upgradeString << upgrades->at(i)->name;
-			upgradeString << "\n \n\n\n\n\n Preis: ";
-			upgradeString << upgrades->at(i)->price;
+			if(upgrades->at(i)->price > 0)
+			{
+				upgradeString << "\n \n\n\n\n\n Preis: ";
+				upgradeString << upgrades->at(i)->price;
+			}
 			
 			text_slot[i].setString(upgradeString.str());
-			text_slot[i].setColor(sf::Color::White);
-			text_slot[i].setPosition(x, y-100);
+			text_slot[i].setColor(sf::Color::Black);
+			text_slot[i].setPosition(x+10, y-100);
 			text_slot[i].setCharacterSize(20);
 			m_wnd->draw(sprite_slot[i]);
 			m_wnd->draw(text_slot[i]);
@@ -276,286 +273,32 @@ void Renderer::drawGame()
 		}
 		
 		
-		/*//Upgrade 1
-		sf::Sprite sprite_slot1;
 		
-		if (upgrades->at(0)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot1.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot1.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot1.setPosition(150, 200);
-		sf::Text text_slot1;
-		text_slot1.setFont(m_bold_font);
-		text_slot1.setString("TEST");
-		text_slot1.setColor(sf::Color::White);
-		text_slot1.setPosition(150, 150);
-		m_wnd->draw(text_slot1);
-		m_wnd->draw(sprite_slot1);
-		
-		//Upgrade 2
-		sf::Sprite sprite_slot2;
-		if (upgrades->at(1)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot2.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot2.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot2.setPosition(300, 200);
-		sf::Text text_slot2;
-		text_slot2.setFont(m_bold_font);
-		text_slot2.setString("TEST");
-		text_slot2.setColor(sf::Color::White);
-		text_slot2.setPosition(300, 150);
-		m_wnd->draw(text_slot2);
-		m_wnd->draw(sprite_slot2);
-		
-		//Upgrade 3
-		sf::Sprite sprite_slot3;
-		if (upgrades->at(2)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot3.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot3.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot3.setPosition(450, 200);
-		sf::Text text_slot3;
-		text_slot3.setFont(m_bold_font);
-		text_slot3.setString("TEST");
-		text_slot3.setColor(sf::Color::White);
-		text_slot3.setPosition(450, 150);
-		m_wnd->draw(text_slot3);
-		m_wnd->draw(sprite_slot3);
-		
-		//Upgrade 4
-		sf::Sprite sprite_slot4;
-		if (upgrades->at(3)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot4.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot4.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot4.setPosition(600, 200);
-		sf::Text text_slot4;
-		text_slot4.setFont(m_bold_font);
-		text_slot4.setString("TEST");
-		text_slot4.setColor(sf::Color::White);
-		text_slot4.setPosition(600, 150);
-		m_wnd->draw(text_slot4);
-		m_wnd->draw(sprite_slot4);
-		/*
-		//Upgrade 5
-		sf::Sprite sprite_slot5;
-		if (upgrades->at(4)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot5.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot5.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot5.setPosition(150, 400);
-		sf::Text text_slot5;
-		text_slot5.setFont(m_bold_font);
-		text_slot5.setString("TEST");
-		text_slot5.setColor(sf::Color::White);
-		text_slot5.setPosition(150, 350);
-		m_wnd->draw(text_slot5);
-		m_wnd->draw(sprite_slot5);
-		
-		//Upgrade 6
-		sf::Sprite sprite_slot6;
-		if (upgrades->at(5)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot6.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot6.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot6.setPosition(300, 400);
-		sf::Text text_slot6;
-		text_slot6.setFont(m_bold_font);
-		text_slot6.setString("TEST");
-		text_slot6.setColor(sf::Color::White);
-		text_slot6.setPosition(300, 350);
-		m_wnd->draw(text_slot6);
-		m_wnd->draw(sprite_slot6);
-		
-		//Upgrade 7
-		sf::Sprite sprite_slot7;
-		if (upgrades->at(6)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot7.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot7.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot7.setPosition(450, 400);
-		sf::Text text_slot7;
-		text_slot7.setFont(m_bold_font);
-		text_slot7.setString("TEST");
-		text_slot7.setColor(sf::Color::White);
-		text_slot7.setPosition(450, 350);
-		m_wnd->draw(text_slot7);
-		m_wnd->draw(sprite_slot7);
-		
-		//Upgrade 8
-		sf::Sprite sprite_slot8;
-		if (upgrades->at(7)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot8.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot8.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot8.setTexture(m_texture_slot1);
-		sprite_slot8.setPosition(600, 400);
-		sf::Text text_slot8;
-		text_slot8.setFont(m_bold_font);
-		text_slot8.setString("TEST");
-		text_slot8.setColor(sf::Color::White);
-		text_slot8.setPosition(600, 350);
-		m_wnd->draw(text_slot8);
-		m_wnd->draw(sprite_slot8);
-		
-		//Upgrade 9
-		sf::Sprite sprite_slot9;
-		if (upgrades->at(8)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot9.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot9.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot9.setPosition(150, 600);
-		sf::Text text_slot9;
-		text_slot9.setFont(m_bold_font);
-		text_slot9.setString("TEST");
-		text_slot9.setColor(sf::Color::White);
-		text_slot9.setPosition(150, 550);
-		m_wnd->draw(text_slot9);
-		m_wnd->draw(sprite_slot9);
-		
-		//Upgrade 10
-		sf::Sprite sprite_slot10;
-		if (upgrades->at(9)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot10.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot10.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot10.setPosition(300, 600);
-		sf::Text text_slot10;
-		text_slot10.setFont(m_bold_font);
-		text_slot10.setString("TEST");
-		text_slot10.setColor(sf::Color::White);
-		text_slot10.setPosition(300, 550);
-		m_wnd->draw(text_slot10);
-		m_wnd->draw(sprite_slot10);
-		
-		//Upgrade 11
-		sf::Sprite sprite_slot11;
-		if (upgrades->at(10)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot11.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot11.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot11.setPosition(450, 600);
-		sf::Text text_slot11;
-		text_slot11.setFont(m_bold_font);
-		text_slot11.setString("TEST");
-		text_slot11.setColor(sf::Color::White);
-		text_slot11.setPosition(450, 550);
-		m_wnd->draw(text_slot11);
-		m_wnd->draw(sprite_slot11);
-		
-		//Upgrade 12
-		sf::Sprite sprite_slot12;
-		if (upgrades->at(11)->price != 0)	// if nicht gekauft / Seite
-		{
-			sprite_slot12.setTexture(m_texture_slot1);
-		}
-		else // if gekauft / Seite
-		{
-			sprite_slot12.setTexture(m_texture_upgrade_bought);
-		}
-		sprite_slot12.setPosition(600, 600);
-		sf::Text text_slot12;
-		text_slot12.setFont(m_bold_font);
-		text_slot12.setString("TEST");
-		text_slot12.setColor(sf::Color::White);
-		text_slot12.setPosition(600, 550);
-		m_wnd->draw(text_slot12);
-		m_wnd->draw(sprite_slot12);
-		
-		*/
+		Rocket r = m_gst->rocket;
+		r.updateStats();
+		std::stringstream statsString;
+		statsString << "Stats: \n";
+		statsString << "Startspeed: " << r.boost << "\n";
+		statsString << "Aerodynamic: " << r.aerodynamic << "\n";
+		statsString << "Coolness: " << r.coolness << "\n";
 		//Stats
 		sf::Text text_stats;
 		text_stats.setFont(m_bold_font);
-		text_stats.setString("Stats:");
+		text_stats.setString(statsString.str());
 		text_stats.setColor(sf::Color::White);
 		text_stats.setPosition(1000, 450);
 		m_wnd->draw(text_stats);
 		
-		sf::Text text_stats_startspeed;
-		text_stats_startspeed.setFont(m_bold_font);
-		text_stats_startspeed.setString("Startspeed: ");
-		text_stats_startspeed.setColor(sf::Color::White);
-		text_stats_startspeed.setPosition(1000, 500);
-		m_wnd->draw(text_stats_startspeed);
+		//coins
+		std::stringstream str;
+		str << "Coins: " << m_gst->getTotalDodgecoins();	
 		
-		sf::Text text_stats_startspeed_number;
-		text_stats_startspeed_number.setFont(m_bold_font);
-		text_stats_startspeed_number.setString("X");
-		text_stats_startspeed_number.setColor(sf::Color::White);
-		text_stats_startspeed_number.setPosition(1200, 500);
-		m_wnd->draw(text_stats_startspeed_number);
-		
-		sf::Text text_stats_aerodynamic;
-		text_stats_aerodynamic.setFont(m_bold_font);
-		text_stats_aerodynamic.setString("Aerodynamic: ");
-		text_stats_aerodynamic.setColor(sf::Color::White);
-		text_stats_aerodynamic.setPosition(1000, 550);
-		m_wnd->draw(text_stats_aerodynamic);
-		
-		sf::Text text_stats_aerodynamic_number;
-		text_stats_aerodynamic_number.setFont(m_bold_font);
-		text_stats_aerodynamic_number.setString("X");
-		text_stats_aerodynamic_number.setColor(sf::Color::White);
-		text_stats_aerodynamic_number.setPosition(1200, 550);
-		m_wnd->draw(text_stats_aerodynamic_number);
-		
-		sf::Text text_stats_coolness;
-		text_stats_coolness.setFont(m_bold_font);
-		text_stats_coolness.setString("Coolness: ");
-		text_stats_coolness.setColor(sf::Color::White);
-		text_stats_coolness.setPosition(1000, 600);
-		m_wnd->draw(text_stats_coolness);
-		
-		sf::Text text_stats_coolness_number;
-		text_stats_coolness_number.setFont(m_bold_font);
-		text_stats_coolness_number.setString("X");
-		text_stats_coolness_number.setColor(sf::Color::White);
-		text_stats_coolness_number.setPosition(1200, 600);
-		m_wnd->draw(text_stats_coolness_number);
+		sf::Text text_coins;
+		text_coins.setFont(m_bold_font);
+		text_coins.setString(str.str());
+		text_coins.setCharacterSize(30);
+		text_coins.setPosition(sf::Vector2f(1000,100));
+		m_wnd->draw(text_coins);
 	}
 	else if(m_gst->getGameState() == STATE_CONTROLS)
 	{
@@ -576,10 +319,7 @@ void Renderer::drawGame()
 	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
 	{
-		std::stringstream str;
-		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
-		
-		
+			
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
@@ -590,7 +330,7 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_background);		
 	
 		//weltraum beginnt bei 1500
-		float transparency = 255 - m_gst->getPlayerLocation().y/1500; 
+		float transparency = 255 - m_gst->getPlayerLocation().y/(1500*100); 
 	
 		sf::Sprite sprite_background2;
 		sprite_background2.setTexture(m_texture_background2);
@@ -605,6 +345,23 @@ void Renderer::drawGame()
 		sprite_startBg.setPosition(0,0);
 		m_wnd->draw(sprite_startBg);
 
+		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
+		std::vector<sf::Vector2f>::iterator s_it;
+
+		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_dodgecoin;
+			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
+			sprite_dodgecoin.setPosition(*s_it);
+			m_wnd->draw(sprite_dodgecoin);
+		}	
+		
+		
+		//stats
+		std::stringstream str;
+		str << "Height: " << -m_gst->getPlayerLocation().y/100 << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
+		
 		// Game texts
 		sf::Text text_height;
 		text_height.setFont(m_bold_font);
@@ -620,28 +377,43 @@ void Renderer::drawGame()
 		sf::View nils_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(nils_view);
    		
-		// Coins collected text		
-		std::stringstream str;		
-		str << "Coins: " << m_gst->getCollectedDodgecoinCount();	
+		
 		
 		sf::Sprite sprite_minibackground;
 		sprite_minibackground.setTexture(m_texture_minibackground);
 		sprite_minibackground.setTextureRect(sf::IntRect(0,0,m_wnd->getSize().x,m_wnd->getSize().y));
 		m_wnd->draw(sprite_minibackground);
 		
+		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
+		std::vector<sf::Vector2f>::iterator s_it;
+
+		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
+		{
+			// Coins einfügen
+			sf::Sprite sprite_dodgecoin;
+			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
+			sprite_dodgecoin.setPosition(*s_it);
+			m_wnd->draw(sprite_dodgecoin);
+		}
+		
 		sf::Sprite sprite_achieve;
 		sprite_achieve.setTexture(m_texture_jung_und_geld); 
 		sprite_achieve.setPosition(294,50);
 		m_wnd->draw(sprite_achieve);
 		
-		/*
-sf::Text text_coins;
+		//stats
+		// Coins collected text		
+		std::stringstream str;		
+		str << "Coins: " << m_gst->getCollectedDodgecoinCount();		
+		
+		
+		sf::Text text_coins;
 		text_coins.setFont(m_bold_font);
 		text_coins.setString(str.str());
 		text_coins.setCharacterSize(30);
 		text_coins.setPosition(sf::Vector2f(30,m_gst->getPlayerLocation().y));
 		m_wnd->draw(text_coins);
-	*/
+	
 		m_gst->nils.setLocation(m_gst->getPlayerLocation());  //panda
 
 		m_wnd->draw(m_gst->nils);

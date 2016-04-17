@@ -59,6 +59,8 @@ public:
 	std::vector<Upgrade*> *getUpgradeList();
 	Rocket rocket;
 	Nils nils;
+
+	
 private:
 	int m_game_state;
 	int m_size_x;
@@ -76,6 +78,8 @@ private:
 	
 	std::vector<Upgrade*> upgradeList;
 	void loadUpgrades();
+	bool upgradesLoaded;
+	SoundHandler* s;
 		
 };
 

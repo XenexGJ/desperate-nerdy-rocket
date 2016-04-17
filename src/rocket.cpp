@@ -14,6 +14,11 @@ Rocket::Rocket(std::vector<Upgrade*> upgradeList)
 	rocketwings  = NULL;
 	rocketbooster  = NULL;
 	rockettail  = NULL;
+	
+	coolness = 0;
+	boost = 0;
+	aerodynamic = 0;
+	
    
 	//std::cout << "ittt\n";
     
@@ -102,6 +107,10 @@ void Rocket::setLocation(sf::Vector2f loc)
  
 void Rocket::updateStats()
 {
+	coolness = 0;
+	boost = 0;
+	aerodynamic = 0;
+	
 	if(rocketbody)
 		boost += rocketbody->boost;
 	if(rocketgoggles)

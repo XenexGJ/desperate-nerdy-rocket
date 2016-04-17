@@ -33,6 +33,17 @@ void EventHandler::handleEvents()
         		m_gst->setGameState(STATE_CONTROLS);
         	}
         }
+        //restart game when r pressed
+        else if (m_gst->getGameState() == STATE_PLAYING)
+        {
+        	if(event.type == sf::Event::KeyPressed)
+			{
+				if(event.key.code == sf::Keyboard::R)
+				{
+					m_gst->startPlaying();
+				}
+			}
+        }
         else if (event.type == sf::Event::KeyPressed && m_gst->getGameState() == STATE_READY_TO_LAUNCH)
         {
         	// Start/continue playing when SPACE is pressed
@@ -59,18 +70,17 @@ void EventHandler::handleEvents()
         	*/
         }
         // TEST: Open shop when B is pressed
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_PLAYING)
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_PLAYING)
         {
         	//m_gst->startShop();
-			m_gst->setGameState(STATE_SHOP);
-        }
+			m_gst->startShop();
+        }*/
 
 	//SUPER SPECIAL MINIGAME
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && m_gst->getGameState() == STATE_PLAYING)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && m_gst->getGameState() == STATE_SHOP)
     {
 			//m_gst->startShop();
 		m_gst->setGameState(STATE_MINI);
-		std::cout << "event start mini" <<std::endl;
 		m_gst->startMini();
     }
 
@@ -115,6 +125,10 @@ void EventHandler::handleEvents()
 			if(event.key.code == sf::Keyboard::M)
 			{
 				s->toggleMute();
+			}
+			else if(event.key.code == sf::Keyboard::C)
+			{
+				m_gst->setTotalDodgecoins(m_gst->getTotalDodgecoins()+10);
 			}
 		}
     }
