@@ -26,6 +26,7 @@ private:
 	sf::Texture m_texture_play;
 	sf::Texture m_texture_help;
 	sf::Texture m_texture_quit;
+	sf::Texture m_texture_credits;
 	
 	
 	//Main Game

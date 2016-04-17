@@ -51,7 +51,7 @@ void GameState::startPlaying()
 	rocket = Rocket(upgradeList);
 	rocket.updateStats();
 	
-	setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
+	//setPlayerLocation(sf::Vector2f(640, 700)); // Start zentriert auf Bodenhöhe
 	
 	m_velocity = rocket.boost;
 	//std::cout << rocket.boost << "\n";
@@ -68,6 +68,11 @@ void GameState::startShop()
 	m_game_state = STATE_SHOP;
 	s->playSound(SOUND_FFF);
 	//loadUpgrades();
+}
+
+void GameState::startCredits()
+{
+	m_game_state = STATE_CREDITS;
 }
 
 void GameState::shopMouseHandling(sf::Vector2i location)
@@ -93,7 +98,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	//STARTBUTTON 
 	if (location.x >= 1000 && location.x <= 1130 && location.y >= 700 && location.y <= 747)
 	{
-		m_game_state = STATE_PLAYING;
+		m_game_state = STATE_READY_TO_LAUNCH;
 		startPlaying();
 	}
 	//MenueBUTTON 
@@ -101,6 +106,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	{
 		m_game_state = STATE_MENU;
 	}
+	
 	
 	//Stats Updaten
 	rocket.updateStats();
@@ -114,15 +120,19 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		startShop();
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 350 && location.y <= 506)
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 600 && location.y <= 656)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
-	}//*/
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
+	{
+		startCredits();
+	}
 
 }
 
@@ -319,6 +329,10 @@ void GameState::updateGameState()
 			}
 		}
 	}		
+	
+	else if(m_game_state == STATE_CREDITS)
+	{
+	}	
 	else // Do nothing if the game is not in mini state
 	{		
 		return;
@@ -402,9 +416,9 @@ void GameState::loadUpgrades()
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,15,0,10,"Basis","assets/rocket_basic.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
-	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(100,UPGRADE_GOGGLES,0,50,0,"SimpleGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/cool.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_GOGGLES,0,50,0,"Mono-nokel","assets/Monokel.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/horn.png")); //Ersetze assets/Name sinvoll
 	
 	//WINGS - Bietet Aerodynamic, Coolness
 	upgradeList.push_back(new Upgrade(500,UPGRADE_WINGS,0,501,50,"TopWings","assets/waffen.png")); //Ersetze assets/Name sinvoll

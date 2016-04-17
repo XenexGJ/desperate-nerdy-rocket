@@ -87,6 +87,11 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
+
+	if (!m_texture_credits.loadFromFile("assets/credits.png"))
+	{
+		m_wnd->close();
+	}
 	
 	if (!m_texture_papa.loadFromFile("assets/cola_anne.png"))
 	{
@@ -114,8 +119,13 @@ void Renderer::drawGame()
 {
 	m_wnd->clear();
 
-	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
-    m_wnd->setView(view);
+	sf::View view(sf::Vector2f(640, m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
+	m_wnd->setView(view);
+	
+	//sf::View view_shop(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
+    //m_wnd->setView(view_shop);
+
+
 
 	if(m_gst->getGameState() == STATE_MENU)
 	{
@@ -140,7 +150,7 @@ void Renderer::drawGame()
 		text_help.setColor(sf::Color::White);
 		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there! \nStart with the <SPACE> key.");
 		text_help.setCharacterSize(30);
-		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
+		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x - text_help.getLocalBounds().width/2,500));
 		m_wnd->draw(text_help);
 		
 		//Start Button
@@ -152,14 +162,22 @@ void Renderer::drawGame()
 		//Hilfe Button
 		sf::Sprite sprite_help;
 		sprite_help.setTexture(m_texture_help); 
-		sprite_help.setPosition(100,400);
+		sprite_help.setPosition(100,350);
 		m_wnd->draw(sprite_help);
 		
 		//Beenden Button
 		sf::Sprite sprite_quit;
 		sprite_quit.setTexture(m_texture_quit); 
-		sprite_quit.setPosition(100,600);
+		sprite_quit.setPosition(100,500);
 		m_wnd->draw(sprite_quit);
+		
+		//Credits Button
+		sf::Sprite sprite_credits;
+		sprite_credits.setTexture(m_texture_credits); 
+		sprite_credits.setPosition(100,650); 
+		m_wnd->draw(sprite_credits);
+		
+		
 		
 	}
 	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
@@ -372,7 +390,7 @@ void Renderer::drawGame()
 		
 		m_wnd->draw(m_gst->rocket);	
 	}
-	else if (m_gst->getGameState() == STATE_MINI)
+	else if(m_gst->getGameState() == STATE_MINI)
 	{
 		sf::View nils_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(nils_view);
