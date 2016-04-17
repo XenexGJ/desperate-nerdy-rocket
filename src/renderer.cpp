@@ -87,10 +87,11 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
 		m_wnd->close();
 	}
-
 	
-	
-
+	if (!m_texture_papa.loadFromFile("assets/cola_anne.png"))
+	{
+		m_wnd->close();
+	}
 
     // Load all the fonts
     if (!m_normal_font.loadFromFile("assets/Roboto-Regular.ttf"))
@@ -318,8 +319,7 @@ void Renderer::drawGame()
 		m_wnd->draw(text_controls);
 	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
-	{
-			
+	{			
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
@@ -417,8 +417,30 @@ void Renderer::drawGame()
 		m_gst->nils.setLocation(m_gst->getPlayerLocation());  //panda
 
 		m_wnd->draw(m_gst->nils);
-
 	}
-
-	m_wnd->display();
+	else if (m_gst->getGameState() == STATE_END)
+	{
+		//Zeichne Hintergrund
+		sf::Sprite sprite_background;
+		sprite_background.setTexture(m_texture_background);
+		sf::Vector2f textureSize(80,80);
+		float textureLocation_y = fmod(m_gst->getPlayerLocation().y,textureSize.y);
+		sprite_background.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
+		sprite_background.setPosition(0,m_gst->getPlayerLocation().y - 400);
+		m_wnd->draw(sprite_background);		
+		
+		//Zeichne Raketen
+		sf::Sprite sprite_papa;
+		sf::Vector2f location;
+		location.x = 680;
+		location.y = 400;
+		m_gst->rocket.setLocation(location);
+		m_wnd->draw(m_gst->rocket);
+		
+		sprite_papa.setPosition(600,400);
+		sprite_papa.setTexture(m_texture_papa);
+		m_wnd->draw(sprite_papa);
+		
+		m_wnd->display();
+	}
 }

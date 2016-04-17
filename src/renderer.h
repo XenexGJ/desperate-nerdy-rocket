@@ -34,6 +34,7 @@ private:
 	sf::Texture m_texture_player;
 	sf::Texture m_texture_dodgecoin;
 	sf::Texture m_texture_startBg;
+	sf::Texture m_texture_papa;
 	//Shop
 	sf::Texture m_texture_shopbackground;
 	sf::Texture m_texture_graffitti;

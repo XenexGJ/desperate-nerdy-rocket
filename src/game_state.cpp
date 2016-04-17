@@ -147,6 +147,7 @@ void GameState::startMini()
 	
 }
 
+
 void GameState::updateGameState()
 {
 	// Do nothing if the game is not in playing state
@@ -184,6 +185,11 @@ void GameState::updateGameState()
 		delta.y -= m_velocity;
 		
 		m_velocity -= gravity;
+		
+		if (getPlayerLocation().y/100 >= 4500 && rocket.coolness >= 9000)
+		{
+			setGameState(STATE_END);
+		}
 		
 		// Apply delta to the player position
 		sf::Vector2f new_location(getPlayerLocation() + delta);
@@ -311,7 +317,7 @@ void GameState::updateGameState()
 				// Advance iterator to next coin
 				s_it++;
 			}
-	}
+		}
 	}		
 	else // Do nothing if the game is not in mini state
 	{		
