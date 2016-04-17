@@ -112,22 +112,6 @@ void Renderer::drawGame()
 	sf::View view(sf::Vector2f(640,m_gst->getPlayerLocation().y), sf::Vector2f(1280,800));
     m_wnd->setView(view);
 
-	
-
-	/*if(m_gst->getGameState() == STATE_MINI || m_gst->getGameState() == STATE_PLAYING)
-	{//Coin vector bauen
-		std::vector<sf::Vector2f> dodgecoin = m_gst->getDodgecoinLocations();
-		std::vector<sf::Vector2f>::iterator s_it;
-
-		for(s_it = dodgecoin.begin();s_it != dodgecoin.end();s_it++)
-		{
-			// Coins einfügen
-			sf::Sprite sprite_dodgecoin;
-			sprite_dodgecoin.setTexture(m_texture_dodgecoin);
-			sprite_dodgecoin.setPosition(*s_it);
-			m_wnd->draw(sprite_dodgecoin);
-		}
-	}*/
 	if(m_gst->getGameState() == STATE_MENU)
 	{
 		// Menu texts
@@ -277,6 +261,18 @@ void Renderer::drawGame()
 		text_stats.setColor(sf::Color::White);
 		text_stats.setPosition(1000, 450);
 		m_wnd->draw(text_stats);
+		
+		//coins
+		std::stringstream str;
+		str << "Coins: " << m_gst->getCollectedDodgecoinCount();	
+		
+		
+		sf::Text text_coins;
+		text_coins.setFont(m_bold_font);
+		text_coins.setString(str.str());
+		text_coins.setCharacterSize(30);
+		text_coins.setPosition(sf::Vector2f(1000,m_gst->getPlayerLocation().y -500));
+		m_wnd->draw(text_coins);
 	}
 	else if(m_gst->getGameState() == STATE_CONTROLS)
 	{
@@ -297,10 +293,7 @@ void Renderer::drawGame()
 	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
 	{
-		std::stringstream str;
-		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
-		
-		
+			
 		//zeichne hintergrund
 		sf::Sprite sprite_background;
 		sprite_background.setTexture(m_texture_background);
@@ -343,6 +336,10 @@ void Renderer::drawGame()
 		}	
 		
 		
+		//stats
+		std::stringstream str;
+		str << "Height: " << -m_gst->getPlayerLocation().y << "\nVelocity "<< m_gst->getVelocity() << "\nCoins: " << m_gst->getCollectedDodgecoinCount();		
+		
 		// Game texts
 		sf::Text text_height;
 		text_height.setFont(m_bold_font);
@@ -358,9 +355,7 @@ void Renderer::drawGame()
 		sf::View nils_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
    		m_wnd->setView(nils_view);
    		
-		// Coins collected text		
-		std::stringstream str;		
-		str << "Coins: " << m_gst->getCollectedDodgecoinCount();	
+		
 		
 		sf::Sprite sprite_minibackground;
 		sprite_minibackground.setTexture(m_texture_minibackground);
@@ -384,14 +379,19 @@ void Renderer::drawGame()
 		sprite_achieve.setPosition(294,50);
 		m_wnd->draw(sprite_achieve);
 		
-		/*
-sf::Text text_coins;
+		//stats
+		// Coins collected text		
+		std::stringstream str;		
+		str << "Coins: " << m_gst->getCollectedDodgecoinCount();		
+		
+		
+		sf::Text text_coins;
 		text_coins.setFont(m_bold_font);
 		text_coins.setString(str.str());
 		text_coins.setCharacterSize(30);
 		text_coins.setPosition(sf::Vector2f(30,m_gst->getPlayerLocation().y));
 		m_wnd->draw(text_coins);
-	*/
+	
 		m_gst->nils.setLocation(m_gst->getPlayerLocation());  //panda
 
 		m_wnd->draw(m_gst->nils);
