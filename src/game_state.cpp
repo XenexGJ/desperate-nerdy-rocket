@@ -396,9 +396,9 @@ void GameState::loadUpgrades()
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,15,0,10,"Basis","assets/rocket_basic.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
-	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(100,UPGRADE_GOGGLES,0,50,0,"SimpleGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
-	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/cool.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_GOGGLES,0,50,0,"Mono-nokel","assets/Monokel.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/horn.png")); //Ersetze assets/Name sinvoll
 	
 	//WINGS - Bietet Aerodynamic, Coolness
 	upgradeList.push_back(new Upgrade(500,UPGRADE_WINGS,0,501,50,"TopWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
