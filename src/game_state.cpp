@@ -486,32 +486,28 @@ void GameState::loadUpgrades()
 	//Upgrade			 			 (int price,int type,float boost,int coolness,float aerodynamic,std::string name,std::string assetPath);
 	//teure/bessere Upgrades oben
 	//Bodies - Bietet Boost, Aerodynamic
-	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
-	upgradeList.push_back(new Upgrade(100,UPGRADE_BODY,50,0,25,"kawaii2","assets/kawaii_2.png"));
-	upgradeList.push_back(new Upgrade(25,UPGRADE_BODY,25,0,10,"kawaii","assets/kawaii.png"));
+	//upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"COLA","assets/cola_anne.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BODY,75,0,50,"kawaii2","assets/kawaii_2.png"));
+	upgradeList.push_back(new Upgrade(100,UPGRADE_BODY,35,0,25,"kawaii","assets/kawaii.png"));
 	upgradeList.push_back(new Upgrade(0,UPGRADE_BODY,10,0,0,"Basis","assets/rocket_basic.png")); //Start
 	
 	//GOGGLES - Bietet Coolness
-	//Sonnenbrille (500,UPGRADE_GOGGLES,0,8500,0,"Sonnenbrille",texturepath) -- Siegbedingung
-	//BRILLE2 (100,UPGRADE_GOGGLES,0,50,0,"BRILLE2",texturepath)
-	//Hornbrille (25,UPGRADE_GOGGLES,0,25,0,"Hornbrille",texturepath)
+	upgradeList.push_back(new Upgrade(500,UPGRADE_GOGGLES,0,8500,0,"TopGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_GOGGLES,0,50,0,"SimpleGoggles","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_GOGGLES,0,25,0,"Hornbrille","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
 	
 	//WINGS - Bietet Aerodynamic, Coolness
-	//WINGEXTRA2 (500,UPGRADE_WINGS,0,501,50,"WINGEXTRA2",texturepath)
-	//WINGEXTRA	(100,UPGRADE_WINGS,0,25,25,"WINGEXTRA",texturepath)
-	//upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
-	upgradeList.push_back(new Upgrade(1,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
+	upgradeList.push_back(new Upgrade(500,UPGRADE_WINGS,0,501,50,"TopWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_WINGS,0,25,25,"SimpleWings","assets/waffen.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(25,UPGRADE_WINGS,0,10,10,"Waffen","assets/waffen.png"));
 	
 	//BOOSTER Bietet Boost
-	//TOPBOOSTER (500,UPGRADE_BOOSTER,25,0,0,"TOPBOOSTER",texturepath);
-	//BOOSTER(100,UPGRADE_BOOSTER,15,0,0,"BOOSTER",texturepath);
+	upgradeList.push_back(new Upgrade(500,UPGRADE_BOOSTER,25,0,0,"Topbooster","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
+	upgradeList.push_back(new Upgrade(100,UPGRADE_BOOSTER,15,0,0,"Booster","assets/rocket_balls.png")); //Ersetze assets/Name sinvoll
 	upgradeList.push_back(new Upgrade(25,UPGRADE_BOOSTER,5,0,0,"Balls","assets/rocket_balls.png"));
 	
-	
 	//dummys for SHOP
-	int anzahlDummys = 12 - upgradeList.size()%12;
-	//std::cout << "dummy: " << anzahlDummys << "\n";
-	for( int i = 0; i < anzahlDummys; i++)
+	while(upgradeList.size()%12 != 0)
 	{
 		upgradeList.push_back(new Upgrade(0,UPGRADE_DUMMY,0,0,0,"Leer","assets/dont_buy.png"));
 	}
