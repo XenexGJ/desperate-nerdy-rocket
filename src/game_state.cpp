@@ -207,6 +207,7 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 void GameState::startMini()
 {
 	m_game_state = STATE_MINI;
+	setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
 	m_dodgecoins_collected = 0;
 	//m_dodgecoin_locations.clear();
 
@@ -277,8 +278,10 @@ void GameState::updateGameState()
 		if(new_location.y < 0 && m_velocity < 0)
 		{
 			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+			m_dodgecoins_collected =0;
 			std::cout << "totalcoins: " << total_dodgecoins <<std::endl;
 			startShop();
+			
 		}
 		// Bounding box of the player
 		sf::FloatRect player_box(getPlayerLocation(),sf::Vector2f(ROBOT_WIDTH,ROBOT_HEIGHT));
@@ -352,6 +355,7 @@ void GameState::updateGameState()
 		if(new_location.x >=1200)
 		{
 			setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+			m_dodgecoins_collected =0;
 			startShop();
 		}	
 		
