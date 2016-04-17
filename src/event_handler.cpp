@@ -62,7 +62,7 @@ void EventHandler::handleEvents()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) && m_gst->getGameState() == STATE_PLAYING)
         {
         	//m_gst->startShop();
-			m_gst->setGameState(STATE_SHOP);
+			m_gst->startShop();
         }
 
 	//SUPER SPECIAL MINIGAME
