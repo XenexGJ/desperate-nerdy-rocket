@@ -142,7 +142,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	//MenueBUTTON 
 	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
 	{
-		m_game_state = STATE_MENU;
+		//menu();//m_game_state = STATE_MENU;
 	}
 	
 	
@@ -398,6 +398,11 @@ void GameState::updateGameState()
 void GameState::setPlayerMovementDirection(int direction)
 {
 	m_player_direction = direction;
+}
+
+void GameState::menu()
+{
+	m_game_state = STATE_MENU;
 }
 
 //CHECKEN 
