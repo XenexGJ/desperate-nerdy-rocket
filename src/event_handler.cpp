@@ -33,6 +33,17 @@ void EventHandler::handleEvents()
         		m_gst->setGameState(STATE_CONTROLS);
         	}
         }
+        //restart game when r pressed
+        else if (m_gst->getGameState() == STATE_PLAYING)
+        {
+        	if(event.type == sf::Event::KeyPressed)
+			{
+				if(event.key.code == sf::Keyboard::R)
+				{
+					m_gst->startPlaying();
+				}
+			}
+        }
         else if (event.type == sf::Event::KeyPressed && m_gst->getGameState() == STATE_READY_TO_LAUNCH)
         {
         	// Start/continue playing when SPACE is pressed
@@ -114,6 +125,10 @@ void EventHandler::handleEvents()
 			if(event.key.code == sf::Keyboard::M)
 			{
 				s->toggleMute();
+			}
+			else if(event.key.code == sf::Keyboard::C)
+			{
+				m_gst->setTotalDodgecoins(m_gst->getTotalDodgecoins()+10);
 			}
 		}
     }
