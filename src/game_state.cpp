@@ -40,7 +40,7 @@ int GameState::getGameState()
 
 void GameState::startPlaying()
 {
-	//m_game_state = STATE_PLAYING;
+	m_game_state = STATE_PLAYING;
 
 	// Reset all values
 	m_dodgecoins_collected = 0;
@@ -70,6 +70,35 @@ void GameState::startShop()
 	//loadUpgrades();
 }
 
+//start Minigame
+void GameState::startMini()
+{
+	m_game_state = STATE_MINI;
+	//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
+	m_dodgecoins_collected = 0;
+	//m_dodgecoin_locations.clear();
+
+	//std::cout << "start mini" <<std::endl;
+	setPlayerMovementDirection (DIRECTION_NONE);
+	setPlayerLocation(sf::Vector2f (50,700));
+	
+	//ADD COIN
+		for (int i=0; i<10; i++)
+		{
+			sf::Vector2f newcoin;
+			m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y));
+		}
+	
+}
+
+void GameState::readyToLaunch()
+{
+	m_game_state = STATE_READY_TO_LAUNCH;
+	setPlayerMovementDirection (DIRECTION_NONE);
+	//setPlayerLocation(sf::Vector2f(640, 700));
+}
+
+
 void GameState::shopMouseHandling(sf::Vector2i location)
 {
 	int x = (location.x -200) /150;
@@ -94,7 +123,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	if (location.x >= 1000 && location.x <= 1130 && location.y >= 700 && location.y <= 747)
 	{
 		m_game_state = STATE_READY_TO_LAUNCH;
-		startPlaying();
+		//startPlaying();
 	}
 	//MenueBUTTON 
 	if (location.x >= 100 && location.x <= 230 && location.y >= 700 && location.y <= 747)
@@ -107,6 +136,14 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 
 }
 
+void GameState::controlMouseHandling(sf::Vector2i location)
+{
+	//std::cout<<location.x << "  " << location.y << "\n";
+	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256) ///////// FIX LOCATIONS
+	{	
+		m_game_state = STATE_MENU;
+	}
+}
 void GameState::menuMouseHandling(sf::Vector2i location)
 {
 	std::cout<<location.x << "  " << location.y << "\n";
@@ -126,26 +163,6 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 
 }
 
-//start Minigame
-void GameState::startMini()
-{
-	m_game_state = STATE_MINI;
-	//setTotalDodgecoins(total_dodgecoins + m_dodgecoins_collected);
-	m_dodgecoins_collected = 0;
-	//m_dodgecoin_locations.clear();
-
-	//std::cout << "start mini" <<std::endl;
-	setPlayerMovementDirection (DIRECTION_NONE);
-	setPlayerLocation(sf::Vector2f (50,700));
-	
-	//ADD COIN
-		for (int i=0; i<10; i++)
-		{
-			sf::Vector2f newcoin;
-			m_dodgecoin_locations.push_back(sf::Vector2f(rand()%1280,getPlayerLocation().y));
-		}
-	
-}
 
 void GameState::updateGameState()
 {
@@ -158,7 +175,7 @@ void GameState::updateGameState()
 	}
 	else if (m_game_state == STATE_SHOP)
 	{
-		//TODO: START BUTTON (IM RENDERER BILD ERZEUGEN)
+		
 	}
 	else if(m_game_state == STATE_PLAYING)
 	{

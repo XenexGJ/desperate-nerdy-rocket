@@ -37,8 +37,10 @@ public:
 	int getGameState();
 	void startPlaying();
 	void startShop();
+	void readyToLaunch();
 	void shopMouseHandling(sf::Vector2i location);
 	void menuMouseHandling(sf::Vector2i location);
+	void controlMouseHandling(sf::Vector2i location);
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
