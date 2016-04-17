@@ -158,6 +158,7 @@ void GameState::controlMouseHandling(sf::Vector2i location)
 	{	
 		m_game_state = STATE_MENU;
 	}
+	
 }
 void GameState::menuMouseHandling(sf::Vector2i location)
 {

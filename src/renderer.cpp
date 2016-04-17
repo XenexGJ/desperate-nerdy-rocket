@@ -204,7 +204,7 @@ void Renderer::drawGame()
 		sf::Text text_credits;
 		text_credits.setFont(m_bold_font);
 		text_credits.setString("CREDITS");
-		text_credits.setCharacterSize(50);
+		text_credits.setCharacterSize(80);
 		text_credits.setColor(sf::Color::White);
 		text_credits.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_credits.getLocalBounds().width/2,50));
 		m_wnd->draw(text_credits);
@@ -394,6 +394,12 @@ void Renderer::drawGame()
 		text_controls.setCharacterSize(20);
 		text_controls.setPosition(sf::Vector2f(m_gst->getPlayerLocation().x  -120 ,m_gst->getPlayerLocation().y +100));
 		m_wnd->draw(text_controls);
+		
+		//Controls Button Back
+		sf::Sprite sprite_cback;
+		sprite_cback.setTexture(m_texture_back); 
+		sprite_cback.setPosition(100,700); 
+		m_wnd->draw(sprite_cback);
 	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
 	{			
