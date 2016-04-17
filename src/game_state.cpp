@@ -70,6 +70,11 @@ void GameState::startShop()
 	//loadUpgrades();
 }
 
+void GameState::startCredits()
+{
+	m_game_state = STATE_CREDITS;
+}
+
 void GameState::shopMouseHandling(sf::Vector2i location)
 {
 	int x = (location.x -200) /150;
@@ -102,6 +107,7 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 		m_game_state = STATE_MENU;
 	}
 	
+	
 	//Stats Updaten
 	rocket.updateStats();
 
@@ -114,15 +120,19 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 	{	
 		startShop();
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 400 && location.y <= 456)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 350 && location.y <= 506)
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 600 && location.y <= 656)
+	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
-	}//*/
+	}
+	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
+	{
+		startCredits();
+	}
 
 }
 
@@ -312,7 +322,12 @@ void GameState::updateGameState()
 				s_it++;
 			}
 	}
-	}		
+	}
+	
+	else if(m_game_state == STATE_CREDITS)
+	{
+		
+	}	
 	else // Do nothing if the game is not in mini state
 	{		
 		return;
