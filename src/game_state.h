@@ -41,6 +41,7 @@ public:
 	void startCredits();
 	void shopMouseHandling(sf::Vector2i location);
 	void menuMouseHandling(sf::Vector2i location);
+	void creditsMouseHandling(sf::Vector2i location);
 	void updateGameState();
 	void setPlayerMovementDirection(int direction);
 	void setPlayerLocation(sf::Vector2f location);
