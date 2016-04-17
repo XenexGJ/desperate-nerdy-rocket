@@ -166,7 +166,7 @@ void Renderer::drawGame()
 
 		sf::Text text_help;
 		text_help.setFont(m_bold_font);
-		text_help.setColor(sf::Color::Black);
+		text_help.setColor(sf::Color::White);
 		text_help.setString("Rocky the Rocket wants to meet his daddy.\nBut he is high up in the sky. :-( Help him get there! \nStart with the <SPACE> key.");
 		text_help.setCharacterSize(30);
 		text_help.setPosition(sf::Vector2f(m_wnd->getSize().x/2 - text_help.getLocalBounds().width/2,500));
