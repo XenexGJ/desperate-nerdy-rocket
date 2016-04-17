@@ -12,8 +12,7 @@
 #define STATE_PLAYING 1
 #define STATE_SHOP 2
 #define STATE_MINI 3
-
-#define STATE_REFRESH 4
+#define STATE_CREDITS 4
 #define STATE_PAUSE 5
 #define STATE_CONTROLS 6
 #define STATE_READY_TO_LAUNCH 7

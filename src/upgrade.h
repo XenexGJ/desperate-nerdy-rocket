@@ -22,6 +22,7 @@ public:
 	int coolness;
 	float aerodynamic;
 	std::string name;
+	sf::Texture texture;
 
 private:
 	virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
@@ -30,7 +31,7 @@ private:
 	//if prize == 0 -> bought
 	
 	std::string assetPath;
-	sf::Texture texture;
+
 };
 
 #endif

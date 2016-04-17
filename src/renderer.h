@@ -11,6 +11,7 @@
 //für fmod
 #include <cmath>
 
+
 class Renderer
 {
 public:
@@ -36,7 +37,7 @@ private:
 	//Shop
 	sf::Texture m_texture_shopbackground;
 	sf::Texture m_texture_graffitti;
-	sf::Texture m_texture_slot1;
+	sf::Texture m_texture_buy;
 	sf::Texture m_texture_upgrade_bought;
 	sf::Texture m_texture_fappsy;
 	sf::Texture m_texture_takeoff;
