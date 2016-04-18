@@ -38,6 +38,7 @@ Renderer::Renderer(sf::RenderWindow *window, GameState *state)
 	{
     	m_wnd->close();
     }	
+    m_texture_shopbackground.setRepeated(true);
     if (!m_texture_graffitti.loadFromFile("assets/FF.png"))
 	{
     	m_wnd->close();
@@ -141,6 +142,9 @@ void Renderer::drawGame()
 
 	if(m_gst->getGameState() == STATE_MENU)
 	{
+		//sf::View view(sf::Vector2f(640, 400), sf::Vector2f(1280,800));
+		//m_wnd->setView(view);
+	
 		sf::Sprite sprite_startBg;
 		sprite_startBg.setTexture(m_texture_startBg);
 		//sprite_startBg.setTextureRect(sf::IntRect(0,textureLocation_y,m_wnd->getSize().x ,m_wnd->getSize().y*2));
@@ -166,28 +170,32 @@ void Renderer::drawGame()
 		m_wnd->draw(text_help);
 		
 		//Start Button
-		sf::Sprite sprite_play;
+		m_wnd->draw(m_gst->button_play);
+		/*sf::Sprite sprite_play;
 		sprite_play.setTexture(m_texture_play); 
 		sprite_play.setPosition(100,200);
-		m_wnd->draw(sprite_play);
+		m_wnd->draw(sprite_play);*/
 		
 		//Hilfe Button
-		sf::Sprite sprite_help;
+		m_wnd->draw(m_gst->button_help);
+		/*sf::Sprite sprite_help;
 		sprite_help.setTexture(m_texture_help); 
 		sprite_help.setPosition(100,350);
-		m_wnd->draw(sprite_help);
+		m_wnd->draw(sprite_help);*/
 		
 		//Credits Button
-		sf::Sprite sprite_credits;
+		m_wnd->draw(m_gst->button_credits);
+		/*sf::Sprite sprite_credits;
 		sprite_credits.setTexture(m_texture_credits); 
 		sprite_credits.setPosition(100,500); 
-		m_wnd->draw(sprite_credits);
+		m_wnd->draw(sprite_credits);*/
 		
 		//Beenden Button
-		sf::Sprite sprite_quit;
+		m_wnd->draw(m_gst->button_quit);
+		/*sf::Sprite sprite_quit;
 		sprite_quit.setTexture(m_texture_quit); 
 		sprite_quit.setPosition(100,650);
-		m_wnd->draw(sprite_quit);
+		m_wnd->draw(sprite_quit);*/
 		
 		
 	}
@@ -210,10 +218,12 @@ void Renderer::drawGame()
 		m_wnd->draw(text_credits);
 		
 		//Back Button
-		sf::Sprite sprite_back;
+		/*sf::Sprite sprite_back;
 		sprite_back.setTexture(m_texture_back); 
 		sprite_back.setPosition(100,700); 
-		m_wnd->draw(sprite_back);
+		m_wnd->draw(sprite_back);*/
+		
+		m_wnd->draw(m_gst->button_back);
 		
 	}
 	else if(m_gst->getGameState() == STATE_READY_TO_LAUNCH)
@@ -247,21 +257,15 @@ void Renderer::drawGame()
 		sprite_startBg.setPosition(0,0);
 		m_wnd->draw(sprite_startBg);
 		
-		
-
-		
-		
-
-		
 		m_wnd->draw(text_title);
 		m_wnd->draw(m_gst->rocket);	
 
 	}
 	else if (m_gst->getGameState() == STATE_SHOP)
 	{
-	
-		sf::View shop_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
-   		m_wnd->setView(shop_view);
+		//TODO warum stimmen die shoppositionen der koordinaten nur bei view.x 350 und nicht bei 400 was normal wäre?
+		//sf::View shop_view(sf::Vector2f(640,400), sf::Vector2f(1280,800));
+   		//m_wnd->setView(shop_view);
 
 		sf::Sprite sprite_shopbackground;
 		sprite_shopbackground.setTexture(m_texture_shopbackground);
@@ -290,17 +294,19 @@ void Renderer::drawGame()
 		m_wnd->draw(sprite_fappsy);
 		
 		//Start Button
-		sf::Sprite sprite_takeoff;
+		/*sf::Sprite sprite_takeoff;
 		sprite_takeoff.setTexture(m_texture_takeoff); 
 		sprite_takeoff.setPosition(1000,700);
-		m_wnd->draw(sprite_takeoff);
+		m_wnd->draw(sprite_takeoff);*/
+		m_wnd->draw(m_gst->button_takeOff);
 		
 		//Menue Button
-		sf::Sprite sprite_menue;
+		/*sf::Sprite sprite_menue;
 		sprite_menue.setTexture(m_texture_menu);
 		sprite_menue.setPosition(100,700);
-		m_wnd->draw(sprite_menue);
-
+		m_wnd->draw(sprite_menue);*/
+		
+		m_wnd->draw(m_gst->button_back);
 
 		std::vector<Upgrade*> *upgrades = m_gst->getUpgradeList();
 		
@@ -399,10 +405,14 @@ void Renderer::drawGame()
 		m_wnd->draw(text_controls);
 		
 		//Controls Button Back
-		sf::Sprite sprite_cback;
+		/*sf::Sprite sprite_cback;
 		sprite_cback.setTexture(m_texture_back); 
 		sprite_cback.setPosition(100,700); 
-		m_wnd->draw(sprite_cback);
+		m_wnd->draw(sprite_cback);*/
+		
+		//Button test = Button(sf::Vector2f( 500,500),sf::Vector2f(130,47),"","assets/Kaufen.png");
+		m_wnd->draw(m_gst->button_back);
+		
 	}
 	else if(m_gst->getGameState() == STATE_PLAYING)
 	{			

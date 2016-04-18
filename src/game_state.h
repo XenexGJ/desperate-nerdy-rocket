@@ -7,6 +7,7 @@
 #include "rocket.h"
 #include "nils.h"
 #include "sound_handler.h"
+#include "button.h"
 
 #define STATE_MENU 0
 #define STATE_PLAYING 1
@@ -72,7 +73,13 @@ public:
 	Rocket rocket;
 	Nils nils;
 
-	
+	//butons
+	Button button_back;
+	Button button_play;
+	Button button_credits;
+	Button button_help;
+	Button button_quit;
+	Button button_takeOff;
 private:
 	int m_game_state;
 	int m_size_x;

@@ -90,6 +90,7 @@ void SoundHandler::loadBuffers()
 	bgMusicBuff.loadFromFile("sfx/bg/maintheme.ogg");
 	introSound.loadFromFile("sfx/rocky_sadder.ogg");
 	FFF.loadFromFile("sfx/FFFJingle.ogg");
+	start.loadFromFile("sfx/start.ogg");
 }
 
 void SoundHandler::del()

@@ -40,6 +40,7 @@ void EventHandler::handleEvents()
 				if(event.key.code == sf::Keyboard::Space)
 				{
 					m_gst->startPlaying();
+					s->playSound(SOUND_START);
 					//m_gst->setGameState(STATE_PLAYING);
 					//std::cout<< "blaaaaabbbbbaaaa\n";
 				}

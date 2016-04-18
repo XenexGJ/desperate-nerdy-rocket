@@ -34,6 +34,14 @@ GameState::GameState(int x, int y)
 	
 	
 	rocket.updateStats();
+	
+	//load buttons
+	button_back = Button(sf::Vector2f(100,700),sf::Vector2f(130,47),"Back","assets/menu_button.png");
+	button_play = Button(sf::Vector2f(100,200),sf::Vector2f(130,47),"Play","assets/menu_button.png");
+	button_credits = Button(sf::Vector2f(100,350),sf::Vector2f(130,47),"Credits","assets/menu_button.png");
+	button_help = Button(sf::Vector2f(100,500),sf::Vector2f(130,47),"Help","assets/menu_button.png");
+	button_quit = Button(sf::Vector2f(100,650),sf::Vector2f(130,47),"Quit","assets/menu_button.png");
+	button_takeOff = Button(sf::Vector2f(1000,700),sf::Vector2f(130,47),"Launch","assets/menu_button.png");
 }
 
 int GameState::getGameState()
@@ -135,15 +143,15 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 	std::cout<< "mouse: "<< location.x << " " << location.y << "\n x:" << x << " y: " << y << "\n";
 		
 	//STARTBUTTON 
-	if (location.x >= 1000 && location.x <= 1138 && location.y >= 700 && location.y <= 756)
+	if(button_takeOff.checkClick(location))
 	{
 		readyToLaunch();
 		//startPlaying();
 	}
 	//MenueBUTTON 
-	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
+	if(button_back.checkClick(location))
 	{
-		//menu();//m_game_state = STATE_MENU;
+		m_game_state = STATE_MENU;
 	}
 	
 	
@@ -155,32 +163,35 @@ void GameState::shopMouseHandling(sf::Vector2i location)
 void GameState::controlMouseHandling(sf::Vector2i location)
 {
 	//std::cout<<location.x << "  " << location.y << "\n";
-	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756) ///////// FIX LOCATIONS
+	/*if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756) ///////// FIX LOCATIONS
 	{	
+		m_game_state = STATE_MENU;
+	}//*/
+	if(button_back.checkClick(location))
+	{
 		m_game_state = STATE_MENU;
 	}
 	
 }
 void GameState::menuMouseHandling(sf::Vector2i location)
 {
-	std::cout<<location.x << "  " << location.y << "\n";
-	if (location.x >= 100 && location.x <= 238 && location.y >= 200 && location.y <= 256)
+	//std::cout<<location.x << "  " << location.y << "\n";
+	if (button_play.checkClick(location))
 	{	
 		startShop();
 	}
-	if (location.x >= 100 && location.x <= 238 && location.y >= 350 && location.y <= 506)
+	if (button_help.checkClick(location))
 	{	
 		m_game_state = STATE_CONTROLS;
 	}
 
 	
-	if (location.x >= 100 && location.x <= 238 && location.y >= 500 && location.y <= 656)
+	if (button_credits.checkClick(location))
 	{
 		startCredits();
 	}
 	
-	if (location.x >= 100 && location.x <= 238 && location.y >= 650 && location.y <= 806)
-
+	if (button_quit.checkClick(location))
 	{	
 		//m_wnd->close();;
 		std::cout << "MACH MICH ZU DU SAU!!!!" << std::endl;
@@ -192,12 +203,16 @@ void GameState::menuMouseHandling(sf::Vector2i location)
 
 void GameState::creditsMouseHandling(sf::Vector2i location)
 {
-	
-	if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
+	std::cout << "credits\n";
+	if(button_back.checkClick(location))
+	{
+		m_game_state = STATE_MENU;
+	}
+	/*if (location.x >= 100 && location.x <= 238 && location.y >= 700 && location.y <= 756)
 	{	
 		m_game_state = STATE_MENU;
 
-	}
+	}//*/
 }	
 
 

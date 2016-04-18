@@ -8,6 +8,7 @@
 
 #define SOUND_INTRO 0
 #define SOUND_FFF 1
+#define SOUND_START 2
 
 
 class SoundHandler
@@ -62,6 +63,7 @@ private:
 	sf::SoundBuffer bgMusicBuff;
 	sf::SoundBuffer introSound;
 	sf::SoundBuffer FFF;
+	sf::SoundBuffer start;
 	
 	
 	
