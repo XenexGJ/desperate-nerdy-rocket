@@ -1,0 +1,4 @@
+1:
+shopkoordinaten fixen: renderer?
+beim aufrufen des shops wird mausposition falsch erkannt
+auch wenn man zurück ins menü geht
